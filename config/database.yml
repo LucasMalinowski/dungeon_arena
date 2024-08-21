@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: <%= ENV.fetch("DATABASE_HOST") %>
+  username: <%= ENV.fetch("DATABASE_USERNAME") %>
+  password: <%= ENV.fetch("DATABASE_PASSWORD") %>
+  pool: 5
+
+development:
+  <<: *default
+  database: dungeon_arena_development
+
+test:
+  <<: *default
+  database: dungeon_arena_test
+
+production:
+  <<: *default
+  database: dungeon_arena_production
+  username: dungeon_arena
+  password: <%= ENV["DUNGEON_ARENA_DATABASE_PASSWORD"] %>
