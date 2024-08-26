@@ -43,7 +43,8 @@
         <% end %>
       </li>
       <li>
-        <%= link_to "#"	, class: "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group" do %>
+        <% link = user_signed_in? ? edit_user_registration_path : new_user_session_path %>
+        <%= link_to link, class: "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group" do %>
           <i class="fa-duotone fa-user-crown fa-xl ml-0.5"></i>
           <span class="flex-1 ms-3 whitespace-nowrap">Profile</span>
         <% end %>
@@ -64,8 +65,7 @@
       <div class="border-t border-gray-200 dark:border-gray-700"></div>
       <% if user_signed_in? %>
         <span class="flex p-2 items-center gap-2 text-white">
-<!--          TODO: Add avatar to user -->
-          <%#= image_tag(current_user.avatar_thumbnail, class:"rounded-full size-10 border-2 border-gray-300") %>
+          <%= image_tag(current_user.avatar_thumbnail, class:"rounded-full size-10 border-2 border-gray-300") %>
           <p class="truncate ..."><%= current_user.username %></p>
           <%= button_to destroy_user_session_path, method: :delete,class: "flex" do %>
             <i class="fa-duotone fa-right-from-bracket"></i>
