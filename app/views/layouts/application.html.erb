@@ -20,10 +20,12 @@
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.2/css/sharp-light.css">
   </head>
 
-  <body>
+  <body class="bg-zinc-800 h-screen">
     <main>
-      <p class=”notice”><%= notice %></p>
-      <p class=”alert”><%= alert %></p>
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+
+      <%= render "layouts/aside" %>
 
       <%= yield %>
     </main>

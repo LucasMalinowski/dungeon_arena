@@ -1,0 +1,137 @@
+<button data-drawer-target="separator-sidebar" data-drawer-toggle="separator-sidebar" aria-controls="separator-sidebar" type="button" class="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+  <span class="sr-only">Open sidebar</span>
+  <i class="fa-solid fa-bars fa-lg"></i>
+</button>
+
+<aside id="separator-sidebar" class="fixed top-0 left-0 z-40 w-fit h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar"
+       data-controller="sidebar" data-expanded="<%= (cookies[:sidebar_expanded] || true) %>">
+  <div class="h-full px-3 py-4 bg-neutral-900 flex flex-col">
+    <button id="close-sidebar" class="text-white ml-auto sm:hidden">
+      <i class="fas fa-times"></i>
+    </button>
+    <a href="<%= root_path %>" class="flex items-center mb-5 justify-center">
+      <%= image_tag "logo2.svg", class:"h-16 [[data-expanded=false]_&]:hidden" %>
+      <%= image_tag "logo.svg", class:"h-16 [[data-expanded=true]_&]:hidden" %>
+    </a>
+    <ul class="flex flex-col space-y-2 font-medium flex-grow" data-sidebar-target="sidebarUl">
+      <li class="sidebar-item w-fit">
+        <%= link_to "#", class: "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group" do %>
+          <i class="fa-duotone fa-swords py-3 fa-lg ml-0.5"></i>
+          <span class="ms-3 whitespace-nowrap [[data-expanded=false]_&]:hidden">Play</span>
+        <% end %>
+      </li>
+      <li class="sidebar-item w-fit">
+        <%= link_to "#", class: "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group" do %>
+          <i class="fa-duotone fa-scroll-old py-3 fa-lg ml-0.5"></i>
+          <span class="ms-3 whitespace-nowrap [[data-expanded=false]_&]:hidden">Sheets</span>
+        <% end %>
+      </li>
+      <div class="border-t border-gray-200 dark:border-gray-700"></div>
+      <li class="w-fit">
+        <%= link_to "#", class: "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group" do %>
+          <i class="fa-duotone fa-comments-question-check py-3 fa-lg ml-0.5"></i>
+          <span class="flex-1 ms-3 whitespace-nowrap [[data-expanded=false]_&]:hidden">Forum</span>
+          <span class="inline-flex items-center  justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-white bg-yellow-100 rounded-full dark:bg-yellow-900 dark:text-white [[data-expanded=false]_&]:hidden">3</span>
+        <% end %>
+      </li>
+      <li class="w-fit">
+        <%= link_to "#", class: "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group" do %>
+          <i class="fa-duotone fa-user-group py-3 fa-lg ml-0.5"></i>
+          <span class="flex-1 ms-3 whitespace-nowrap [[data-expanded=false]_&]:hidden">Social</span>
+        <% end %>
+      </li>
+      <li class="w-fit">
+        <% link = user_signed_in? ? edit_user_registration_path : new_user_session_path %>
+        <%= link_to link, class: "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group" do %>
+          <i class="fa-duotone fa-user-crown py-3 fa-xl ml-0.5"></i>
+          <span class="flex-1 ms-3 whitespace-nowrap [[data-expanded=false]_&]:hidden">Profile</span>
+        <% end %>
+      </li>
+      <div class="border-t border-gray-200 dark:border-gray-700"></div>
+      <li class="w-fit">
+        <%= link_to "#", class: "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group" do %>
+          <i class="fa-duotone fa-book-sparkles py-3 fa-lg ml-0.5"></i>
+          <span class="flex-1 ms-3 whitespace-nowrap [[data-expanded=false]_&]:hidden">DnD News</span>
+        <% end %>
+      </li>
+      <li class="w-fit">
+        <%= link_to "#", class: "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group" do %>
+          <i class="fa-duotone fa-map-location-dot py-3 fa-lg ml-0.5"></i>
+          <span class="flex-1 ms-3 whitespace-nowrap [[data-expanded=false]_&]:hidden">Interactive Maps</span>
+        <% end %>
+      </li>
+      <div class="border-t border-gray-200 dark:border-gray-700"></div>
+      <% if user_signed_in? %>
+        <span class="flex p-2 items-center text-white w-fit">
+          <%= image_tag(current_user.avatar_thumbnail, class:"rounded-full size-10 border-2 border-gray-300") %>
+          <p class="truncate ... [[data-expanded=false]_&]:hidden mx-2"><%= current_user.username %></p>
+          <%= button_to destroy_user_session_path, method: :delete,class: "flex" do %>
+            <i class="fa-duotone fa-right-from-bracket [[data-expanded=false]_&]:hidden"></i>
+          <% end %>
+        </span>
+      <% else %>
+        <div class="flex justify-between">
+          <li class="w-fit">
+            <%= link_to new_user_session_path, class: "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group" do %>
+              <i class="fa-duotone fa-right-to-bracket fa-lg"></i>
+              <span class="flex-1 ms-3 whitespace-nowrap [[data-expanded=false]_&]:hidden">Log In</span>
+            <% end %>
+          </li>
+          <li class="w-fit">
+            <%= link_to new_user_registration_path, class: "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group" do %>
+              <i class="fa-duotone fa-file-pen fa-lg"></i>
+              <span class="flex-1 ms-3 whitespace-nowrap [[data-expanded=false]_&]:hidden">Sign Up</span>
+            <% end %>
+          </li>
+        </div>
+      <% end %>
+    </ul>
+    <ul class="flex flex-col mt-auto w-fit" data-sidebar-target="sidebarUlHelp">
+      <li class="sidebar-item">
+        <%= link_to "#", class: "flex items-center p-2  text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group" do %>
+          <i class="fa-duotone fa-solid fa-circle-question py-3 fa-lg ml-0.5"></i>
+          <span class="flex-1 ms-3 whitespace-nowrap [[data-expanded=false]_&]:hidden">Help</span>
+        <% end %>
+      </li>
+
+      <li class="sidebar-item">
+        <%= button_to nil, data: { action: "click->sidebar#toggle" }, class: "rounded-lg" do %>
+          <span class="[[data-expanded=true]_&]:hidden p-2 rounded-lg text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+            <i class="fa-solid fa-arrow-right-from-line"></i>
+          ️</span>
+          <span class="[[data-expanded=false]_&]:hidden p-2 rounded-lg text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+            <i class="fa-solid fa-arrow-left-from-line ml-0.5"></i>
+            <span class="flex-1 ms-3">
+              Collapse
+            </span>
+          ️</span>
+          <span class="[[data-expanded=false]_&]:hidden text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"></span>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</aside>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const sidebar = document.getElementById('separator-sidebar');
+    const toggleButton = document.querySelector('[data-drawer-toggle]');
+    const closeButton = document.getElementById('close-sidebar');
+
+    toggleButton.addEventListener('click', function () {
+      sidebar.classList.toggle('-translate-x-full');
+    });
+
+    closeButton.addEventListener('click', function () {
+      sidebar.classList.add('-translate-x-full');
+    });
+
+    window.addEventListener('click', function (event) {
+      if (window.innerWidth < 640 && !sidebar.contains(event.target) && !toggleButton.contains(event.target)) {
+        sidebar.classList.add('-translate-x-full');
+      }
+    });
+  });
+
+</script>
