@@ -1,0 +1,115 @@
+<div class="bg-gray-600 text-white h-full" data-controller="tabs">
+  <header class="p-4 bg-gray-700 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+    <div>
+      <h1 class="text-2xl font-bold"><%= @character.name %></h1>
+      <p class="text-sm"><%= @character.species %> - <%= @character.klass %> | Level 3</p>
+    </div>
+    <div class="flex gap-2 flex-wrap">
+      <button class="bg-green-600 px-4 py-2 rounded">Short Rest</button>
+      <button class="bg-yellow-600 px-4 py-2 rounded">Long Rest</button>
+    </div>
+  </header>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 p-4">
+    <div class="bg-gray-700 p-4 rounded">
+      <h2 class="text-lg font-bold mb-2">Abilities</h2>
+      <div class="grid grid-cols-2 gap-2">
+        <div>
+          <strong>Strength:</strong> <%= @character.strength %> (<%= modifier_for(@character, "strength") %>)
+        </div>
+        <div>
+          <strong>Dexterity:</strong> <%= @character.dexterity %> (<%= modifier_for(@character, "dexterity") %>)
+        </div>
+        <div>
+          <strong>Constitution:</strong> <%= @character.constitution %> (<%= modifier_for(@character, "constitution") %>)
+        </div>
+        <div>
+          <strong>Intelligence:</strong> <%= @character.intelligence %> (<%= modifier_for(@character, "intelligence") %>)
+        </div>
+        <div>
+          <strong>Wisdom:</strong> <%= @character.wisdom %> (<%= modifier_for(@character, "wisdom") %>)
+        </div>
+        <div>
+          <strong>Charisma:</strong> <%= @character.charisma %> (<%= modifier_for(@character, "charisma") %>)
+        </div>
+      </div>
+      <h2 class="text-lg font-bold mt-4 mb-2">Senses</h2>
+      <ul>
+        <li><strong>Passive Perception:</strong> <%= @character.wisdom + 10 %></li>
+        <li><strong>Passive Investigation:</strong> <%= @character.intelligence + 10 %></li>
+        <li><strong>Passive Insight:</strong> <%= @character.wisdom + 10 %></li>
+      </ul>
+    </div>
+
+    <section class="col-span-1 md:col-span-2 bg-gray-700 p-4 rounded">
+      <nav class="flex flex-wrap">
+        <button
+          class="px-4 py-2 border-b-2 border-green-500 text-green-500"
+          data-action="click->tabs#switch"
+          data-tabs-target="tab"
+          data-tab-name="actions"
+        >
+          Actions
+        </button>
+        <button
+          class="px-4 py-2 border-b-2 border-gray-700 text-white"
+          data-action="click->tabs#switch"
+          data-tabs-target="tab"
+          data-tab-name="spells"
+        >
+          Spells
+        </button>
+        <button
+          class="px-4 py-2 border-b-2 border-gray-700 text-white"
+          data-action="click->tabs#switch"
+          data-tabs-target="tab"
+          data-tab-name="inventory"
+        >
+          Inventory
+        </button>
+        <button
+          class="px-4 py-2 border-b-2 border-gray-700 text-white"
+          data-action="click->tabs#switch"
+          data-tabs-target="tab"
+          data-tab-name="features"
+        >
+          Features & Traits
+        </button>
+      </nav>
+
+      <div class="mt-4">
+        <div data-tabs-target="content" data-tab-name="actions">
+          <h2 class="text-xl font-bold">Actions</h2>
+          <ul>
+            <li><strong>Quarterstaff:</strong> 1d6+2 (Versatile)</li>
+            <li><strong>Unarmed Strike:</strong> 1d8+2</li>
+          </ul>
+        </div>
+
+        <div class="hidden" data-tabs-target="content" data-tab-name="spells">
+          <h2 class="text-xl font-bold">Spells</h2>
+          <ul>
+            <li><strong>Fireball:</strong> 8d6 damage</li>
+            <li><strong>Cure Wounds:</strong> 1d8+3 healing</li>
+          </ul>
+        </div>
+
+        <div class="hidden" data-tabs-target="content" data-tab-name="inventory">
+          <h2 class="text-xl font-bold">Inventory</h2>
+          <ul>
+            <li><strong>Health Potion:</strong> Restores 10 HP</li>
+            <li><strong>Rope:</strong> 50 ft</li>
+          </ul>
+        </div>
+
+        <div class="hidden" data-tabs-target="content" data-tab-name="features">
+          <h2 class="text-xl font-bold">Features & Traits</h2>
+          <ul>
+            <li><strong>Rage:</strong> +2 damage</li>
+            <li><strong>Wild Shape:</strong> Transform into a beast</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

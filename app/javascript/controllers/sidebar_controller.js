@@ -45,8 +45,14 @@ export default class extends Controller {
     this.element.classList.remove("-translate-x-full");
   }
 
-  switchCurrentState() {
-    const newState = this.element.dataset.expanded === "true" ? "false" : "true";
+  switchCurrentState(new_value) {
+    if(new_value){
+      this.element.dataset.expanded = new_value;
+      document.cookie = `sidebar_expanded=${new_value}`;
+    } else {
+      const newState = this.element.dataset.expanded === "true" ? "false" : "true";
+
+    }
     this.element.dataset.expanded = newState;
 
     if (newState === "true") {

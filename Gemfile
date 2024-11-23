@@ -18,8 +18,12 @@ gem "puma", ">= 5.0"
 gem "importmap-rails"
 gem 'dotenv-rails'
 
+gem "faraday"
+
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails"
+
+gem "wicked"
 
 gem 'devise'
 

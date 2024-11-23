@@ -1,0 +1,26 @@
+<div class="container mx-auto mt-6">
+  <h1 class="text-3xl font-semibold text-white mb-6">Your Characters</h1>
+
+  <% if @characters.any? %>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <% @characters.each do |character| %>
+        <div class="bg-neutral-700 text-white rounded-lg shadow-md p-4">
+          <h2 class="text-xl font-bold mb-2"><%= character.name %></h2>
+          <p class="text-sm mb-2"><span class="font-semibold">Class:</span> <%= character.klass %></p>
+
+          <div class="flex space-x-2">
+            <%= link_to "View", character_path(character), class: "px-3 py-1 bg-blue-500 hover:bg-blue-600 text-white rounded text-sm" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+  <% else %>
+    <p class="text-gray-300 text-center">You don't have any characters yet.</p>
+  <% end %>
+
+
+  <%= form_with model: Character.new, url: characters_path, method: :post, data: {turbo: false} do |f| %>
+    <%= f.submit "Create one now!", class: "text-blue-400 hover:text-blue-500" %>
+  <% end %>
+</div>

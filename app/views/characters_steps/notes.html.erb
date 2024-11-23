@@ -1,0 +1,12 @@
+<%= form_for @character, url: wizard_path(@step, character_id: @character.id), method: :put, class: "space-y-4 text-white" do |f| %>
+  <%= f.label :notes, "Notes", class: "block font-semibold" %>
+  <%= f.text_area :notes, class: "block w-full rounded bg-neutral-700 border border-gray-600 p-2" %>
+
+  <%= f.label :backstory, "Backstory", class: "block font-semibold" %>
+  <%= f.text_area :backstory, class: "block w-full rounded bg-neutral-700 border border-gray-600 p-2" %>
+
+  <%= f.label :alignment, "Alignment", class: "block font-semibold" %>
+  <%= f.select :alignment, %w[Lawful Neutral Chaotic Good Evil], prompt: "Select an Alignment", class: "block w-full rounded bg-neutral-700 border border-gray-600 p-2" %>
+
+  <%= f.submit "Next", name: "next", class: "bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded" %>
+<% end %>

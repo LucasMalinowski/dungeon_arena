@@ -1,0 +1,10 @@
+<%= form_for @character, url: wizard_path(@step, character_id: @character.id), method: :put, class: "space-y-4 text-white" do |f| %>
+  <%= f.label :name, "Character Name", class: "block font-semibold" %>
+  <%= f.text_field :name, class: "block w-full rounded bg-neutral-700 border border-gray-600 p-2" %>
+  <%= f.object.errors.full_messages_for(:name)&.first %>
+
+  <%= f.label :klass, "Class", class: "block font-semibold" %>
+  <%= f.select :klass, %w[Fighter Wizard Rogue Ranger], prompt: "Select a Class", class: "block w-full rounded bg-neutral-700 border border-gray-600 p-2" %>
+
+  <%= f.submit "Next", name: "next", class: "bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded" %>
+<% end %>

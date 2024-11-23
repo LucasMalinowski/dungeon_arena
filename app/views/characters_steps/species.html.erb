@@ -1,0 +1,6 @@
+<%= form_for @character, url: wizard_path(@step, character_id: @character.id), method: :put, class: "space-y-4 text-white" do |f| %>
+  <%= f.label :species, "Species", class: "block font-semibold" %>
+  <%= f.select :species, %w[Human Elf Dwarf Halfling], prompt: "Select a Species", class: "block w-full rounded bg-neutral-700 border border-gray-600 p-2" %>
+
+  <%= f.submit "Next", name: "next", class: "bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded" %>
+<% end %>

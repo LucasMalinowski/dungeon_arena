@@ -1,0 +1,8 @@
+<%= form_for @character, url: wizard_path(@step, character_id: @character.id), method: :put, class: "space-y-4 text-white" do |f| %>
+  <% %w[strength dexterity constitution intelligence wisdom charisma].each do |attr| %>
+    <%= f.label attr, attr.capitalize, class: "block font-semibold" %>
+    <%= f.number_field attr, class: "block w-full rounded bg-neutral-700 border border-gray-600 p-2", min: 0, max: 20 %>
+  <% end %>
+
+  <%= f.submit "Next", name: "next", class: "bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded" %>
+<% end %>
