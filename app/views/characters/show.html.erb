@@ -1,45 +1,43 @@
 <div class="bg-gray-600 text-white h-full" data-controller="tabs">
-  <header class="p-4 bg-gray-700 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+  <!-- Header Section -->
+  <header class="p-6 bg-gray-700 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
     <div>
-      <h1 class="text-2xl font-bold"><%= @character.name %></h1>
-      <p class="text-sm"><%= @character.species %> - <%= @character.klass %> | Level 3</p>
+      <h1 class="text-3xl font-bold leading-tight"><%= @character.name %></h1>
+      <p class="text-sm text-gray-300"><%= @character.species %> - <%= @character.klass %> | Level 3</p>
     </div>
-    <div class="flex gap-2 flex-wrap">
-      <button class="bg-green-600 px-4 py-2 rounded">Short Rest</button>
-      <button class="bg-yellow-600 px-4 py-2 rounded">Long Rest</button>
+    <div class="flex gap-3">
+      <button class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded text-sm font-semibold">
+        Short Rest
+      </button>
+      <button class="bg-yellow-600 hover:bg-yellow-700 px-4 py-2 rounded text-sm font-semibold">
+        Long Rest
+      </button>
     </div>
   </header>
 
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 p-4">
-    <div class="bg-gray-700 p-4 rounded">
-      <h2 class="text-lg font-bold mb-2">Abilities</h2>
-      <div class="grid grid-cols-2 gap-2">
-        <div>
-          <strong>Strength:</strong> <%= @character.strength %> (<%= modifier_for(@character, "strength") %>)
-        </div>
-        <div>
-          <strong>Dexterity:</strong> <%= @character.dexterity %> (<%= modifier_for(@character, "dexterity") %>)
-        </div>
-        <div>
-          <strong>Constitution:</strong> <%= @character.constitution %> (<%= modifier_for(@character, "constitution") %>)
-        </div>
-        <div>
-          <strong>Intelligence:</strong> <%= @character.intelligence %> (<%= modifier_for(@character, "intelligence") %>)
-        </div>
-        <div>
-          <strong>Wisdom:</strong> <%= @character.wisdom %> (<%= modifier_for(@character, "wisdom") %>)
-        </div>
-        <div>
-          <strong>Charisma:</strong> <%= @character.charisma %> (<%= modifier_for(@character, "charisma") %>)
-        </div>
+
+  <!-- Main Content Section -->
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 p-6">
+    <!-- Abilities Section -->
+    <section class="bg-gray-700 p-6 rounded shadow">
+      <h2 class="text-lg font-bold mb-4 border-b border-gray-500 pb-2">Abilities</h2>
+      <div class="grid grid-cols-2 gap-4">
+        <% ["strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma"].each do |ability| %>
+          <div class="bg-gray-800 rounded p-3 pb-1 text-center shadow hover:bg-gray-900">
+            <p class="text-xs uppercase text-gray-400 font-semibold"><%= ability.capitalize %></p>
+            <p class="text-xl text-green-400">+<%= modifier_for(@character, ability) %></p>
+            <p class="text-lg font-bold"><%= @character.send(ability) %></p>
+          </div>
+        <% end %>
       </div>
-      <h2 class="text-lg font-bold mt-4 mb-2">Senses</h2>
-      <ul>
-        <li><strong>Passive Perception:</strong> <%= @character.wisdom + 10 %></li>
-        <li><strong>Passive Investigation:</strong> <%= @character.intelligence + 10 %></li>
-        <li><strong>Passive Insight:</strong> <%= @character.wisdom + 10 %></li>
+
+      <h2 class="text-lg font-bold mt-6 mb-4 border-b border-gray-500 pb-2">Senses</h2>
+      <ul class="text-sm space-y-2">
+        <li><strong>Passive Perception:</strong> <%= @character.wisdom + modifier_for(@character, "wisdom") %></li>
+        <li><strong>Passive Investigation:</strong> <%= @character.intelligence + modifier_for(@character, "intelligence") %></li>
+        <li><strong>Passive Insight:</strong> <%= @character.wisdom + modifier_for(@character, "wisdom") %></li>
       </ul>
-    </div>
+    </section>
 
     <section class="col-span-1 md:col-span-2 bg-gray-700 p-4 rounded">
       <nav class="flex flex-wrap">
