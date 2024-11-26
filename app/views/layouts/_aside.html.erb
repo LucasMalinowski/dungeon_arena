@@ -1,7 +1,7 @@
-<aside class="fixed sm:relative z-40 h-full w-fit bg-neutral-900 transition-transform -translate-x-full sm:translate-x-0"
+<aside class="fixed sm:relative z-40 h-auto w-fit bg-neutral-900 transition-transform -translate-x-full sm:translate-x-0"
        data-controller="sidebar"
        data-expanded="<%= (cookies[:sidebar_expanded] || true) %>">
-  <div class="h-full px-3 py-4 flex flex-col">
+  <div class="h-screen px-3 py-4 flex flex-col">
     <button id="close-sidebar" data-action="click->sidebar#close" class="text-white ml-auto sm:hidden">
       <i class="fas fa-times"></i>
     </button>
