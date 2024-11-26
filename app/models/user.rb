@@ -7,6 +7,6 @@ class User < ApplicationRecord
   has_one_attached :avatar
 
   def avatar_thumbnail
-    avatar.attached? ? avatar : 'default_avatar.png'
+    avatar.attached? ? avatar : 'default_avatar.jpg'
   end
 end

@@ -9,7 +9,6 @@ export default class extends Controller {
   ];
 
   connect() {
-    console.log(this.sidebarUlTarget)
     if (document.cookie.includes("sidebar_expanded=false")) {
       this.sidebarUlTarget.classList.toggle("items-center");
       this.sidebarUlHelpTarget.classList.toggle("flex-col");
@@ -46,13 +45,13 @@ export default class extends Controller {
   }
 
   switchCurrentState(new_value) {
-    if(new_value){
-      this.element.dataset.expanded = new_value;
-      document.cookie = `sidebar_expanded=${new_value}`;
-    } else {
-      const newState = this.element.dataset.expanded === "true" ? "false" : "true";
-
-    }
+    // if(new_value){
+    //   this.element.dataset.expanded = new_value;
+    //   document.cookie = `sidebar_expanded=${new_value}`;
+    //   const newState = new_value;
+    // } else {
+    // }
+    const newState = this.element.dataset.expanded === "true" ? "false" : "true";
     this.element.dataset.expanded = newState;
 
     if (newState === "true") {

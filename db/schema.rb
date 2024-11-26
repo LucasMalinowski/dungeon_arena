@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_11_20_001501) do
+ActiveRecord::Schema[7.1].define(version: 2024_11_26_101951) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -74,6 +74,67 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_20_001501) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "class_proficiencies", force: :cascade do |t|
+    t.bigint "klass_id", null: false
+    t.bigint "proficiency_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["klass_id"], name: "index_class_proficiencies_on_klass_id"
+    t.index ["proficiency_id"], name: "index_class_proficiencies_on_proficiency_id"
+  end
+
+  create_table "class_saving_throws", force: :cascade do |t|
+    t.bigint "klass_id", null: false
+    t.bigint "saving_throw_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["klass_id"], name: "index_class_saving_throws_on_klass_id"
+    t.index ["saving_throw_id"], name: "index_class_saving_throws_on_saving_throw_id"
+  end
+
+  create_table "class_starting_equipments", force: :cascade do |t|
+    t.bigint "klass_id", null: false
+    t.bigint "equipment_id", null: false
+    t.integer "quantity", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["equipment_id"], name: "index_class_starting_equipments_on_equipment_id"
+    t.index ["klass_id"], name: "index_class_starting_equipments_on_klass_id"
+  end
+
+  create_table "equipment", force: :cascade do |t|
+    t.string "index", null: false
+    t.string "name", null: false
+    t.string "url", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "klasses", force: :cascade do |t|
+    t.string "index", null: false
+    t.string "name", null: false
+    t.integer "hit_die", null: false
+    t.string "url", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "proficiencies", force: :cascade do |t|
+    t.string "index", null: false
+    t.string "name", null: false
+    t.string "url", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "saving_throws", force: :cascade do |t|
+    t.string "index", null: false
+    t.string "name", null: false
+    t.string "url", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username", default: "", null: false
     t.string "email", default: "", null: false
@@ -89,4 +150,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_20_001501) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "class_proficiencies", "klasses"
+  add_foreign_key "class_proficiencies", "proficiencies"
+  add_foreign_key "class_saving_throws", "klasses"
+  add_foreign_key "class_saving_throws", "saving_throws"
+  add_foreign_key "class_starting_equipments", "equipment"
+  add_foreign_key "class_starting_equipments", "klasses"
 end

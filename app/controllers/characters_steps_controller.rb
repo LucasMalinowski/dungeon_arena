@@ -8,6 +8,7 @@ class CharactersStepsController < ApplicationController
   steps :klass, :species, :abilities, :physical, :notes, :personality
 
   def show
+    @klasses = Klass.all
     render_wizard
   end
 

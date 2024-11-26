@@ -4,7 +4,38 @@
   <%= f.object.errors.full_messages_for(:name)&.first %>
 
   <%= f.label :klass, "Class", class: "block font-semibold" %>
-  <%= f.select :klass, %w[Fighter Wizard Rogue Ranger], prompt: "Select a Class", class: "block w-full rounded bg-neutral-700 border border-gray-600 p-2" %>
+  <div data-controller="collapse" class="mb-6">
+    <div class="space-y-2">
+      <% @klasses.each do |klass| %>
+        <div class="border border-gray-600 rounded-md">
+          <input
+            type="radio"
+            id="<%= klass.name %>"
+            name="character[klass]"
+            value="<%= klass.name %>"
+            class="hidden peer"
+            data-action="click->collapse#toggle"
+            data-collapse-target="<%= klass.name %>_info"
+          >
+          <label for="<%= klass.name %>" class="block p-4 cursor-pointer bg-neutral-700 hover:bg-neutral-600 peer-checked:bg-blue-500 peer-checked:text-white">
+            <div class="flex items-center justify-between">
+              <span class="font-bold"><%= klass.name %></span>
+              <i class="fa fa-chevron-right peer-checked:rotate-90 transition-transform"></i>
+            </div>
+          </label>
+          <div id="<%= klass.name %>_info" class="hidden bg-neutral-800 p-4">
+            <p><%= klass.url %></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 
-  <%= f.submit "Next", name: "next", class: "bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded" %>
+  <div class="flex justify-between items-center px-20">
+    <%= link_to wizard_path("previous", character_id: @character.id), class: "p-4 bg-neutral-700 hover:bg-neutral-600 text-white rounded-full shadow-md cursor-pointer" do %>
+      <i class="fa fa-arrow-left"></i>
+    <% end %>
+
+    <%= f.submit "Next", name: "next", class: "p-4 bg-blue-500 hover:bg-blue-600 text-white rounded-full shadow-md cursor-pointer" %>
+  </div>
 <% end %>
