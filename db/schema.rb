@@ -10,9 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_11_26_101951) do
+ActiveRecord::Schema[7.1].define(version: 2024_11_27_105720) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "ability_scores", force: :cascade do |t|
+    t.string "name"
+    t.string "full_name"
+    t.text "desc"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -40,6 +48,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_26_101951) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "alignments", force: :cascade do |t|
+    t.string "name"
+    t.string "abbreviation"
+    t.text "desc"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "characters", force: :cascade do |t|
@@ -74,38 +90,22 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_26_101951) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "class_proficiencies", force: :cascade do |t|
-    t.bigint "klass_id", null: false
-    t.bigint "proficiency_id", null: false
+  create_table "conditions", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["klass_id"], name: "index_class_proficiencies_on_klass_id"
-    t.index ["proficiency_id"], name: "index_class_proficiencies_on_proficiency_id"
   end
 
-  create_table "class_saving_throws", force: :cascade do |t|
-    t.bigint "klass_id", null: false
-    t.bigint "saving_throw_id", null: false
+  create_table "damage_types", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["klass_id"], name: "index_class_saving_throws_on_klass_id"
-    t.index ["saving_throw_id"], name: "index_class_saving_throws_on_saving_throw_id"
   end
 
-  create_table "class_starting_equipments", force: :cascade do |t|
-    t.bigint "klass_id", null: false
-    t.bigint "equipment_id", null: false
-    t.integer "quantity", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["equipment_id"], name: "index_class_starting_equipments_on_equipment_id"
-    t.index ["klass_id"], name: "index_class_starting_equipments_on_klass_id"
-  end
-
-  create_table "equipment", force: :cascade do |t|
-    t.string "index", null: false
-    t.string "name", null: false
-    t.string "url", null: false
+  create_table "equipment_categories", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -119,20 +119,29 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_26_101951) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "proficiencies", force: :cascade do |t|
-    t.string "index", null: false
-    t.string "name", null: false
-    t.string "url", null: false
+  create_table "languages", force: :cascade do |t|
+    t.string "name"
+    t.string "language_type"
+    t.string "typical_speakers"
+    t.string "script"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "saving_throws", force: :cascade do |t|
-    t.string "index", null: false
-    t.string "name", null: false
-    t.string "url", null: false
+  create_table "magic_schools", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "skills", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.bigint "ability_score_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ability_score_id"], name: "index_skills_on_ability_score_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -148,12 +157,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_26_101951) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "weapon_properties", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "class_proficiencies", "klasses"
-  add_foreign_key "class_proficiencies", "proficiencies"
-  add_foreign_key "class_saving_throws", "klasses"
-  add_foreign_key "class_saving_throws", "saving_throws"
-  add_foreign_key "class_starting_equipments", "equipment"
-  add_foreign_key "class_starting_equipments", "klasses"
+  add_foreign_key "skills", "ability_scores"
 end
