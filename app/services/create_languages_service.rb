@@ -6,10 +6,11 @@ class CreateLanguagesService
   end
 
   def call
+    p 'Creating Languages...'
     @data.each do |language|
       Language.find_or_create_by!(
         name: language['name'],
-        description: language['desc'].join("\n"),
+        description: language['desc'],
         language_type: language['type'],
         script: language['script'],
         typical_speakers: language['typical_speakers'].join("\n")

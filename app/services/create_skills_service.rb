@@ -6,6 +6,7 @@ class CreateSkillsService
   end
 
   def call
+    p 'Creating Skills...'
     @data.each do |skill|
       Skill.find_or_create_by!(
         name: skill['name'],

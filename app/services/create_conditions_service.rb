@@ -6,6 +6,7 @@ class CreateConditionsService
   end
 
   def call
+    p 'Creating Conditions...'
     @data.each do |condition|
       Condition.find_or_create_by!(
         name: condition['name'],

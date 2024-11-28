@@ -5,15 +5,17 @@ class CreateDndInformationsService
   def call
     p 'Creating D&D information...'
     ActiveRecord::Base.transaction do
-      p Dir["#{CURRENT_PATH}/*.rb"]
-      Dir["#{CURRENT_PATH}/*.rb"].each do |file_path|
-        next if file_path == __FILE__
-        require file_path
-
-        puts "Creating #{File.basename(file_path, ".*")}..."
-        puts "\n"
-        file_path.camelize.split('.').first.split("::").last.constantize.new.call
-      end
+      CreateAbilityScoresService.new.call
+      CreateAlignmentsService.new.call
+      CreateConditionsService.new.call
+      CreateDamageTypesService.new.call
+      CreateEquipmentCategoriesService.new.call
+      CreateLanguagesService.new.call
+      CreateMagicSchoolsService.new.call
+      CreateSkillsService.new.call
+      CreateWeaponPropertiesService.new.call
+      CreateEquipmentsService.new.call
+      CreateMagicalItemsService.new.call
     end
   end
 end

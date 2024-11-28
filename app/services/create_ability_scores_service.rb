@@ -6,6 +6,7 @@ class CreateAbilityScoresService
   end
 
   def call
+    p 'Creating Ability Scores...'
     @data.each do |ability_score|
       AbilityScore.find_or_create_by!(
         name: ability_score['name'],

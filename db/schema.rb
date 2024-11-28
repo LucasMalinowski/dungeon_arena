@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_11_27_105720) do
+ActiveRecord::Schema[7.1].define(version: 2024_11_28_112940) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -50,12 +50,41 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_27_105720) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "adventuring_gears", force: :cascade do |t|
+    t.string "name"
+    t.string "cost_unity"
+    t.integer "cost_quantity"
+    t.integer "weight"
+    t.string "gear_category"
+    t.text "description"
+    t.bigint "equipment_categories_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["equipment_categories_id"], name: "index_adventuring_gears_on_equipment_categories_id"
+  end
+
   create_table "alignments", force: :cascade do |t|
     t.string "name"
     t.string "abbreviation"
     t.text "desc"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "armors", force: :cascade do |t|
+    t.string "name"
+    t.integer "armor_class"
+    t.string "armor_class_bonus"
+    t.string "cost_unity"
+    t.string "armor_category"
+    t.integer "cost_quantity"
+    t.integer "weight"
+    t.boolean "stealth_disadvantage"
+    t.integer "strength_requirement"
+    t.bigint "equipment_categories_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["equipment_categories_id"], name: "index_armors_on_equipment_categories_id"
   end
 
   create_table "characters", force: :cascade do |t|
@@ -104,6 +133,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_27_105720) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "equipment", force: :cascade do |t|
+    t.string "name"
+    t.string "equipmentable_type", null: false
+    t.bigint "equipmentable_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["equipmentable_type", "equipmentable_id"], name: "index_equipment_on_equipmentable"
+  end
+
   create_table "equipment_categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -124,6 +162,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_27_105720) do
     t.string "language_type"
     t.string "typical_speakers"
     t.string "script"
+    t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -135,6 +174,69 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_27_105720) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "magical_items", force: :cascade do |t|
+    t.string "name"
+    t.string "cost_unity"
+    t.integer "cost_quantity"
+    t.integer "weight"
+    t.text "description"
+    t.string "rarity"
+    t.boolean "variant"
+    t.string "variants"
+    t.bigint "equipment_categories_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["equipment_categories_id"], name: "index_magical_items_on_equipment_categories_id"
+  end
+
+  create_table "mounts", force: :cascade do |t|
+    t.string "name"
+    t.string "cost_unity"
+    t.integer "cost_quantity"
+    t.integer "weight"
+    t.integer "speed"
+    t.string "speed_unity"
+    t.string "carry_capacity"
+    t.text "description"
+    t.bigint "equipment_categories_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["equipment_categories_id"], name: "index_mounts_on_equipment_categories_id"
+  end
+
+  create_table "rule_scopes", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+  end
+
+  create_table "rules", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.bigint "rule_scope_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["rule_scope_id"], name: "index_rules_on_rule_scope_id"
+  end
+
+  create_table "shields", force: :cascade do |t|
+    t.string "name"
+    t.integer "armor_class"
+    t.string "armor_class_bonus"
+    t.string "cost_unity"
+    t.integer "cost_quantity"
+    t.integer "weight"
+    t.text "description"
+    t.boolean "stealth_disadvantage"
+    t.integer "strength_requirement"
+    t.string "rarity"
+    t.boolean "variant"
+    t.string "variants"
+    t.bigint "equipment_categories_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["equipment_categories_id"], name: "index_shields_on_equipment_categories_id"
+  end
+
   create_table "skills", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -142,6 +244,19 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_27_105720) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["ability_score_id"], name: "index_skills_on_ability_score_id"
+  end
+
+  create_table "tools", force: :cascade do |t|
+    t.string "name"
+    t.string "cost_unity"
+    t.integer "cost_quantity"
+    t.integer "weight"
+    t.string "tool_category"
+    t.text "description"
+    t.bigint "equipment_categories_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["equipment_categories_id"], name: "index_tools_on_equipment_categories_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -157,6 +272,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_27_105720) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "weapon_damage_types", force: :cascade do |t|
+    t.bigint "weapon_id"
+    t.bigint "damage_type_id"
+    t.string "damage_instance"
+    t.index ["damage_type_id"], name: "index_weapon_damage_types_on_damage_type_id"
+    t.index ["weapon_id"], name: "index_weapon_damage_types_on_weapon_id"
+  end
+
   create_table "weapon_properties", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -164,7 +287,43 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_27_105720) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "weapon_property_weapons", force: :cascade do |t|
+    t.bigint "weapon_property_id"
+    t.bigint "weapon_id"
+    t.index ["weapon_id"], name: "index_weapon_property_weapons_on_weapon_id"
+    t.index ["weapon_property_id"], name: "index_weapon_property_weapons_on_weapon_property_id"
+  end
+
+  create_table "weapons", force: :cascade do |t|
+    t.string "name"
+    t.string "weapon_category"
+    t.string "weapon_range"
+    t.string "category_range"
+    t.string "damage_dice"
+    t.string "two_hand_damage_dice"
+    t.integer "normal_range"
+    t.integer "long_range"
+    t.string "cost_unity"
+    t.integer "cost_quantity"
+    t.integer "weight"
+    t.string "special"
+    t.integer "throw_range_normal"
+    t.integer "throw_range_long"
+    t.bigint "equipment_categories_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["equipment_categories_id"], name: "index_weapons_on_equipment_categories_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "adventuring_gears", "equipment_categories", column: "equipment_categories_id"
+  add_foreign_key "armors", "equipment_categories", column: "equipment_categories_id"
+  add_foreign_key "magical_items", "equipment_categories", column: "equipment_categories_id"
+  add_foreign_key "mounts", "equipment_categories", column: "equipment_categories_id"
+  add_foreign_key "rules", "rule_scopes"
+  add_foreign_key "shields", "equipment_categories", column: "equipment_categories_id"
   add_foreign_key "skills", "ability_scores"
+  add_foreign_key "tools", "equipment_categories", column: "equipment_categories_id"
+  add_foreign_key "weapons", "equipment_categories", column: "equipment_categories_id"
 end

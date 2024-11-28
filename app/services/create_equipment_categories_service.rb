@@ -6,6 +6,7 @@ class CreateEquipmentCategoriesService
   end
 
   def call
+    p 'Creating Equipment Categories...'
     @data.each do |equipment_category|
       EquipmentCategory.find_or_create_by!(
         name: equipment_category['name']

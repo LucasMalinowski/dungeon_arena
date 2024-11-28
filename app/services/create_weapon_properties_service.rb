@@ -6,6 +6,7 @@ class CreateWeaponPropertiesService
   end
 
   def call
+    p 'Creating Weapon Properties...'
     @data.each do |weapon_property|
       WeaponProperty.find_or_create_by!(
         name: weapon_property['name'],

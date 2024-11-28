@@ -6,6 +6,7 @@ class CreateDamageTypesService
   end
 
   def call
+    p 'Creating Damage Types...'
     @data.each do |damage_type|
       DamageType.find_or_create_by!(
         name: damage_type['name'],
