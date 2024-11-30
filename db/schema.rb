@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_11_28_112940) do
+ActiveRecord::Schema[7.1].define(version: 2024_11_29_130633) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -119,6 +119,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_28_112940) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "class_proficiencies", force: :cascade do |t|
+    t.bigint "klass_id"
+    t.bigint "proficiency_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["klass_id"], name: "index_class_proficiencies_on_klass_id"
+    t.index ["proficiency_id"], name: "index_class_proficiencies_on_proficiency_id"
+  end
+
   create_table "conditions", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -149,10 +158,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_28_112940) do
   end
 
   create_table "klasses", force: :cascade do |t|
-    t.string "index", null: false
     t.string "name", null: false
-    t.integer "hit_die", null: false
-    t.string "url", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -204,6 +210,25 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_28_112940) do
     t.index ["equipment_categories_id"], name: "index_mounts_on_equipment_categories_id"
   end
 
+  create_table "proficiencies", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "race_proficiencies", force: :cascade do |t|
+    t.bigint "race_id"
+    t.bigint "proficiency_id"
+    t.index ["proficiency_id"], name: "index_race_proficiencies_on_proficiency_id"
+    t.index ["race_id"], name: "index_race_proficiencies_on_race_id"
+  end
+
+  create_table "races", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "rule_scopes", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -244,6 +269,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_28_112940) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["ability_score_id"], name: "index_skills_on_ability_score_id"
+  end
+
+  create_table "subraces", force: :cascade do |t|
+    t.string "name"
+    t.bigint "race_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["race_id"], name: "index_subraces_on_race_id"
   end
 
   create_table "tools", force: :cascade do |t|
@@ -319,11 +352,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_28_112940) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "adventuring_gears", "equipment_categories", column: "equipment_categories_id"
   add_foreign_key "armors", "equipment_categories", column: "equipment_categories_id"
+  add_foreign_key "class_proficiencies", "klasses"
+  add_foreign_key "class_proficiencies", "proficiencies"
   add_foreign_key "magical_items", "equipment_categories", column: "equipment_categories_id"
   add_foreign_key "mounts", "equipment_categories", column: "equipment_categories_id"
+  add_foreign_key "race_proficiencies", "proficiencies"
+  add_foreign_key "race_proficiencies", "races"
   add_foreign_key "rules", "rule_scopes"
   add_foreign_key "shields", "equipment_categories", column: "equipment_categories_id"
   add_foreign_key "skills", "ability_scores"
+  add_foreign_key "subraces", "races"
   add_foreign_key "tools", "equipment_categories", column: "equipment_categories_id"
   add_foreign_key "weapons", "equipment_categories", column: "equipment_categories_id"
 end
