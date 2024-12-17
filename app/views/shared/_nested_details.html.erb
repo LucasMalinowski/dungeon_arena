@@ -1,0 +1,28 @@
+<% if details.is_a?(Hash) %>
+  <ul>
+    <% details.each do |key, value| %>
+      <li>
+        <strong><%= key.to_s.humanize %>:</strong>
+        <% if value.is_a?(Hash) || value.is_a?(Array) %>
+          <%= render partial: 'shared/nested_details', locals: { details: value } %>
+        <% else %>
+          <%= value %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+<% elsif details.is_a?(Array) %>
+  <ul>
+    <% details.each do |item| %>
+      <li>
+        <% if item.is_a?(Hash) || item.is_a?(Array) %>
+          <%= render partial: 'shared/nested_details', locals: { details: item } %>
+        <% else %>
+          <%= item %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p><%= details %></p>
+<% end %>

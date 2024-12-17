@@ -1,0 +1,16 @@
+<% details.each do |key, value| %>
+  <div>
+    <strong><%= key.to_s.humanize %>:</strong>
+    <% if value.is_a?(Hash) %>
+      <%= render partial: "shared/nested_details", locals: { details: value } %>
+    <% elsif value.is_a?(Array) %>
+      <ul>
+        <% value.each do |item| %>
+          <li><%= item.is_a?(Hash) ? item.map { |k, v| "#{k}: #{v}" }.join(", ") : item %></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p><%= value %></p>
+    <% end %>
+  </div>
+<% end %>
