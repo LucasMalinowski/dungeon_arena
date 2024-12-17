@@ -1,0 +1,3615 @@
+[
+  {
+    "name": "Acolyte",
+    "description": "As an acolyte, you command the respect of those who share your faith, and you can perform the religious ceremonies of your deity. You and your adventuring companions can expect to receive free healing and care at a temple, shrine, or other established presence of your faith, though you must provide any material components needed for spells. Those who share your religion will support you (but only you) at a modest lifestyle.\",\n        \"You might also have ties to a specific temple dedicated to your chosen deity or pantheon, and you have a residence there. This could be the temple where you used to serve, if you remain on good terms with it, or a temple where you have found a new home. While near your temple, you can call upon the priests for assistance, provided the assistance you ask for is not hazardous and you remain in good standing with your temple.",
+    "starting_proficiencies": [
+      {
+        "name": "Skill: Insight"
+      },
+      {
+        "name": "Skill: Religion"
+      }
+    ],
+    "language_options": "2 of your choice",
+    "starting_equipment": "A holy symbol (a gift to you when you entered the priesthood), a prayer book or prayer wheel, 5 sticks of incense, vestments, a set of common clothes, and a belt pouch containing 15 gp",
+    "personality_traits": {
+      "choose": 2,
+      "type": "personality_traits",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "string",
+            "string": "I idolize a particular hero of my faith, and constantly refer to that person's deeds and example."
+          },
+          {
+            "option_type": "string",
+            "string": "I can find common ground between the fiercest enemies, empathizing with them and always working toward peace."
+          },
+          {
+            "option_type": "string",
+            "string": "I see omens in every event and action. The gods try to speak to us, we just need to listen."
+          },
+          {
+            "option_type": "string",
+            "string": "Nothing can shake my optimistic attitude."
+          },
+          {
+            "option_type": "string",
+            "string": "I quote (or misquote) sacred texts and proverbs in almost every situation."
+          },
+          {
+            "option_type": "string",
+            "string": "I am tolerant (or intolerant) of other faiths and respect (or condemn) the worship of other gods."
+          },
+          {
+            "option_type": "string",
+            "string": "I've enjoyed fine food, drink, and high society among my temple's elite. Rough living grates on me."
+          },
+          {
+            "option_type": "string",
+            "string": "I've spent so long in the temple that I have little practical experience dealing with people in the outside world."
+          }
+        ]
+      }
+    },
+    "ideals": {
+      "choose": 1,
+      "type": "ideals",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "ideal",
+            "desc": "Tradition. The ancient traditions of worship and sacrifice must be preserved and upheld.",
+            "alignments": [
+              {
+                "index": "lawful-good",
+                "name": "Lawful Good"
+              },
+              {
+                "index": "lawful-neutral",
+                "name": "Lawful Neutral"
+              },
+              {
+                "index": "lawful-evil",
+                "name": "Lawful Evil"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Charity. I always try to help those in need, no matter what the personal cost.",
+            "alignments": [
+              {
+                "index": "lawful-good",
+                "name": "Lawful Good"
+              },
+              {
+                "index": "neutral-good",
+                "name": "Neutral Good"
+              },
+              {
+                "index": "chaotic-good",
+                "name": "Chaotic Good"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Change. We must help bring about the changes the gods are constantly working in the world.",
+            "alignments": [
+              {
+                "index": "chaotic-good",
+                "name": "Chaotic Good"
+              },
+              {
+                "index": "chaotic-neutral",
+                "name": "Chaotic Neutral"
+              },
+              {
+                "index": "chaotic-evil",
+                "name": "Chaotic Evil"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Power. I hope to one day rise to the top of my faith's religious hierarchy.",
+            "alignments": [
+              {
+                "index": "lawful-good",
+                "name": "Lawful Good"
+              },
+              {
+                "index": "lawful-neutral",
+                "name": "Lawful Neutral"
+              },
+              {
+                "index": "lawful-evil",
+                "name": "Lawful Evil"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Faith. I trust that my deity will guide my actions. I have faith that if I work hard, things will go well.",
+            "alignments": [
+              {
+                "index": "lawful-good",
+                "name": "Lawful Good"
+              },
+              {
+                "index": "lawful-neutral",
+                "name": "Lawful Neutral"
+              },
+              {
+                "index": "lawful-evil",
+                "name": "Lawful Evil"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Aspiration. I seek to prove myself worthy of my god's favor by matching my actions against his or her teachings.",
+            "alignments": [
+              {
+                "index": "lawful-good",
+                "name": "Lawful Good"
+              },
+              {
+                "index": "neutral-good",
+                "name": "Neutral Good"
+              },
+              {
+                "index": "chaotic-good",
+                "name": "Chaotic Good"
+              },
+              {
+                "index": "lawful-neutral",
+                "name": "Lawful Neutral"
+              },
+              {
+                "index": "neutral",
+                "name": "Neutral"
+              },
+              {
+                "index": "chaotic-neutral",
+                "name": "Chaotic Neutral"
+              },
+              {
+                "index": "lawful-evil",
+                "name": "Lawful Evil"
+              },
+              {
+                "index": "neutral-evil",
+                "name": "Neutral Evil"
+              },
+              {
+                "index": "chaotic-evil",
+                "name": "Chaotic Evil"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "bonds": {
+      "choose": 1,
+      "type": "bonds",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "string",
+            "string": "I would die to recover an ancient relic of my faith that was lost long ago."
+          },
+          {
+            "option_type": "string",
+            "string": "I will someday get revenge on the corrupt temple hierarchy who branded me a heretic."
+          },
+          {
+            "option_type": "string",
+            "string": "I owe my life to the priest who took me in when my parents died."
+          },
+          {
+            "option_type": "string",
+            "string": "Everything I do is for the common people."
+          },
+          {
+            "option_type": "string",
+            "string": "I will do anything to protect the temple where I served."
+          },
+          {
+            "option_type": "string",
+            "string": "I seek to preserve a sacred text that my enemies consider heretical and seek to destroy."
+          }
+        ]
+      }
+    },
+    "flaws": {
+      "choose": 1,
+      "type": "flaws",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "string",
+            "string": "I judge others harshly, and myself even more severely."
+          },
+          {
+            "option_type": "string",
+            "string": "I put too much trust in those who wield power within my temple's hierarchy."
+          },
+          {
+            "option_type": "string",
+            "string": "My piety sometimes leads me to blindly trust those that profess faith in my god."
+          },
+          {
+            "option_type": "string",
+            "string": "I am inflexible in my thinking."
+          },
+          {
+            "option_type": "string",
+            "string": "I am suspicious of strangers and expect the worst of them."
+          },
+          {
+            "option_type": "string",
+            "string": "Once I pick a goal, I become obsessed with it to the detriment of everything else in my life."
+          }
+        ]
+      }
+    },
+    "feature_name": "Shelter of the Faithful",
+    "feature_desc": "As an acolyte, you command the respect of those who share your faith, and you can perform the religious ceremonies of your deity. You and your adventuring companions can expect to receive free healing and care at a temple, shrine, or other established presence of your faith, though you must provide any material components needed for spells. Those who share your religion will support you (but only you) at a modest lifestyle.\nYou might also have ties to a specific temple dedicated to your chosen deity or pantheon, and you have a residence there. This could be the temple where you used to serve, if you remain on good terms with it, or a temple where you have found a new home. While near your temple, you can call upon the priests for assistance, provided the assistance you ask for is not hazardous and you remain in good standing with your temple."
+  },
+  {
+    "name": "Charlatan",
+    "description": "You have always had a way with people. You know what makes them tick, you can tease out their heart’s desires after a few minutes of conversation, and with a few leading questions you can read them like they were children’s books. It’s a useful talent, and one that you’re perfectly willing to use for your advantage. You know what people want and you deliver, or rather, you promise to deliver. Common sense should steer people away from things that sound too good to be true, but common sense seems to be in short supply when you’re around. The bottle of pink-colored liquid will surely cure that unseemly rash, this ointment—nothing more than a bit of fat with a sprinkle of silver dust—can restore youth and vigor, and there’s a bridge in the city you’re selling for a bargain price. These marvels sound implausible, but you make them sound like the real deal.",
+    "starting_proficiencies": [
+      {
+        "name": "Skill: Deception"
+      },
+      {
+        "name": "Skill: Sleight of Hand"
+      }
+    ],
+    "starting_equipment": "A set of fine clothes, a disguise kit, tools of the con of your choice (ten stoppered bottles filled with colored liquid, a set of weighted dice, a deck of marked cards, or a signet ring of an imaginary duke), and a belt pouch containing 15 gp.",
+    "personality_traits": {
+      "choose": 2,
+      "type": "personality_traits",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "string",
+            "string": "I fall in and out of love easily, and am always pursuing someone."
+          },
+          {
+            "option_type": "string",
+            "string": "I have a joke for every occasion, especially occasions where humor is inappropriate."
+          },
+          {
+            "option_type": "string",
+            "string": "Flattery is my preferred trick for getting what I want."
+          },
+          {
+            "option_type": "string",
+            "string": "I'm a born gambler who can't resist taking a risk for a potential payoff."
+          },
+          {
+            "option_type": "string",
+            "string": "I lie about almost everything, even when there's no good reason to."
+          },
+          {
+            "option_type": "string",
+            "string": "Sarcasm and insults are my weapons of choice."
+          },
+          {
+            "option_type": "string",
+            "string": "I keep multiple holy symbols on me and invoke whatever deity might come in useful at any given moment."
+          },
+          {
+            "option_type": "string",
+            "string": "I pocket anything I see that might have some value."
+          }
+        ]
+      }
+    },
+    "ideals": {
+      "choose": 1,
+      "type": "ideals",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "ideal",
+            "desc": "Independence. I am a free spirit—no one tells me what to do.",
+            "alignments": [
+              {
+                "index": "chaotic",
+                "name": "Chaotic Neutral"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Fairness. I never target people who can't afford to lose a few coins.",
+            "alignments": [
+              {
+                "index": "lawful",
+                "name": "Lawful Neutral"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Charity. I distribute the money I acquire to the people who really need it.",
+            "alignments": [
+              {
+                "index": "good",
+                "name": "Lawful Good"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Creativity. I never run the same con twice.",
+            "alignments": [
+              {
+                "index": "chaotic",
+                "name": "Chaotic Neutral"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Friendship. Material goods come and go. Bonds of friendship last forever.",
+            "alignments": [
+              {
+                "index": "good",
+                "name": "Lawful Good"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Aspiration. I'm determined to make something of myself.",
+            "alignments": [
+              {
+                "index": "any",
+                "name": "Lawful Good"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "bonds": {
+      "choose": 1,
+      "type": "bonds",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "string",
+            "string": "I fleeced the wrong person and must work to ensure that this individual never crosses paths with me or those I care about."
+          },
+          {
+            "option_type": "string",
+            "string": "I owe everything to my mentor—a horrible person who's probably rotting in jail somewhere."
+          },
+          {
+            "option_type": "string",
+            "string": "Somewhere out there, I have a child who doesn't know me. I'm making the world better for him or her."
+          },
+          {
+            "option_type": "string",
+            "string": "I come from a noble family, and one day I'll reclaim my lands and title from those who stole them from me."
+          },
+          {
+            "option_type": "string",
+            "string": "A powerful person killed someone I love. Some day soon, I'll have my revenge."
+          },
+          {
+            "option_type": "string",
+            "string": "I swindled and ruined a person who didn't deserve it. I seek to atone for my misdeeds but might never be able to forgive myself."
+          }
+        ]
+      }
+    },
+    "flaws": {
+      "choose": 1,
+      "type": "flaws",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "string",
+            "string": "I can't resist a pretty face."
+          },
+          {
+            "option_type": "string",
+            "string": "I'm always in debt. I spend my ill-gotten gains on decadent luxuries faster than I bring them in."
+          },
+          {
+            "option_type": "string",
+            "string": "I'm convinced that no one could ever fool me the way I fool others."
+          },
+          {
+            "option_type": "string",
+            "string": "I'm too greedy for my own good. I can't resist taking a risk if there's money involved."
+          },
+          {
+            "option_type": "string",
+            "string": "I can't resist swindling people who are more powerful than me."
+          },
+          {
+            "option_type": "string",
+            "string": "I hate to admit it and will hate myself for it, but I'll run and preserve my own hide if the going gets tough."
+          }
+        ]
+      }
+    },
+    "feature_name": "False Identity",
+    "feature_desc": "You have created a second identity that includes documentation, established acquaintances, and disguises that allow you to assume that persona. Additionally, you can forge documents including official papers and personal letters, as long as you have seen an example of the kind of document or the handwriting you are trying to copy."
+  },
+  {
+    "name": "Criminal",
+    "description": "You are an experienced criminal with a history of breaking the law. You have spent a lot of time among other criminals and still have contacts within the criminal underworld. You’re far closer than most people to the world of murder, theft, and violence that pervades the underbelly of civilization, and you have survived up to this point by flouting the rules and regulations of society.",
+    "starting_proficiencies": [
+      {
+        "name": "Skill: Deception"
+      },
+      {
+        "name": "Skill: Stealth"
+      }
+    ],
+    "starting_equipment": "A crowbar, a set of dark common clothes including a hood, and a belt pouch containing 15 gp.",
+    "personality_traits": {
+      "choose": 2,
+      "type": "personality_traits",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "string",
+            "string": "I always have a plan for what to do when things go wrong."
+          },
+          {
+            "option_type": "string",
+            "string": "I am always calm, no matter what the situation. I never raise my voice or let my emotions control me."
+          },
+          {
+            "option_type": "string",
+            "string": "The first thing I do in a new place is note the locations of everything valuable—or where such things could be hidden."
+          },
+          {
+            "option_type": "string",
+            "string": "I would rather make a new friend than a new enemy."
+          },
+          {
+            "option_type": "string",
+            "string": "I am incredibly slow to trust. Those who seem the fairest often have the most to hide."
+          },
+          {
+            "option_type": "string",
+            "string": "I don’t pay attention to the risks in a situation. Never tell me the odds."
+          },
+          {
+            "option_type": "string",
+            "string": "The best way to get me to do something is to tell me I can’t do it."
+          },
+          {
+            "option_type": "string",
+            "string": "I blow up at the slightest insult."
+          }
+        ]
+      }
+    },
+    "ideals": {
+      "choose": 1,
+      "type": "ideals",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "ideal",
+            "desc": "Honor. I don’t steal from others in the trade.",
+            "alignments": [
+              {
+                "index": "lawful",
+                "name": "Lawful Neutral"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Freedom. Chains are meant to be broken, as are those who would forge them.",
+            "alignments": [
+              {
+                "index": "chaotic",
+                "name": "Chaotic Neutral"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Charity. I steal from the wealthy so that I can help people in need.",
+            "alignments": [
+              {
+                "index": "good",
+                "name": "Lawful Good"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Greed. I will do whatever it takes to become wealthy.",
+            "alignments": [
+              {
+                "index": "evil",
+                "name": "Chaotic Evil"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "People. I’m loyal to my friends, not to any ideals, and everyone else can take a trip down the Styx for all I care.",
+            "alignments": [
+              {
+                "index": "neutral",
+                "name": "Neutral"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Redemption. There’s a spark of good in everyone.",
+            "alignments": [
+              {
+                "index": "good",
+                "name": "Lawful Good"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "bonds": {
+      "choose": 1,
+      "type": "bonds",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "string",
+            "string": "I’m trying to pay off an old debt I owe to a generous benefactor."
+          },
+          {
+            "option_type": "string",
+            "string": "My ill-gotten gains go to support my family."
+          },
+          {
+            "option_type": "string",
+            "string": "Something important was taken from me, and I aim to steal it back."
+          },
+          {
+            "option_type": "string",
+            "string": "I will become the greatest thief that ever lived."
+          },
+          {
+            "option_type": "string",
+            "string": "I’m guilty of a terrible crime. I hope I can redeem myself for it."
+          },
+          {
+            "option_type": "string",
+            "string": "Someone I loved died because of a mistake I made. That will never happen again."
+          }
+        ]
+      }
+    },
+    "flaws": {
+      "choose": 1,
+      "type": "flaws",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "string",
+            "string": "When I see something valuable, I can’t think about anything but how to steal it."
+          },
+          {
+            "option_type": "string",
+            "string": "When faced with a choice between money and my friends, I usually choose the money."
+          },
+          {
+            "option_type": "string",
+            "string": "If there’s a plan, I’ll forget it. If I don’t forget it, I’ll ignore it."
+          },
+          {
+            "option_type": "string",
+            "string": "I have a “tell” that reveals when I’m lying."
+          },
+          {
+            "option_type": "string",
+            "string": "I turn tail and run when things look bad."
+          },
+          {
+            "option_type": "string",
+            "string": "An innocent person is in prison for a crime that I committed. I’m okay with that."
+          }
+        ]
+      }
+    },
+    "feature_name": "Criminal Contact",
+    "feature_desc": "You have a reliable and trustworthy contact who acts as your liaison to a network of other criminals. You know how to get messages to and from your contact, even over great distances; specifically, you know the local messengers, corrupt caravan masters, and seedy sailors who can deliver messages for you."
+  },
+  {
+    "name": "Criminal (Spy)",
+    "description": "Although your capabilities are similar to those of a burglar, enforcer, or cutpurse, you learned and practiced your trade in a different way: as a covert operative. You might have been an officially sanctioned agent of your government, or perhaps you operated independently. Either way, your specific skills focus on gathering secrets and intelligence, and your specialty lies in stealth and subtlety over brute force.",
+    "starting_proficiencies": [
+      {
+        "name": "Skill: Deception"
+      },
+      {
+        "name": "Skill: Stealth"
+      }
+    ],
+    "starting_equipment": "A crowbar, a set of dark common clothes including a hood, and a belt pouch containing 15 gp.",
+    "personality_traits": {
+      "choose": 2,
+      "type": "personality_traits",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "string",
+            "string": "I always have a plan for what to do when things go wrong."
+          },
+          {
+            "option_type": "string",
+            "string": "I am always calm, no matter what the situation. I never raise my voice or let my emotions control me."
+          },
+          {
+            "option_type": "string",
+            "string": "The first thing I do in a new place is note the locations of everything valuable—or where such things could be hidden."
+          },
+          {
+            "option_type": "string",
+            "string": "I would rather make a new friend than a new enemy."
+          },
+          {
+            "option_type": "string",
+            "string": "I am incredibly slow to trust. Those who seem the fairest often have the most to hide."
+          },
+          {
+            "option_type": "string",
+            "string": "I don’t pay attention to the risks in a situation. Never tell me the odds."
+          },
+          {
+            "option_type": "string",
+            "string": "The best way to get me to do something is to tell me I can’t do it."
+          },
+          {
+            "option_type": "string",
+            "string": "I blow up at the slightest insult."
+          }
+        ]
+      }
+    },
+    "ideals": {
+      "choose": 1,
+      "type": "ideals",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "ideal",
+            "desc": "Honor. I don’t steal from others in the trade.",
+            "alignments": [
+              {
+                "index": "lawful",
+                "name": "Lawful Neutral"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Freedom. Chains are meant to be broken, as are those who would forge them.",
+            "alignments": [
+              {
+                "index": "chaotic",
+                "name": "Chaotic Neutral"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Charity. I steal from the wealthy so that I can help people in need.",
+            "alignments": [
+              {
+                "index": "good",
+                "name": "Lawful Good"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Greed. I will do whatever it takes to become wealthy.",
+            "alignments": [
+              {
+                "index": "evil",
+                "name": "Chaotic Evil"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "People. I’m loyal to my friends, not to any ideals, and everyone else can take a trip down the Styx for all I care.",
+            "alignments": [
+              {
+                "index": "neutral",
+                "name": "Neutral"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Redemption. There’s a spark of good in everyone.",
+            "alignments": [
+              {
+                "index": "good",
+                "name": "Lawful Good"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "bonds": {
+      "choose": 1,
+      "type": "bonds",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "string",
+            "string": "I’m trying to pay off an old debt I owe to a generous benefactor."
+          },
+          {
+            "option_type": "string",
+            "string": "My ill-gotten gains go to support my family."
+          },
+          {
+            "option_type": "string",
+            "string": "Something important was taken from me, and I aim to steal it back."
+          },
+          {
+            "option_type": "string",
+            "string": "I will become the greatest thief that ever lived."
+          },
+          {
+            "option_type": "string",
+            "string": "I’m guilty of a terrible crime. I hope I can redeem myself for it."
+          },
+          {
+            "option_type": "string",
+            "string": "Someone I loved died because of a mistake I made. That will never happen again."
+          }
+        ]
+      }
+    },
+    "flaws": {
+      "choose": 1,
+      "type": "flaws",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "string",
+            "string": "When I see something valuable, I can’t think about anything but how to steal it."
+          },
+          {
+            "option_type": "string",
+            "string": "When faced with a choice between money and my friends, I usually choose the money."
+          },
+          {
+            "option_type": "string",
+            "string": "If there’s a plan, I’ll forget it. If I don’t forget it, I’ll ignore it."
+          },
+          {
+            "option_type": "string",
+            "string": "I have a “tell” that reveals when I’m lying."
+          },
+          {
+            "option_type": "string",
+            "string": "I turn tail and run when things look bad."
+          },
+          {
+            "option_type": "string",
+            "string": "An innocent person is in prison for a crime that I committed. I’m okay with that."
+          }
+        ]
+      }
+    },
+    "feature_name": "Spy Contact",
+    "feature_desc": "You have a reliable and trustworthy contact who acts as your liaison to a network of other spies. You know how to get messages to and from your contact, even over great distances. Specifically, you know the local couriers, covert operatives, and informants who can deliver messages for you without drawing attention."
+  },
+  {
+    "name": "Entertainer",
+    "description": "You thrive in front of an audience. You know how to entrance them, entertain them, and even inspire them. Your poetics can stir the hearts of those who hear you, awakening grief or joy, laughter or anger. Your music raises their spirits or captures their sorrow. Your dance steps captivate, your humor cuts to the quick. Whatever techniques you use, your art is your life.",
+    "starting_proficiencies": [
+      {
+        "name": "Skill: Acrobatics"
+      },
+      {
+        "name": "Skill: Performance"
+      }
+    ],
+    "starting_equipment": "A musical instrument (one of your choice), the favor of an admirer (love letter, lock of hair, or trinket), a costume, and a belt pouch containing 15 gp.",
+    "personality_traits": {
+      "choose": 2,
+      "type": "personality_traits",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "string",
+            "string": "I know a story relevant to almost every situation."
+          },
+          {
+            "option_type": "string",
+            "string": "Whenever I come to a new place, I collect local rumors and spread gossip."
+          },
+          {
+            "option_type": "string",
+            "string": "I'm a hopeless romantic, always searching for that 'special someone.'"
+          },
+          {
+            "option_type": "string",
+            "string": "Nobody stays angry at me or around me for long, since I can defuse any amount of tension."
+          },
+          {
+            "option_type": "string",
+            "string": "I love a good insult, even one directed at me."
+          },
+          {
+            "option_type": "string",
+            "string": "I get bitter if I'm not the center of attention."
+          },
+          {
+            "option_type": "string",
+            "string": "I'll settle for nothing less than perfection."
+          },
+          {
+            "option_type": "string",
+            "string": "I change my mood or my mind as quickly as I change key in a song."
+          }
+        ]
+      }
+    },
+    "ideals": {
+      "choose": 1,
+      "type": "ideals",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "ideal",
+            "desc": "Beauty. When I perform, I make the world better than it was.",
+            "alignments": [
+              {
+                "index": "good",
+                "name": "Lawful Good"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Tradition. The stories, legends, and songs of the past must never be forgotten, for they teach us who we are.",
+            "alignments": [
+              {
+                "index": "lawful",
+                "name": "Lawful Neutral"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Creativity. The world is in need of new ideas and bold action.",
+            "alignments": [
+              {
+                "index": "chaotic",
+                "name": "Chaotic Neutral"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Greed. I’m only in it for the money and fame.",
+            "alignments": [
+              {
+                "index": "evil",
+                "name": "Chaotic Evil"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "People. I like seeing the smiles on people’s faces when I perform. That’s all that matters.",
+            "alignments": [
+              {
+                "index": "neutral",
+                "name": "Neutral"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Honesty. Art should reflect the soul; it should come from within and reveal who we really are.",
+            "alignments": [
+              {
+                "index": "any",
+                "name": "Lawful Good"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "bonds": {
+      "choose": 1,
+      "type": "bonds",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "string",
+            "string": "My instrument is my most treasured possession, and it reminds me of someone I love."
+          },
+          {
+            "option_type": "string",
+            "string": "Someone stole my precious instrument, and someday I’ll get it back."
+          },
+          {
+            "option_type": "string",
+            "string": "I want to be famous, whatever it takes."
+          },
+          {
+            "option_type": "string",
+            "string": "I idolize a hero of the old tales and measure my deeds against that person's."
+          },
+          {
+            "option_type": "string",
+            "string": "I will do anything to prove myself superior to my hated rival."
+          },
+          {
+            "option_type": "string",
+            "string": "I would do anything for the other members of my old troupe."
+          }
+        ]
+      }
+    },
+    "flaws": {
+      "choose": 1,
+      "type": "flaws",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "string",
+            "string": "I’ll do anything to win fame and renown."
+          },
+          {
+            "option_type": "string",
+            "string": "I’m a sucker for a pretty face."
+          },
+          {
+            "option_type": "string",
+            "string": "A scandal prevents me from ever going home again. That kind of trouble seems to follow me around."
+          },
+          {
+            "option_type": "string",
+            "string": "I once satirized a noble who still wants my head. It was a mistake that I will likely repeat."
+          },
+          {
+            "option_type": "string",
+            "string": "I have trouble keeping my true feelings hidden. My sharp tongue lands me in trouble."
+          },
+          {
+            "option_type": "string",
+            "string": "Despite my best efforts, I am unreliable to my friends."
+          }
+        ]
+      }
+    },
+    "feature_name": "By Popular Demand",
+    "feature_desc": "You can always find a place to perform, usually in an inn or tavern but possibly with a circus, at a theater, or even in a noble's court. At such a place, you receive free lodging and food of a modest or comfortable standard (depending on the quality of the establishment), as long as you perform each night. In addition, your performance makes you something of a local figure. When strangers recognize you in a town where you have performed, they typically take a liking to you."
+  },
+  {
+    "name": "Entertainer (Gladiator)",
+    "description": "A gladiator is as much an entertainer as any minstrel or circus performer, trained to make the arts of combat into a spectacle the crowd can enjoy. This kind of flashy combat is your entertainer routine, though you might also have some skills as a tumbler or actor. Using your by-popular-demand feature, you can find a place to perform in any place that features combat for entertainment—perhaps a gladiatorial arena or secret pit-fighting club. You might have been a pit fighter or a free combatant taking part in organized duels, or you might be a professional duelist or an entertainer specializing in mock combat. To a gladiator, combat is a performance, the stakes are just higher.",
+    "starting_proficiencies": [
+      {
+        "name": "Skill: Acrobatics"
+      },
+      {
+        "name": "Skill: Performance"
+      }
+    ],
+    "starting_equipment": "An inexpensive but unusual weapon, such as a trident or net (one of your choice), the favor of an admirer (love letter, lock of hair, or trinket), a costume, and a belt pouch containing 15 gp.",
+    "personality_traits": {
+      "choose": 2,
+      "type": "personality_traits",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "string",
+            "string": "I know a story relevant to almost every situation."
+          },
+          {
+            "option_type": "string",
+            "string": "Whenever I come to a new place, I collect local rumors and spread gossip."
+          },
+          {
+            "option_type": "string",
+            "string": "I'm a hopeless romantic, always searching for that 'special someone.'"
+          },
+          {
+            "option_type": "string",
+            "string": "Nobody stays angry at me or around me for long, since I can defuse any amount of tension."
+          },
+          {
+            "option_type": "string",
+            "string": "I love a good insult, even one directed at me."
+          },
+          {
+            "option_type": "string",
+            "string": "I get bitter if I'm not the center of attention."
+          },
+          {
+            "option_type": "string",
+            "string": "I'll settle for nothing less than perfection."
+          },
+          {
+            "option_type": "string",
+            "string": "I change my mood or my mind as quickly as I change key in a song."
+          }
+        ]
+      }
+    },
+    "ideals": {
+      "choose": 1,
+      "type": "ideals",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "ideal",
+            "desc": "Beauty. When I perform, I make the world better than it was.",
+            "alignments": [
+              {
+                "index": "good",
+                "name": "Lawful Good"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Tradition. The stories, legends, and songs of the past must never be forgotten, for they teach us who we are.",
+            "alignments": [
+              {
+                "index": "lawful",
+                "name": "Lawful Neutral"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Creativity. The world is in need of new ideas and bold action.",
+            "alignments": [
+              {
+                "index": "chaotic",
+                "name": "Chaotic Neutral"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Greed. I’m only in it for the money and fame.",
+            "alignments": [
+              {
+                "index": "evil",
+                "name": "Chaotic Evil"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "People. I like seeing the smiles on people’s faces when I perform. That’s all that matters.",
+            "alignments": [
+              {
+                "index": "neutral",
+                "name": "Neutral"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Honesty. Art should reflect the soul; it should come from within and reveal who we really are.",
+            "alignments": [
+              {
+                "index": "any",
+                "name": "Lawful Good"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "bonds": {
+      "choose": 1,
+      "type": "bonds",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "string",
+            "string": "My instrument is my most treasured possession, and it reminds me of someone I love."
+          },
+          {
+            "option_type": "string",
+            "string": "Someone stole my precious instrument, and someday I’ll get it back."
+          },
+          {
+            "option_type": "string",
+            "string": "I want to be famous, whatever it takes."
+          },
+          {
+            "option_type": "string",
+            "string": "I idolize a hero of the old tales and measure my deeds against that person's."
+          },
+          {
+            "option_type": "string",
+            "string": "I will do anything to prove myself superior to my hated rival."
+          },
+          {
+            "option_type": "string",
+            "string": "I would do anything for the other members of my old troupe."
+          }
+        ]
+      }
+    },
+    "flaws": {
+      "choose": 1,
+      "type": "flaws",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "string",
+            "string": "I’ll do anything to win fame and renown."
+          },
+          {
+            "option_type": "string",
+            "string": "I’m a sucker for a pretty face."
+          },
+          {
+            "option_type": "string",
+            "string": "A scandal prevents me from ever going home again. That kind of trouble seems to follow me around."
+          },
+          {
+            "option_type": "string",
+            "string": "I once satirized a noble who still wants my head. It was a mistake that I will likely repeat."
+          },
+          {
+            "option_type": "string",
+            "string": "I have trouble keeping my true feelings hidden. My sharp tongue lands me in trouble."
+          },
+          {
+            "option_type": "string",
+            "string": "Despite my best efforts, I am unreliable to my friends."
+          }
+        ]
+      }
+    },
+    "feature_name": "By Popular Demand",
+    "feature_desc": "You can find a place to perform in any place that features combat for entertainment—perhaps a gladiatorial arena or secret pit-fighting club. In such a place, you receive free lodging and food of a modest or comfortable standard (depending on the quality of the establishment), as long as you perform each night. In addition, your performance makes you something of a local figure. When strangers recognize you in a town where you have performed, they typically take a liking to you."
+  },
+  {
+    "name": "Folk Hero",
+    "description": "You come from a humble social rank, but you are destined for so much more. Already the people of your home village regard you as their champion, and your destiny calls you to stand against the tyrants and monsters that threaten the common folk everywhere.",
+    "starting_proficiencies": [
+      {
+        "name": "Skill: Animal Handling"
+      },
+      {
+        "name": "Skill: Survival"
+      }
+    ],
+    "starting_equipment": "A set of artisan's tools (one of your choice), a shovel, an iron pot, a set of common clothes, and a belt pouch containing 10 gp.",
+    "personality_traits": {
+      "choose": 2,
+      "type": "personality_traits",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "string",
+            "string": "I judge people by their actions, not their words."
+          },
+          {
+            "option_type": "string",
+            "string": "If someone is in trouble, I’m always ready to lend help."
+          },
+          {
+            "option_type": "string",
+            "string": "When I set my mind to something, I follow through no matter what gets in my way."
+          },
+          {
+            "option_type": "string",
+            "string": "I have a strong sense of fair play and always try to find the most equitable solution to arguments."
+          },
+          {
+            "option_type": "string",
+            "string": "I’m confident in my own abilities and do what I can to instill confidence in others."
+          },
+          {
+            "option_type": "string",
+            "string": "Thinking is for other people. I prefer action."
+          },
+          {
+            "option_type": "string",
+            "string": "I misuse long words in an attempt to sound smarter."
+          },
+          {
+            "option_type": "string",
+            "string": "I get bored easily. When am I going to get on with my destiny?"
+          }
+        ]
+      }
+    },
+    "ideals": {
+      "choose": 1,
+      "type": "ideals",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "ideal",
+            "desc": "Respect. People deserve to be treated with dignity and respect.",
+            "alignments": [
+              {
+                "index": "good",
+                "name": "Lawful Good"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Fairness. No one should get preferential treatment before the law, and no one is above the law.",
+            "alignments": [
+              {
+                "index": "lawful",
+                "name": "Lawful Neutral"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Freedom. Tyrants must not be allowed to oppress the people.",
+            "alignments": [
+              {
+                "index": "chaotic",
+                "name": "Chaotic Neutral"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Might. If I become strong, I can take what I want—what I deserve.",
+            "alignments": [
+              {
+                "index": "evil",
+                "name": "Chaotic Evil"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Sincerity. There’s no good in pretending to be something I’m not.",
+            "alignments": [
+              {
+                "index": "neutral",
+                "name": "Neutral"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Destiny. Nothing and no one can steer me away from my higher calling.",
+            "alignments": [
+              {
+                "index": "any",
+                "name": "Lawful Good"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "bonds": {
+      "choose": 1,
+      "type": "bonds",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "string",
+            "string": "I have a family, but I have no idea where they are. One day, I hope to see them again."
+          },
+          {
+            "option_type": "string",
+            "string": "I worked the land, I love the land, and I will protect the land."
+          },
+          {
+            "option_type": "string",
+            "string": "A proud noble once gave me a horrible beating, and I will take my revenge on any bully I encounter."
+          },
+          {
+            "option_type": "string",
+            "string": "My tools are symbols of my past life, and I carry them so that I will never forget my roots."
+          },
+          {
+            "option_type": "string",
+            "string": "I protect those who cannot protect themselves."
+          },
+          {
+            "option_type": "string",
+            "string": "I wish my childhood sweetheart had come with me to pursue my destiny."
+          }
+        ]
+      }
+    },
+    "flaws": {
+      "choose": 1,
+      "type": "flaws",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "string",
+            "string": "The tyrant who rules my land will stop at nothing to see me killed."
+          },
+          {
+            "option_type": "string",
+            "string": "I’m convinced of the significance of my destiny, and blind to my shortcomings and the risk of failure."
+          },
+          {
+            "option_type": "string",
+            "string": "The people who knew me when I was young know my shameful secret, so I can never go home again."
+          },
+          {
+            "option_type": "string",
+            "string": "I have a weakness for the vices of the city, especially hard drink."
+          },
+          {
+            "option_type": "string",
+            "string": "Secretly, I believe that things would be better if I were a tyrant lording over the land."
+          },
+          {
+            "option_type": "string",
+            "string": "I have trouble trusting in my allies."
+          }
+        ]
+      }
+    },
+    "feature_name": "Rustic Hospitality",
+    "feature_desc": "Since you come from the ranks of the common folk, you fit in among them with ease. You can find a place to hide, rest, or recuperate among other commoners, unless you have shown yourself to be a danger to them. They will shield you from the law or anyone else searching for you, though they will not risk their lives for you."
+  },
+  {
+    "name": "Guild Artisan",
+    "description": "As a guild artisan, you are a member of an artisan's guild, a prestigious organization that is known for its craftsmanship, trade, or other specialized skills. Whether you're a blacksmith, a weaver, a brewer, or another type of artisan, you have spent years honing your craft and building a reputation. Your skills are sought after, and you can earn a comfortable living doing what you love. Your guild membership also offers you protection and support in many cities.",
+    "starting_proficiencies": [
+      {
+        "name": "Skill: Insight"
+      },
+      {
+        "name": "Skill: Persuasion"
+      }
+    ],
+    "language_options": "1 of your choice",
+    "starting_equipment": "A set of artisan's tools (one type of your choice), a letter of introduction from your guild, a set of traveler's clothes, and a belt pouch containing 15 gp",
+    "personality_traits": {
+      "choose": 2,
+      "type": "personality_traits",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "string",
+            "string": "I believe that hard work and dedication are the keys to success."
+          },
+          {
+            "option_type": "string",
+            "string": "I enjoy the company of fellow craftsmen and take pride in our shared skills."
+          },
+          {
+            "option_type": "string",
+            "string": "I can often be found working on my craft, no matter the time of day or night."
+          },
+          {
+            "option_type": "string",
+            "string": "I love discussing techniques and ideas with other artisans."
+          },
+          {
+            "option_type": "string",
+            "string": "I am meticulous about my work and find it hard to stop until it's perfect."
+          },
+          {
+            "option_type": "string",
+            "string": "I tend to be competitive, always striving to be the best in my craft."
+          }
+        ]
+      }
+    },
+    "ideals": {
+      "choose": 1,
+      "type": "ideals",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "ideal",
+            "desc": "Craftsmanship. The mastery of my craft is the most important thing in my life.",
+            "alignments": [
+              {
+                "index": "lawful-good",
+                "name": "Lawful Good"
+              },
+              {
+                "index": "neutral-good",
+                "name": "Neutral Good"
+              },
+              {
+                "index": "chaotic-good",
+                "name": "Chaotic Good"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Community. The strength of a guild lies in the unity and support of its members.",
+            "alignments": [
+              {
+                "index": "lawful-good",
+                "name": "Lawful Good"
+              },
+              {
+                "index": "neutral-good",
+                "name": "Neutral Good"
+              },
+              {
+                "index": "lawful-neutral",
+                "name": "Lawful Neutral"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Wealth. Wealth is the means to further my craft, gain status, and secure my future.",
+            "alignments": [
+              {
+                "index": "neutral-good",
+                "name": "Neutral Good"
+              },
+              {
+                "index": "neutral",
+                "name": "Neutral"
+              },
+              {
+                "index": "chaotic-neutral",
+                "name": "Chaotic Neutral"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Freedom. The freedom to create without restrictions is the highest ideal.",
+            "alignments": [
+              {
+                "index": "chaotic-good",
+                "name": "Chaotic Good"
+              },
+              {
+                "index": "chaotic-neutral",
+                "name": "Chaotic Neutral"
+              },
+              {
+                "index": "chaotic-evil",
+                "name": "Chaotic Evil"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "bonds": {
+      "choose": 1,
+      "type": "bonds",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "string",
+            "string": "I will always defend my guild from rivals and threats."
+          },
+          {
+            "option_type": "string",
+            "string": "I owe my success to the mentorship of an experienced guild member."
+          },
+          {
+            "option_type": "string",
+            "string": "I want to prove that I am worthy of my guild's respect and recognition."
+          },
+          {
+            "option_type": "string",
+            "string": "My guild's reputation is everything to me, and I will protect it at all costs."
+          },
+          {
+            "option_type": "string",
+            "string": "I seek to craft a masterpiece that will be remembered for generations."
+          }
+        ]
+      }
+    },
+    "flaws": {
+      "choose": 1,
+      "type": "flaws",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "string",
+            "string": "I can be overly focused on my craft and neglect other important matters."
+          },
+          {
+            "option_type": "string",
+            "string": "I am too proud of my work and have little tolerance for criticism."
+          },
+          {
+            "option_type": "string",
+            "string": "I sometimes take advantage of others' trust or goodwill for personal gain."
+          },
+          {
+            "option_type": "string",
+            "string": "I am reluctant to ask for help, even when I clearly need it."
+          },
+          {
+            "option_type": "string",
+            "string": "I have a tendency to get jealous of others' success or recognition."
+          }
+        ]
+      }
+    },
+    "feature_name": "Guild Membership",
+    "feature_desc": "As a guild artisan, you are a member of a guild, and the guild provides you with various benefits. You can use your guild membership to gain access to guildhalls, information, and support. Your guild can also offer protection in times of need, as well as a network of contacts for jobs and clients. You are entitled to free lodging at guildhalls and can call upon your fellow guild members for help or advice."
+  },
+  {
+    "name": "Guild Artisan (Guild Merchant)",
+    "description": "As a guild merchant, you are a member of an artisan's guild, specializing in the trade and sale of goods produced by the guild. You have access to a wide network of buyers and suppliers and can trade in various goods, ranging from rare items to common goods. Your guild's reputation ensures that your wares are sought after, and you can earn a living while building your personal wealth. You are known for your bargaining skills and your ability to strike profitable deals.",
+    "starting_proficiencies": [
+      {
+        "name": "Skill: Insight"
+      },
+      {
+        "name": "Skill: Persuasion"
+      }
+    ],
+    "language_options": "1 of your choice",
+    "starting_equipment": "A set of artisan's tools (one type of your choice), a letter of introduction from your guild, a set of traveler's clothes, and a belt pouch containing 15 gp",
+    "personality_traits": {
+      "choose": 2,
+      "type": "personality_traits",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "string",
+            "string": "I believe in making fair deals and hate taking advantage of others."
+          },
+          {
+            "option_type": "string",
+            "string": "I am very persuasive and know how to win others over with words."
+          },
+          {
+            "option_type": "string",
+            "string": "I am always looking for the next great bargain and profit opportunity."
+          },
+          {
+            "option_type": "string",
+            "string": "I have a knack for reading people and understanding what motivates them."
+          },
+          {
+            "option_type": "string",
+            "string": "I enjoy meeting new people and forging new business connections."
+          },
+          {
+            "option_type": "string",
+            "string": "I am proud of the wares I sell and will defend their quality."
+          }
+        ]
+      }
+    },
+    "ideals": {
+      "choose": 1,
+      "type": "ideals",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "ideal",
+            "desc": "Profit. The pursuit of profit is the highest ideal. Everything can be made better through wealth.",
+            "alignments": [
+              {
+                "index": "neutral-good",
+                "name": "Neutral Good"
+              },
+              {
+                "index": "neutral",
+                "name": "Neutral"
+              },
+              {
+                "index": "chaotic-neutral",
+                "name": "Chaotic Neutral"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Community. A successful business benefits the community. I believe in strengthening relationships and building loyalty.",
+            "alignments": [
+              {
+                "index": "lawful-good",
+                "name": "Lawful Good"
+              },
+              {
+                "index": "neutral-good",
+                "name": "Neutral Good"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Independence. I believe in working for myself and controlling my own destiny. I will not be tied down by anyone's expectations.",
+            "alignments": [
+              {
+                "index": "chaotic-good",
+                "name": "Chaotic Good"
+              },
+              {
+                "index": "chaotic-neutral",
+                "name": "Chaotic Neutral"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Power. The more wealth I have, the more influence I can wield. I seek to gain power through my business dealings.",
+            "alignments": [
+              {
+                "index": "neutral",
+                "name": "Neutral"
+              },
+              {
+                "index": "lawful-neutral",
+                "name": "Lawful Neutral"
+              },
+              {
+                "index": "neutral-evil",
+                "name": "Neutral Evil"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "bonds": {
+      "choose": 1,
+      "type": "bonds",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "string",
+            "string": "I will always defend my guild from rivals and threats."
+          },
+          {
+            "option_type": "string",
+            "string": "I owe my success to the mentorship of an experienced guild member."
+          },
+          {
+            "option_type": "string",
+            "string": "I want to prove that I am worthy of my guild's respect and recognition."
+          },
+          {
+            "option_type": "string",
+            "string": "My guild's reputation is everything to me, and I will protect it at all costs."
+          },
+          {
+            "option_type": "string",
+            "string": "I seek to craft a masterpiece that will be remembered for generations."
+          }
+        ]
+      }
+    },
+    "flaws": {
+      "choose": 1,
+      "type": "flaws",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "string",
+            "string": "I can be overly focused on my craft and neglect other important matters."
+          },
+          {
+            "option_type": "string",
+            "string": "I am too proud of my work and have little tolerance for criticism."
+          },
+          {
+            "option_type": "string",
+            "string": "I sometimes take advantage of others' trust or goodwill for personal gain."
+          },
+          {
+            "option_type": "string",
+            "string": "I am reluctant to ask for help, even when I clearly need it."
+          },
+          {
+            "option_type": "string",
+            "string": "I have a tendency to get jealous of others' success or recognition."
+          }
+        ]
+      }
+    },
+    "feature_name": "Guild Membership",
+    "feature_desc": "As a guild artisan, you are a member of a guild, and the guild provides you with various benefits. You can use your guild membership to gain access to guildhalls, information, and support. Your guild can also offer protection in times of need, as well as a network of contacts for jobs and clients. You are entitled to free lodging at guildhalls and can call upon your fellow guild members for help or advice. As a guild merchant, your ability to access goods and services is especially enhanced, and your guild can aid you in making profitable trades."
+  },
+  {
+    "name": "Hermit",
+    "description": "As a hermit, you lived in seclusion, away from the bustle of society, devoting yourself to a life of contemplation, research, or meditation. You spent years living in isolation, either in a remote location or a secluded monastery. This time has granted you profound wisdom, and now you seek to re-enter the world with a unique perspective on life and the mysteries of the universe.",
+    "starting_proficiencies": [
+      {
+        "name": "Skill: Medicine"
+      },
+      {
+        "name": "Skill: Religion"
+      }
+    ],
+    "language_options": "1 of your choice",
+    "starting_equipment": "A scroll case stuffed full of notes from your studies or prayers, a winter blanket, a set of common clothes, and a belt pouch containing 5 gp",
+    "personality_traits": {
+      "choose": 2,
+      "type": "personality_traits",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "string",
+            "string": "I am utterly calm, no matter what happens. I react to challenges with a serene, meditative focus."
+          },
+          {
+            "option_type": "string",
+            "string": "I feel more at home in the wilds or in solitude than among other people."
+          },
+          {
+            "option_type": "string",
+            "string": "I am often lost in thought, contemplating the meaning of life, the universe, or the mysteries of the world."
+          },
+          {
+            "option_type": "string",
+            "string": "I have a deep distrust of others, particularly those who seek power or control."
+          },
+          {
+            "option_type": "string",
+            "string": "I prefer quiet and solitude, even in the middle of bustling cities. The noise of society is overwhelming to me."
+          },
+          {
+            "option_type": "string",
+            "string": "I often find myself speaking in riddles or cryptic phrases, as if I am trying to impart some greater wisdom."
+          }
+        ]
+      }
+    },
+    "ideals": {
+      "choose": 1,
+      "type": "ideals",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "ideal",
+            "desc": "Knowledge. The pursuit of knowledge and understanding is the highest calling. Everything else is secondary.",
+            "alignments": [
+              {
+                "index": "lawful-good",
+                "name": "Lawful Good"
+              },
+              {
+                "index": "neutral-good",
+                "name": "Neutral Good"
+              },
+              {
+                "index": "neutral",
+                "name": "Neutral"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Isolation. I believe that true wisdom comes from separation from the world. I seek solitude to achieve enlightenment.",
+            "alignments": [
+              {
+                "index": "neutral",
+                "name": "Neutral"
+              },
+              {
+                "index": "chaotic-neutral",
+                "name": "Chaotic Neutral"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Peace. I seek inner peace and serenity, avoiding conflict and striving to understand all perspectives.",
+            "alignments": [
+              {
+                "index": "neutral-good",
+                "name": "Neutral Good"
+              },
+              {
+                "index": "chaotic-good",
+                "name": "Chaotic Good"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Change. The world is always changing, and I believe it is our duty to adapt and evolve with it.",
+            "alignments": [
+              {
+                "index": "chaotic-good",
+                "name": "Chaotic Good"
+              },
+              {
+                "index": "chaotic-neutral",
+                "name": "Chaotic Neutral"
+              },
+              {
+                "index": "chaotic-evil",
+                "name": "Chaotic Evil"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "bonds": {
+      "choose": 1,
+      "type": "bonds",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "string",
+            "string": "I owe my life to the peaceful solitude I found during my time as a hermit."
+          },
+          {
+            "option_type": "string",
+            "string": "I seek to share my discovery with the world, or perhaps keep it hidden forever."
+          },
+          {
+            "option_type": "string",
+            "string": "I long for a peaceful existence, far from the chaos and conflict of the world."
+          },
+          {
+            "option_type": "string",
+            "string": "I am determined to return to my hermitage, but something keeps pulling me back into the world."
+          },
+          {
+            "option_type": "string",
+            "string": "I wish to help those who are lost, as I once was, in the hopes of guiding them to peace."
+          }
+        ]
+      }
+    },
+    "flaws": {
+      "choose": 1,
+      "type": "flaws",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "string",
+            "string": "I have difficulty relating to others, especially those who have not spent time in solitude."
+          },
+          {
+            "option_type": "string",
+            "string": "I have a tendency to retreat from conflict, even when it is necessary to confront it."
+          },
+          {
+            "option_type": "string",
+            "string": "I am suspicious of those who seek power, believing that they are corrupt or untrustworthy."
+          },
+          {
+            "option_type": "string",
+            "string": "I find it hard to trust others, believing that people always have ulterior motives."
+          },
+          {
+            "option_type": "string",
+            "string": "I sometimes become so absorbed in my thoughts that I lose track of the world around me."
+          }
+        ]
+      }
+    },
+    "feature_name": "Discovery",
+    "feature_desc": "The life of a hermit is one of solitude and deep contemplation, but during that time, you made a significant discovery—a secret, a hidden truth, or a piece of knowledge that could change the world. This discovery could be something physical, such as the location of a lost treasure or ancient relic, or it could be a more abstract discovery, such as a new philosophy or approach to magic. This discovery is yours to decide, but it is a powerful and personal revelation that will guide your future adventures.\nYou can share this discovery with others, or keep it a secret, but its existence is a vital part of your past and may play a key role in your future journey."
+  },
+  {
+    "name": "Noble",
+    "description": "You understand wealth, power, and privilege. You carry a noble title, and your family owns land, collects taxes, and wields significant political influence. You might be a pampered aristocrat unfamiliar with work or discomfort, a former merchant just elevated to the nobility, or a disinherited scoundrel with a disproportionate sense of entitlement. Or you could be an honest, hard-working landowner who cares deeply about the people who live and work on your land, keenly aware of your responsibility to them.",
+    "starting_proficiencies": [
+      {
+        "name": "Skill: History"
+      },
+      {
+        "name": "Skill: Persuasion"
+      }
+    ],
+    "tool_proficiencies": "One type of gaming set",
+    "language_options": "1 of your choice",
+    "starting_equipment": "A set of fine clothes\nA signet ring\nA scroll of pedigree\nA purse containing 25 gp",
+    "personality_traits": {
+      "choose": 2,
+      "type": "personality_traits",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "string",
+            "string": "My eloquent flattery makes everyone I talk to feel like the most wonderful and important person in the world."
+          },
+          {
+            "option_type": "string",
+            "string": "The common folk love me for my kindness and generosity."
+          },
+          {
+            "option_type": "string",
+            "string": "No one could doubt by looking at my regal bearing that I am a cut above the unwashed masses."
+          },
+          {
+            "option_type": "string",
+            "string": "I take great pains to always look my best and follow the latest fashions."
+          },
+          {
+            "option_type": "string",
+            "string": "I don't like to get my hands dirty, and I won't be caught dead in unsuitable accommodations."
+          },
+          {
+            "option_type": "string",
+            "string": "Despite my noble birth, I do not place myself above other folk. We all have the same blood."
+          },
+          {
+            "option_type": "string",
+            "string": "My favor, once lost, is lost forever."
+          },
+          {
+            "option_type": "string",
+            "string": "If you do me an injury, I will crush you, ruin your name, and salt your fields."
+          }
+        ]
+      }
+    },
+    "ideals": {
+      "choose": 1,
+      "type": "ideals",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "ideal",
+            "desc": "Respect. Respect is due to me because of my position, but all people regardless of station deserve to be treated with dignity.",
+            "alignments": [
+              {
+                "index": "good",
+                "name": "Lawful Good"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Responsibility. It is my duty to respect the authority of those above me, just as those below me must respect mine.",
+            "alignments": [
+              {
+                "index": "lawful",
+                "name": "Lawful Neutral"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Independence. I must prove that I can handle myself without the coddling of my family.",
+            "alignments": [
+              {
+                "index": "chaotic",
+                "name": "Chaotic Neutral"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Power. If I can attain more power, no one will tell me what to do.",
+            "alignments": [
+              {
+                "index": "evil",
+                "name": "Chaotic Evil"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Family. Blood runs thicker than water.",
+            "alignments": [
+              {
+                "index": "any",
+                "name": "Lawful Good"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Noble Obligation. It is my duty to protect and care for the people beneath me.",
+            "alignments": [
+              {
+                "index": "good",
+                "name": "Lawful Good"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "bonds": {
+      "choose": 1,
+      "type": "bonds",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "string",
+            "string": "I will face any challenge to win the approval of my family."
+          },
+          {
+            "option_type": "string",
+            "string": "My house's alliance with another noble family must be sustained at all costs."
+          },
+          {
+            "option_type": "string",
+            "string": "Nothing is more important than the other members of my family."
+          },
+          {
+            "option_type": "string",
+            "string": "I am in love with the heir of a family that my family despises."
+          },
+          {
+            "option_type": "string",
+            "string": "My loyalty to my sovereign is unwavering."
+          },
+          {
+            "option_type": "string",
+            "string": "The common folk must see me as a hero of the people."
+          }
+        ]
+      }
+    },
+    "flaws": {
+      "choose": 1,
+      "type": "flaws",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "string",
+            "string": "I secretly believe that everyone is beneath me."
+          },
+          {
+            "option_type": "string",
+            "string": "I hide a truly scandalous secret that could ruin my family forever."
+          },
+          {
+            "option_type": "string",
+            "string": "I too often hear veiled insults and threats in every word addressed to me, and I'm quick to anger."
+          },
+          {
+            "option_type": "string",
+            "string": "I have an insatiable desire for carnal pleasures."
+          },
+          {
+            "option_type": "string",
+            "string": "In fact, the world does revolve around me."
+          },
+          {
+            "option_type": "string",
+            "string": "By my words and actions, I often bring shame to my family."
+          }
+        ]
+      }
+    },
+    "feature_name": "Position of Privilege",
+    "feature_desc": "Thanks to your noble birth, people are inclined to think the best of you. You are welcome in high society, and people assume you have the right to be wherever you are. The common folk make every effort to accommodate you and avoid your displeasure, and other people of high birth treat you as a member of the same social sphere. You can secure an audience with a local noble if you need to."
+  },
+  {
+    "name": "Noble (Knight)",
+    "description": "You are a member of a noble family, often with a title and the responsibilities that come with it. As a knight, you have been trained in combat and etiquette, and you are familiar with the responsibilities and privileges of your station. You have access to a vast network of allies and retainers and may have lands or estates that you are responsible for managing. Your upbringing has instilled in you a sense of honor, duty, and loyalty to your family and kingdom. You are likely a person of wealth, influence, and power, but that power comes with obligations.",
+    "starting_proficiencies": [
+      {
+        "name": "Skill: History"
+      },
+      {
+        "name": "Skill: Persuasion"
+      }
+    ],
+    "language_options": "1 of your choice",
+    "starting_equipment": "A set of fine clothes, a signet ring, a scroll of pedigree, and a belt pouch containing 25 gp",
+    "personality_traits": {
+      "choose": 2,
+      "type": "personality_traits",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "string",
+            "string": "I am always polite and respectful to my peers, though I sometimes struggle with commoners."
+          },
+          {
+            "option_type": "string",
+            "string": "I believe in the importance of duty, and I always put the needs of my family and kingdom before my own."
+          },
+          {
+            "option_type": "string",
+            "string": "I have a deep love for my heritage and family, and I take pride in the accomplishments of my ancestors."
+          },
+          {
+            "option_type": "string",
+            "string": "I am quick to judge others based on their status and background, believing that nobility is a sign of true worth."
+          },
+          {
+            "option_type": "string",
+            "string": "I enjoy being the center of attention and have no qualms about using my status to gain favor."
+          },
+          {
+            "option_type": "string",
+            "string": "I am well-spoken and always have a story or anecdote to share, especially when I am in the company of other nobles."
+          }
+        ]
+      }
+    },
+    "ideals": {
+      "choose": 1,
+      "type": "ideals",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "ideal",
+            "desc": "Responsibility. I believe that nobility is not just about privilege but about duty and the service of others.",
+            "alignments": [
+              {
+                "index": "lawful-good",
+                "name": "Lawful Good"
+              },
+              {
+                "index": "lawful-neutral",
+                "name": "Lawful Neutral"
+              },
+              {
+                "index": "lawful-evil",
+                "name": "Lawful Evil"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Honor. I live and die by my code of honor, and I expect others to do the same.",
+            "alignments": [
+              {
+                "index": "lawful-good",
+                "name": "Lawful Good"
+              },
+              {
+                "index": "neutral-good",
+                "name": "Neutral Good"
+              },
+              {
+                "index": "lawful-neutral",
+                "name": "Lawful Neutral"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Power. I seek to expand my influence and wealth, increasing the glory of my family and house.",
+            "alignments": [
+              {
+                "index": "lawful-evil",
+                "name": "Lawful Evil"
+              },
+              {
+                "index": "neutral",
+                "name": "Neutral"
+              },
+              {
+                "index": "chaotic-neutral",
+                "name": "Chaotic Neutral"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Justice. I believe in the law and the principles of fairness, and I will fight to uphold justice wherever it is threatened.",
+            "alignments": [
+              {
+                "index": "lawful-good",
+                "name": "Lawful Good"
+              },
+              {
+                "index": "neutral-good",
+                "name": "Neutral Good"
+              },
+              {
+                "index": "lawful-neutral",
+                "name": "Lawful Neutral"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "bonds": {
+      "choose": 1,
+      "type": "bonds",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "string",
+            "string": "I will do whatever it takes to protect the honor and legacy of my family."
+          },
+          {
+            "option_type": "string",
+            "string": "I am indebted to a fellow noble who once helped me, and I will repay that debt."
+          },
+          {
+            "option_type": "string",
+            "string": "I have sworn an oath to protect my kingdom, no matter the cost."
+          },
+          {
+            "option_type": "string",
+            "string": "I am driven to restore my family’s lost estate, even if it means risking my life."
+          },
+          {
+            "option_type": "string",
+            "string": "I seek to uphold my family’s values and traditions, even in the face of adversity."
+          }
+        ]
+      }
+    },
+    "flaws": {
+      "choose": 1,
+      "type": "flaws",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "string",
+            "string": "I am quick to anger when my honor or status is questioned."
+          },
+          {
+            "option_type": "string",
+            "string": "I have a tendency to look down on those of lower social standing."
+          },
+          {
+            "option_type": "string",
+            "string": "I can be overly prideful and resist help from others."
+          },
+          {
+            "option_type": "string",
+            "string": "I struggle to understand the common folk and their concerns."
+          },
+          {
+            "option_type": "string",
+            "string": "I am willing to do whatever it takes to secure my family’s wealth and position, even if it means bending the rules."
+          }
+        ]
+      }
+    },
+    "feature_name": "Position of Privilege",
+    "feature_desc": "Thanks to your noble birth, people are inclined to think the best of you. You can secure an audience with local nobles and high-ranking officials in most places you visit. Your status allows you to enter places where others might be unwelcome, such as royal courts, the homes of other nobles, or guild halls. You are treated with respect and are able to leverage your connections for personal gain. However, this position of privilege can also create enemies, as not everyone is enamored with the nobility."
+  },
+  {
+    "name": "Noble (Retainers)",
+    "description": "You are a member of a noble family with access to retainers—servants, guards, and other skilled individuals who serve your family. As a noble with retainers, you have people who serve you directly, and you may use them to manage estates, conduct business, or carry out various tasks. You are accustomed to the finer things in life and have a strong support network, but your family’s honor and obligations weigh heavily upon you. You might also have strong political connections and leverage over individuals in the courts or the nobility.",
+    "starting_proficiencies": [
+      {
+        "name": "Skill: History"
+      },
+      {
+        "name": "Skill: Persuasion"
+      }
+    ],
+    "language_options": "1 of your choice",
+    "starting_equipment": "A set of fine clothes, a signet ring, a scroll of pedigree, and a belt pouch containing 25 gp",
+    "personality_traits": {
+      "choose": 2,
+      "type": "personality_traits",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "string",
+            "string": "I am accustomed to getting what I want and rarely let obstacles stand in my way."
+          },
+          {
+            "option_type": "string",
+            "string": "I trust in the loyalty of my retainers and sometimes rely on them too heavily."
+          },
+          {
+            "option_type": "string",
+            "string": "I value the companionship of my retainers above most others and believe they are more dependable than nobles."
+          },
+          {
+            "option_type": "string",
+            "string": "I sometimes forget that my retainers are people with their own ambitions and desires."
+          },
+          {
+            "option_type": "string",
+            "string": "I have a tendency to treat others as tools to further my family’s interests."
+          },
+          {
+            "option_type": "string",
+            "string": "I take pride in the accomplishments of my retainers and believe they help define my own success."
+          }
+        ]
+      }
+    },
+    "ideals": {
+      "choose": 1,
+      "type": "ideals",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "ideal",
+            "desc": "Loyalty. My retainers’ loyalty to me is my greatest strength, and I will always return that loyalty with unwavering support.",
+            "alignments": [
+              {
+                "index": "lawful-good",
+                "name": "Lawful Good"
+              },
+              {
+                "index": "lawful-neutral",
+                "name": "Lawful Neutral"
+              },
+              {
+                "index": "lawful-evil",
+                "name": "Lawful Evil"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Honor. I believe that loyalty and honor are central to the family’s reputation, and I will do anything to protect it.",
+            "alignments": [
+              {
+                "index": "lawful-good",
+                "name": "Lawful Good"
+              },
+              {
+                "index": "neutral-good",
+                "name": "Neutral Good"
+              },
+              {
+                "index": "lawful-neutral",
+                "name": "Lawful Neutral"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Independence. Though I rely on my retainers, I strive to build my own legacy and reputation outside of my family’s shadow.",
+            "alignments": [
+              {
+                "index": "neutral",
+                "name": "Neutral"
+              },
+              {
+                "index": "chaotic-neutral",
+                "name": "Chaotic Neutral"
+              },
+              {
+                "index": "chaotic-evil",
+                "name": "Chaotic Evil"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Respect. I believe in treating my retainers with respect, and I expect that same respect from those around me.",
+            "alignments": [
+              {
+                "index": "neutral-good",
+                "name": "Neutral Good"
+              },
+              {
+                "index": "lawful-neutral",
+                "name": "Lawful Neutral"
+              },
+              {
+                "index": "chaotic-good",
+                "name": "Chaotic Good"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "bonds": {
+      "choose": 1,
+      "type": "bonds",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "string",
+            "string": "I will defend my retainers with my life, for they are the ones who have always stood by me."
+          },
+          {
+            "option_type": "string",
+            "string": "I owe everything to my family, and I will do anything to ensure their legacy continues."
+          },
+          {
+            "option_type": "string",
+            "string": "I am willing to sacrifice everything for the well-being and success of my retainers."
+          },
+          {
+            "option_type": "string",
+            "string": "I will avenge any harm done to my family or its reputation, no matter the cost."
+          },
+          {
+            "option_type": "string",
+            "string": "I seek to prove my worth to my family and to my retainers, showing that I am deserving of their loyalty."
+          }
+        ]
+      }
+    },
+    "flaws": {
+      "choose": 1,
+      "type": "flaws",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "string",
+            "string": "I rely too much on my retainers and sometimes fail to make my own decisions."
+          },
+          {
+            "option_type": "string",
+            "string": "I am arrogant and think less of those who do not have the power or influence I do."
+          },
+          {
+            "option_type": "string",
+            "string": "I expect others to defer to me simply because of my title and connections."
+          },
+          {
+            "option_type": "string",
+            "string": "I believe that my family is superior to others and fail to consider the viewpoints of people outside my noble circle."
+          },
+          {
+            "option_type": "string",
+            "string": "I sometimes take my retainers for granted, not recognizing their sacrifices or needs."
+          }
+        ]
+      }
+    },
+    "feature_name": "Retainers",
+    "feature_desc": "You have a number of retainers who are loyal to your family, and these people follow your commands and help with various tasks. Your retainers are typically skilled in one or more areas, such as combat, diplomacy, or household management. They are loyal to you and your family and are willing to aid you in tasks as needed. Your retainers might include bodyguards, servants, skilled laborers, and other helpful individuals who understand their roles and serve you at your discretion. While the number and type of retainers may vary, you always have a reliable support network."
+  },
+  {
+    "name": "Outlander",
+    "description": "You grew up in the wilds, far from civilization and the comforts of town and technology. You've witnessed the migration of herds larger than forests, survived weather more extreme than any city-dweller could comprehend, and enjoyed the solitude of being the only thinking creature for miles in any direction. The wilds are in your blood, whether you were a nomad, an explorer, a recluse, a hunter-gatherer, or even a marauder. Even in places where you don't know the specific features of the terrain, you know the ways of the wild.",
+    "starting_proficiencies": [
+      {
+        "name": "Skill: Athletics"
+      },
+      {
+        "name": "Skill: Survival"
+      }
+    ],
+    "tool_proficiencies": "One type of musical instrument",
+    "language_options": "1 of your choice",
+    "starting_equipment": "A staff\nA hunting trap\nA trophy from an animal you killed\nA set of traveler's clothes\nA belt pouch containing 10 gp",
+    "personality_traits": {
+      "choose": 2,
+      "type": "personality_traits",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "string",
+            "string": "I'm driven by a wanderlust that led me away from home."
+          },
+          {
+            "option_type": "string",
+            "string": "I watch over my friends as if they were a litter of newborn pups."
+          },
+          {
+            "option_type": "string",
+            "string": "I once ran twenty-five miles without stopping to warn my clan of an approaching orc horde. I'd do it again if I had to."
+          },
+          {
+            "option_type": "string",
+            "string": "I have a lesson for every situation, drawn from observing nature."
+          },
+          {
+            "option_type": "string",
+            "string": "I place no stock in wealthy or well-mannered folk. Money and manners won't save you from a hungry owlbear."
+          },
+          {
+            "option_type": "string",
+            "string": "I'm always picking things up, absently fiddling with them, and sometimes accidentally breaking them."
+          },
+          {
+            "option_type": "string",
+            "string": "I feel far more comfortable around animals than people."
+          },
+          {
+            "option_type": "string",
+            "string": "I was, in fact, raised by wolves."
+          }
+        ]
+      }
+    },
+    "ideals": {
+      "choose": 1,
+      "type": "ideals",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "ideal",
+            "desc": "Change. Life is like the seasons, in constant change, and we must change with it.",
+            "alignments": [
+              {
+                "index": "chaotic",
+                "name": "Chaotic Neutral"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Greater Good. It is each person's responsibility to make the most happiness for the whole tribe.",
+            "alignments": [
+              {
+                "index": "good",
+                "name": "Lawful Good"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Honor. If I dishonor myself, I dishonor my whole clan.",
+            "alignments": [
+              {
+                "index": "lawful",
+                "name": "Lawful Neutral"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Might. The strongest are meant to rule.",
+            "alignments": [
+              {
+                "index": "evil",
+                "name": "Chaotic Evil"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Nature. The natural world is more important than all the constructs of civilization.",
+            "alignments": [
+              {
+                "index": "neutral",
+                "name": "Neutral"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Glory. I must earn glory in battle, for myself and my clan.",
+            "alignments": [
+              {
+                "index": "any",
+                "name": "Lawful Good"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "bonds": {
+      "choose": 1,
+      "type": "bonds",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "string",
+            "string": "My family, clan, or tribe is the most important thing in my life, even when they are far from me."
+          },
+          {
+            "option_type": "string",
+            "string": "An injury to the unspoiled wilderness of my home is an injury to me."
+          },
+          {
+            "option_type": "string",
+            "string": "I will bring terrible wrath down on the evildoers who destroyed my homeland."
+          },
+          {
+            "option_type": "string",
+            "string": "I am the last of my tribe, and it is up to me to ensure their names enter legend."
+          },
+          {
+            "option_type": "string",
+            "string": "I suffer awful visions of a coming disaster and will do anything to prevent it."
+          },
+          {
+            "option_type": "string",
+            "string": "It is my duty to provide children to sustain my tribe."
+          }
+        ]
+      }
+    },
+    "flaws": {
+      "choose": 1,
+      "type": "flaws",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "string",
+            "string": "I am too enamored of ale, wine, and other intoxicants."
+          },
+          {
+            "option_type": "string",
+            "string": "There's no room for caution in a life lived to the fullest."
+          },
+          {
+            "option_type": "string",
+            "string": "I remember every insult I've received and nurse a silent resentment toward anyone who's ever wronged me."
+          },
+          {
+            "option_type": "string",
+            "string": "I am slow to trust members of other races, tribes, and societies."
+          },
+          {
+            "option_type": "string",
+            "string": "Violence is my answer to almost any challenge."
+          },
+          {
+            "option_type": "string",
+            "string": "Don't expect me to save those who can't save themselves. It is nature's way that the strong thrive and the weak perish."
+          }
+        ]
+      }
+    },
+    "feature_name": "Wanderer",
+    "feature_desc": "You have an excellent memory for maps and geography, and you can always recall the general layout of terrain, settlements, and other features around you. In addition, you can find food and fresh water for yourself and up to five other people each day, provided that the land offers such resources."
+  },
+  {
+    "name": "Sage",
+    "description": "You have spent years learning the secrets of the multiverse. Whether through scholarly study or mystical training, you have delved into ancient tomes, practiced esoteric arts, or uncovered hidden knowledge. Your deep curiosity has driven you to search for more and more answers, and you have developed a keen understanding of the world and its mysteries. Though you may not be a warrior, you are a master of knowledge and theory. This background also grants you access to a vast library of knowledge or an expert mentor that can aid you in your pursuits.",
+    "starting_proficiencies": [
+      {
+        "name": "Skill: Arcana"
+      },
+      {
+        "name": "Skill: History"
+      }
+    ],
+    "language_options": "2 of your choice",
+    "starting_equipment": "A scholarly robe, a dagger, a notebook, a set of fine clothes, and a belt pouch containing 10 gp",
+    "personality_traits": {
+      "choose": 2,
+      "type": "personality_traits",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "string",
+            "string": "I am incredibly curious about the world and want to know everything about it."
+          },
+          {
+            "option_type": "string",
+            "string": "I enjoy long, quiet hours of study and solitude."
+          },
+          {
+            "option_type": "string",
+            "string": "I am easily distracted by new information, even when it is irrelevant."
+          },
+          {
+            "option_type": "string",
+            "string": "I have a great passion for collecting and studying rare and ancient texts."
+          },
+          {
+            "option_type": "string",
+            "string": "I always need to explain things in great detail, even if the conversation doesn't require it."
+          },
+          {
+            "option_type": "string",
+            "string": "I find it difficult to relate to people who do not share my intellectual pursuits."
+          }
+        ]
+      }
+    },
+    "ideals": {
+      "choose": 1,
+      "type": "ideals",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "ideal",
+            "desc": "Knowledge. The pursuit of knowledge is the most important goal in life, and I will stop at nothing to uncover the truth.",
+            "alignments": [
+              {
+                "index": "neutral-good",
+                "name": "Neutral Good"
+              },
+              {
+                "index": "lawful-neutral",
+                "name": "Lawful Neutral"
+              },
+              {
+                "index": "chaotic-neutral",
+                "name": "Chaotic Neutral"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Logic. The answers to life’s mysteries can be found through reason, analysis, and the application of scientific principles.",
+            "alignments": [
+              {
+                "index": "lawful-neutral",
+                "name": "Lawful Neutral"
+              },
+              {
+                "index": "neutral",
+                "name": "Neutral"
+              },
+              {
+                "index": "chaotic-neutral",
+                "name": "Chaotic Neutral"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Discovery. I want to uncover lost secrets, ancient knowledge, and hidden truths that have yet to be discovered.",
+            "alignments": [
+              {
+                "index": "neutral-good",
+                "name": "Neutral Good"
+              },
+              {
+                "index": "chaotic-good",
+                "name": "Chaotic Good"
+              },
+              {
+                "index": "neutral",
+                "name": "Neutral"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Power. I believe that the knowledge I possess will help me gain power over others, and I seek to dominate those who would not understand it.",
+            "alignments": [
+              {
+                "index": "lawful-evil",
+                "name": "Lawful Evil"
+              },
+              {
+                "index": "neutral-evil",
+                "name": "Neutral Evil"
+              },
+              {
+                "index": "chaotic-evil",
+                "name": "Chaotic Evil"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "bonds": {
+      "choose": 1,
+      "type": "bonds",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "string",
+            "string": "I will stop at nothing to find a long-lost manuscript that my mentor has been searching for his entire life."
+          },
+          {
+            "option_type": "string",
+            "string": "I owe everything to the scholars who taught me, and I will do whatever it takes to honor them."
+          },
+          {
+            "option_type": "string",
+            "string": "I believe that uncovering forgotten knowledge will bring great power to the world and hope to be the one who discovers it."
+          },
+          {
+            "option_type": "string",
+            "string": "I have spent my life in search of the truth, and I am driven to continue my research no matter what the cost."
+          }
+        ]
+      }
+    },
+    "flaws": {
+      "choose": 1,
+      "type": "flaws",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "string",
+            "string": "I tend to dismiss the ideas and beliefs of those who don't share my intellectual pursuits."
+          },
+          {
+            "option_type": "string",
+            "string": "I have an obsessive need to learn every piece of knowledge, even when it is irrelevant or dangerous."
+          },
+          {
+            "option_type": "string",
+            "string": "I sometimes miss the forest for the trees, focusing too much on obscure details while ignoring the bigger picture."
+          },
+          {
+            "option_type": "string",
+            "string": "I trust books and scholars over real-world experience, often to my detriment."
+          }
+        ]
+      }
+    },
+    "feature_name": "Researcher",
+    "feature_desc": "You can find most types of knowledge in books, libraries, and other sources of information. While researching, you can recall relevant details, facts, or theories with ease. Your understanding of various topics enables you to quickly track down answers to most questions. You may also have access to a library or an academic mentor, which provides you with invaluable resources for research purposes."
+  },
+  {
+    "name": "Sailor",
+    "description": "You have spent your life on the high seas, traveling from port to port, and experiencing the dangers and excitement of life aboard a ship. Your skills with sails and ropes are unparalleled, and you know how to survive in even the most extreme environments. You are a seasoned adventurer, familiar with the rhythms of life on the water, and you bring a practical knowledge of navigation, weather, and combat to any crew. Whether you were a deckhand or a captain, your experiences on the sea have given you unique abilities that few others can match.",
+    "starting_proficiencies": [
+      {
+        "name": "Skill: Athletics"
+      },
+      {
+        "name": "Skill: Perception"
+      }
+    ],
+    "starting_equipment": "A belaying pin (club), a small knife, a set of common clothes, and a belt pouch containing 10 gp",
+    "personality_traits": {
+      "choose": 2,
+      "type": "personality_traits",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "string",
+            "string": "I always keep my balance, no matter what the situation."
+          },
+          {
+            "option_type": "string",
+            "string": "I’m quick to make friends and even quicker to make enemies."
+          },
+          {
+            "option_type": "string",
+            "string": "I’m happiest when the ship is in motion, and I’m at the wheel or the ropes."
+          },
+          {
+            "option_type": "string",
+            "string": "I’m deeply superstitious and always follow the rituals of the sea."
+          },
+          {
+            "option_type": "string",
+            "string": "I don’t trust people who have never sailed, and I consider them naïve."
+          },
+          {
+            "option_type": "string",
+            "string": "I have a great love for the sea, and I can’t stay away from it for too long."
+          }
+        ]
+      }
+    },
+    "ideals": {
+      "choose": 1,
+      "type": "ideals",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "ideal",
+            "desc": "Freedom. The open sea is the only place I truly feel free, and I will fight for the freedom of others.",
+            "alignments": [
+              {
+                "index": "chaotic-good",
+                "name": "Chaotic Good"
+              },
+              {
+                "index": "neutral-good",
+                "name": "Neutral Good"
+              },
+              {
+                "index": "chaotic-neutral",
+                "name": "Chaotic Neutral"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Exploration. There are countless mysteries on the high seas, and I want to see them all.",
+            "alignments": [
+              {
+                "index": "neutral-good",
+                "name": "Neutral Good"
+              },
+              {
+                "index": "chaotic-neutral",
+                "name": "Chaotic Neutral"
+              },
+              {
+                "index": "neutral",
+                "name": "Neutral"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Survival. The sea is a harsh and unforgiving place, and I’ll do whatever it takes to survive.",
+            "alignments": [
+              {
+                "index": "neutral",
+                "name": "Neutral"
+              },
+              {
+                "index": "neutral-evil",
+                "name": "Neutral Evil"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Ambition. The sea offers many opportunities for wealth and power, and I intend to seize them.",
+            "alignments": [
+              {
+                "index": "lawful-evil",
+                "name": "Lawful Evil"
+              },
+              {
+                "index": "neutral-evil",
+                "name": "Neutral Evil"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "bonds": {
+      "choose": 1,
+      "type": "bonds",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "string",
+            "string": "I owe my life to the captain who saved me from a deadly storm."
+          },
+          {
+            "option_type": "string",
+            "string": "The sea is my only true home, and I will return to it no matter what."
+          },
+          {
+            "option_type": "string",
+            "string": "I will find the pirate crew that abandoned me and make them pay for their betrayal."
+          },
+          {
+            "option_type": "string",
+            "string": "I swore an oath to defend the crew of a ship I once sailed with."
+          }
+        ]
+      }
+    },
+    "flaws": {
+      "choose": 1,
+      "type": "flaws",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "string",
+            "string": "I have a fear of drowning and refuse to go near deep water."
+          },
+          {
+            "option_type": "string",
+            "string": "I’m prone to anger, especially when someone questions my loyalty to the crew."
+          },
+          {
+            "option_type": "string",
+            "string": "I am too superstitious and often follow pointless rituals."
+          },
+          {
+            "option_type": "string",
+            "string": "I sometimes forget that not everyone is used to the dangers of the sea and tend to act recklessly."
+          }
+        ]
+      }
+    },
+    "feature_name": "Ship's Passage",
+    "feature_desc": "You can secure free passage on a ship for yourself and your companions, provided the ship is going to a place you wish to visit. The captain and crew of the ship may expect you to assist them in exchange for the passage, though they are typically more lenient about their expectations compared to a normal crew. This feature grants you the ability to travel widely and navigate the seas, forging connections with various sailors and captains."
+  },
+  {
+    "name": "Sailor (Pirate)",
+    "description": "You are a pirate, someone who has lived a life of crime on the high seas. You are no stranger to conflict, and you've learned to survive through cunning, intimidation, and battle. Whether you were part of a pirate crew or an independent raider, you've learned the art of plundering and making a living from less-than-lawful means. You've navigated through ship-to-ship combat, stolen treasures from helpless ships, and lived by a code of conduct that rewards only the strong and cunning. Your life as a pirate has honed your combat skills and your ability to read people.",
+    "starting_proficiencies": [
+      {
+        "name": "Skill: Acrobatics"
+      },
+      {
+        "name": "Skill: Intimidation"
+      }
+    ],
+    "starting_equipment": "A cutlass, a pistol, a set of common clothes, and a belt pouch containing 10 gp",
+    "personality_traits": {
+      "choose": 2,
+      "type": "personality_traits",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "string",
+            "string": "I always have a joke or a laugh, no matter how dire the situation is."
+          },
+          {
+            "option_type": "string",
+            "string": "I take what I want, and I don’t ask for permission."
+          },
+          {
+            "option_type": "string",
+            "string": "I trust only my crew and never let anyone else get too close."
+          },
+          {
+            "option_type": "string",
+            "string": "I have a deep respect for the sea and consider it my only true home."
+          },
+          {
+            "option_type": "string",
+            "string": "I’m always looking for the next big score, and I won't let anything stop me from getting it."
+          },
+          {
+            "option_type": "string",
+            "string": "I love the thrill of a fight and will often provoke conflict just for the excitement."
+          }
+        ]
+      }
+    },
+    "ideals": {
+      "choose": 1,
+      "type": "ideals",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "ideal",
+            "desc": "Freedom. The sea belongs to those who are brave enough to take it. I will never be bound by any law.",
+            "alignments": [
+              {
+                "index": "chaotic-good",
+                "name": "Chaotic Good"
+              },
+              {
+                "index": "chaotic-neutral",
+                "name": "Chaotic Neutral"
+              },
+              {
+                "index": "chaotic-evil",
+                "name": "Chaotic Evil"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Treasure. Nothing is more important than gold, gems, and artifacts. I will do anything to get my hands on them.",
+            "alignments": [
+              {
+                "index": "neutral",
+                "name": "Neutral"
+              },
+              {
+                "index": "neutral-evil",
+                "name": "Neutral Evil"
+              },
+              {
+                "index": "chaotic-evil",
+                "name": "Chaotic Evil"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Revenge. I have a long list of people to settle scores with, and I won’t rest until I’ve taken my revenge on those who wronged me.",
+            "alignments": [
+              {
+                "index": "neutral-evil",
+                "name": "Neutral Evil"
+              },
+              {
+                "index": "chaotic-evil",
+                "name": "Chaotic Evil"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Loyalty. I never betray my crew, no matter the situation. We live and die together.",
+            "alignments": [
+              {
+                "index": "chaotic-good",
+                "name": "Chaotic Good"
+              },
+              {
+                "index": "neutral-good",
+                "name": "Neutral Good"
+              },
+              {
+                "index": "chaotic-neutral",
+                "name": "Chaotic Neutral"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "bonds": {
+      "choose": 1,
+      "type": "bonds",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "string",
+            "string": "I once betrayed my captain, but I live with the guilt of it every day."
+          },
+          {
+            "option_type": "string",
+            "string": "I owe my life to the rest of my crew. Without them, I’d be dead."
+          },
+          {
+            "option_type": "string",
+            "string": "I have a rival pirate crew, and I will stop at nothing to defeat them."
+          },
+          {
+            "option_type": "string",
+            "string": "I am seeking revenge on the navy captain who destroyed my ship."
+          }
+        ]
+      }
+    },
+    "flaws": {
+      "choose": 1,
+      "type": "flaws",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "string",
+            "string": "I have a short temper and am quick to start a fight."
+          },
+          {
+            "option_type": "string",
+            "string": "I take unnecessary risks and sometimes put the crew in danger."
+          },
+          {
+            "option_type": "string",
+            "string": "I am greedy and always looking for ways to steal more treasure."
+          },
+          {
+            "option_type": "string",
+            "string": "I have a tendency to overestimate my own abilities and underestimate my enemies."
+          }
+        ]
+      }
+    },
+    "feature_name": "Pirate's Luck",
+    "feature_desc": "As a pirate, you've learned how to escape dangerous situations, whether by luck or by quick thinking. If you're ever trapped or in danger, you can use your knowledge of the sea and your experience with risky situations to escape or survive. You are also skilled at navigating dangerous terrain and ship-to-ship combat. Additionally, your pirate connections may allow you to call in favors or acquire information from other pirates or sailors."
+  },
+  {
+    "name": "Soldier",
+    "description": "You are trained in combat, and you likely served in a militia, an army, or as a member of a mercenary company. Your experience in battle has forged a disciplined mind and body. Your skills may come from defending your homeland, fighting for coin, or engaging in noble conquests.",
+    "starting_proficiencies": [
+      {
+        "name": "Skill: Athletics"
+      },
+      {
+        "name": "Skill: Intimidation"
+      }
+    ],
+    "tool_proficiencies": "One type of gaming set \n Vehicles (land)",
+    "starting_equipment": "An insignia of rank\nA trophy taken from a fallen enemy (a dagger, broken blade, or piece of a banner)\nA set of bone dice or a deck of cards\nA set of common clothes\nA belt pouch containing 10 gp",
+    "personality_traits": {
+      "choose": 2,
+      "type": "personality_traits",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "string",
+            "string": "I'm always polite and respectful."
+          },
+          {
+            "option_type": "string",
+            "string": "I'm haunted by memories of war. I can't get the images of violence out of my mind."
+          },
+          {
+            "option_type": "string",
+            "string": "I've lost too many friends, and I'm slow to make new ones."
+          },
+          {
+            "option_type": "string",
+            "string": "I'm full of inspiring and cautionary tales from my military experience relevant to almost every combat situation."
+          },
+          {
+            "option_type": "string",
+            "string": "I can stare down a hell hound without flinching."
+          },
+          {
+            "option_type": "string",
+            "string": "I enjoy being strong and like breaking things."
+          },
+          {
+            "option_type": "string",
+            "string": "I have a crude sense of humor."
+          },
+          {
+            "option_type": "string",
+            "string": "I face problems head-on. A simple, direct solution is the best path to success."
+          }
+        ]
+      }
+    },
+    "ideals": {
+      "choose": 1,
+      "type": "ideals",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "ideal",
+            "desc": "Greater Good. Our lot is to lay down our lives in defense of others.",
+            "alignments": [
+              {
+                "index": "good",
+                "name": "Lawful Good"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Responsibility. I do what I must and obey just authority.",
+            "alignments": [
+              {
+                "index": "lawful",
+                "name": "Lawful Neutral"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Independence. When people follow orders blindly, they embrace a kind of tyranny.",
+            "alignments": [
+              {
+                "index": "chaotic",
+                "name": "Chaotic Neutral"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Might. In life as in war, the stronger force wins.",
+            "alignments": [
+              {
+                "index": "evil",
+                "name": "Chaotic Evil"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Live and Let Live. Ideals aren't worth killing over or going to war for.",
+            "alignments": [
+              {
+                "index": "neutral",
+                "name": "Neutral"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Nation. My city, nation, or people are all that matter.",
+            "alignments": [
+              {
+                "index": "any",
+                "name": "Lawful Good"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "bonds": {
+      "choose": 1,
+      "type": "bonds",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "string",
+            "string": "I would still lay down my life for the people I served with."
+          },
+          {
+            "option_type": "string",
+            "string": "Someone saved my life on the battlefield. To this day, I will never leave a friend behind."
+          },
+          {
+            "option_type": "string",
+            "string": "My honor is my life."
+          },
+          {
+            "option_type": "string",
+            "string": "I'll never forget the crushing defeat my company suffered or the enemies who dealt it."
+          },
+          {
+            "option_type": "string",
+            "string": "Those who fight beside me are those worth dying for."
+          },
+          {
+            "option_type": "string",
+            "string": "I fight for those who cannot fight for themselves."
+          }
+        ]
+      }
+    },
+    "flaws": {
+      "choose": 1,
+      "type": "flaws",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "string",
+            "string": "The monstrous enemy we faced in battle still leaves me quivering with fear."
+          },
+          {
+            "option_type": "string",
+            "string": "I have little respect for anyone who is not a proven warrior."
+          },
+          {
+            "option_type": "string",
+            "string": "I made a terrible mistake in battle that cost many lives—and I would do anything to keep that mistake secret."
+          },
+          {
+            "option_type": "string",
+            "string": "My hatred of my enemies is blind and unreasoning."
+          },
+          {
+            "option_type": "string",
+            "string": "I obey the law, even if the law causes misery."
+          },
+          {
+            "option_type": "string",
+            "string": "I'd rather eat my armor than admit when I'm wrong."
+          }
+        ]
+      }
+    },
+    "feature_name": "Military Rank",
+    "feature_desc": "You have a military rank from your career as a soldier. Soldiers loyal to your former military organization recognize your authority and influence, and they defer to you if they are of a lower rank. You can invoke your rank to exert influence over other soldiers and requisition simple equipment or horses for temporary use. You can also usually gain access to friendly military encampments and fortresses where your rank is recognized."
+  },
+  {
+    "name": "Urchin",
+    "description": "You grew up on the streets, surviving by your wits and street smarts. As an orphan or abandoned child, you learned to fend for yourself. The streets were your home, and the city, with all its dangers and temptations, became a place of both opportunity and hardship. Whether you were begging for food, picking pockets, or simply avoiding the authorities, you were always on the move, adapting to the ever-changing environment. The hardships you endured made you resourceful, and you've learned to survive in situations where others would have perished.",
+    "starting_proficiencies": [
+      {
+        "name": "Skill: Sleight of Hand"
+      },
+      {
+        "name": "Skill: Stealth"
+      }
+    ],
+    "starting_equipment": "A small knife, a map of the city you grew up in, a token to remember your family, and a belt pouch containing 10 gp",
+    "personality_traits": {
+      "choose": 2,
+      "type": "personality_traits",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "string",
+            "string": "I have a quick wit and often make jokes to mask my discomfort."
+          },
+          {
+            "option_type": "string",
+            "string": "I prefer to remain unseen and unnoticed, blending into the crowd."
+          },
+          {
+            "option_type": "string",
+            "string": "I am always on the lookout for ways to earn extra coins."
+          },
+          {
+            "option_type": "string",
+            "string": "I’m cautious about trusting others, having been betrayed before."
+          },
+          {
+            "option_type": "string",
+            "string": "I’m fiercely independent and avoid relying on anyone else."
+          },
+          {
+            "option_type": "string",
+            "string": "I tend to hoard anything I can find, no matter how useless it may seem."
+          }
+        ]
+      }
+    },
+    "ideals": {
+      "choose": 1,
+      "type": "ideals",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "ideal",
+            "desc": "Freedom. I’ll never be a slave to anyone. I value my independence above all else.",
+            "alignments": [
+              {
+                "index": "chaotic-good",
+                "name": "Chaotic Good"
+              },
+              {
+                "index": "chaotic-neutral",
+                "name": "Chaotic Neutral"
+              },
+              {
+                "index": "chaotic-evil",
+                "name": "Chaotic Evil"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Survival. I do what I need to survive, no matter the cost.",
+            "alignments": [
+              {
+                "index": "neutral",
+                "name": "Neutral"
+              },
+              {
+                "index": "neutral-evil",
+                "name": "Neutral Evil"
+              },
+              {
+                "index": "chaotic-evil",
+                "name": "Chaotic Evil"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Community. I may have grown up alone, but now that I’m older, I value the bonds of friendship and loyalty.",
+            "alignments": [
+              {
+                "index": "neutral-good",
+                "name": "Neutral Good"
+              },
+              {
+                "index": "chaotic-good",
+                "name": "Chaotic Good"
+              }
+            ]
+          },
+          {
+            "option_type": "ideal",
+            "desc": "Ambition. I may have started with nothing, but I’ll rise to the top and show everyone I’m capable of greatness.",
+            "alignments": [
+              {
+                "index": "neutral",
+                "name": "Neutral"
+              },
+              {
+                "index": "chaotic-neutral",
+                "name": "Chaotic Neutral"
+              },
+              {
+                "index": "neutral-evil",
+                "name": "Neutral Evil"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "bonds": {
+      "choose": 1,
+      "type": "bonds",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "string",
+            "string": "I will never forget the person who helped me when I was at my lowest point."
+          },
+          {
+            "option_type": "string",
+            "string": "I’m still looking for the family I lost, and I’ll do whatever it takes to find them."
+          },
+          {
+            "option_type": "string",
+            "string": "I owe a life debt to someone who saved me from a dangerous situation."
+          },
+          {
+            "option_type": "string",
+            "string": "I have a hidden stash of treasure somewhere, and I’ll return to it one day."
+          }
+        ]
+      }
+    },
+    "flaws": {
+      "choose": 1,
+      "type": "flaws",
+      "from": {
+        "option_set_type": "options_array",
+        "options": [
+          {
+            "option_type": "string",
+            "string": "I’m always looking for my next opportunity, even at the expense of others."
+          },
+          {
+            "option_type": "string",
+            "string": "I tend to lie and deceive others to get what I want."
+          },
+          {
+            "option_type": "string",
+            "string": "I’m overly cautious, always second-guessing myself."
+          },
+          {
+            "option_type": "string",
+            "string": "I have trouble trusting others, often thinking they have ulterior motives."
+          }
+        ]
+      }
+    },
+    "feature_name": "City Secrets",
+    "feature_desc": "You know the ins and outs of urban environments, and you can find passage through cities, even those you’ve never visited before. You are familiar with hidden areas, alleys, and secret routes. You can avoid guards, find places to hide, and get around quickly and unnoticed. You also know where to find the best places to gather information or supplies without attracting attention."
+  }
+]
