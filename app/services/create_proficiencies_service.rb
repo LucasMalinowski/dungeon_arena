@@ -32,9 +32,9 @@ class CreateProficienciesService
     return if races_data.blank?
 
     races_data.each do |race_data|
-      if race_data['url'].contains?('subraces')
+      if race_data['url'].include?('subraces')
         sub_race = Subrace.find_or_create_by!(name: race_data['name'])
-        RaceProficiency.find_or_create_by!(race: sub_race, proficiency: proficiency)
+        SubraceProficiency.find_or_create_by!(subrace: sub_race, proficiency: proficiency)
       else
         race = Race.find_or_create_by!(name: race_data['name'])
         RaceProficiency.find_or_create_by!(race: race, proficiency: proficiency)
