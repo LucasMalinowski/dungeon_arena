@@ -45,7 +45,7 @@ class CreateEquipmentsService
         item.throw_range_long = equipment['throw_range']['long']
       end
 
-      item.equipment_category = EquipmentCategory.find_by(name: equipment['equipment_category']['name'])
+      item.equipment_category = EquipmentCategory.find_by(name: "#{equipment['weapon_category']} Weapons")
 
       item.weapon_properties_weapons = equipment['properties'].map do |property|
         WeaponPropertyWeapons.find_or_create_by!(weapon_property: WeaponProperty.find_by(name: property['name']), weapon: item)
@@ -68,7 +68,7 @@ class CreateEquipmentsService
       end
     end
 
-    Equipment.create!(equipmentable: created_item, name: created_item.name)
+    Equipment.create!(equipmentable: created_item, name: created_item.name, equipment_category: created_item.equipment_category)
   end
 
   def create_armor(equipment)
@@ -85,10 +85,11 @@ class CreateEquipmentsService
         item.cost_unity = equipment['cost']['unit']
       end
 
-      item.equipment_category = EquipmentCategory.find_by(name: equipment['equipment_category']['name'])
+      armor_category = equipment['armor_category'].include?('Shield') ? 'Shields' : equipment['armor_category'].concat(' Armor')
+      item.equipment_category = EquipmentCategory.find_by(name: armor_category)
     end
 
-    Equipment.create!(equipmentable: created_item, name: created_item.name)
+    Equipment.create!(equipmentable: created_item, name: created_item.name, equipment_category: created_item.equipment_category)
   end
 
   def create_adventuring_gear(equipment)
@@ -102,10 +103,14 @@ class CreateEquipmentsService
         item.cost_unity = equipment['cost']['unit']
       end
 
-      item.equipment_category = EquipmentCategory.find_by(name: equipment['equipment_category']['name'])
+      if equipment['quantity']
+        item.quantity = equipment['quantity']
+      end
+
+      item.equipment_category = EquipmentCategory.find_by(name: equipment['gear_category']['name'])
     end
 
-    Equipment.create!(equipmentable: created_item, name: created_item.name)
+    Equipment.create!(equipmentable: created_item, name: created_item.name, equipment_category: created_item.equipment_category)
   end
 
   def create_tool(equipment)
@@ -119,10 +124,10 @@ class CreateEquipmentsService
         item.cost_unity = equipment['cost']['unit']
       end
 
-      item.equipment_category = EquipmentCategory.find_by(name: equipment['equipment_category']['name'])
+      item.equipment_category = EquipmentCategory.find_by(name: equipment['tool_category'])
     end
 
-    Equipment.create!(equipmentable: created_item, name: created_item.name)
+    Equipment.create!(equipmentable: created_item, name: created_item.name, equipment_category: created_item.equipment_category)
   end
 
   def create_mount(equipment)
@@ -141,9 +146,9 @@ class CreateEquipmentsService
         item.cost_unity = equipment['cost']['unit']
       end
 
-      item.equipment_category = EquipmentCategory.find_by(name: equipment['equipment_category']['name'])
+      item.equipment_category = EquipmentCategory.find_by(name: equipment['vehicle_category'])
     end
 
-    Equipment.create!(equipmentable: created_item, name: created_item.name)
+    Equipment.create!(equipmentable: created_item, name: created_item.name, equipment_category: created_item.equipment_category)
   end
 end

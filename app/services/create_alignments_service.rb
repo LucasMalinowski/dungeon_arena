@@ -11,7 +11,7 @@ class CreateAlignmentsService
       Alignment.find_or_create_by!(
         name: alignment['name'],
         abbreviation: alignment['full_name'],
-        desc: alignment['desc'],
+        description: alignment['desc'],
       )
     end
   end

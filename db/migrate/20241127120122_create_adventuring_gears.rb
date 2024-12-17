@@ -7,6 +7,7 @@ class CreateAdventuringGears < ActiveRecord::Migration[7.1]
       t.integer :weight
       t.string :gear_category
       t.text :description
+      t.integer :quantity
       t.references :equipment_categories, null: false, foreign_key: true
 
       t.timestamps

@@ -11,7 +11,7 @@ class CreateAbilityScoresService
       AbilityScore.find_or_create_by!(
         name: ability_score['name'],
         full_name: ability_score['full_name'],
-        desc: ability_score['desc'].join("\n"),
+        description: ability_score['desc'].join("\n"),
       )
     end
   end
