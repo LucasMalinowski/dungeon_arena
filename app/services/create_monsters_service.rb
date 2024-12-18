@@ -42,12 +42,22 @@ class CreateMonstersService
       handle_damage_resistances(monster, monster_data)
       handle_damage_immunities(monster, monster_data)
       handle_condition_immunities(monster, monster_data)
+      handle_proficiencies(monster, monster_data)
 
       monster.save!
     end
   end
 
   private
+
+  def handle_proficiencies(monster, monster_data)
+    return if monster_data['proficiencies'].empty?
+
+    monster_data['proficiencies'].each do |proficiency_data|
+      proficiency = Proficiency.find_or_create_by!(name: proficiency_data['proficiency']['name'])
+      MonsterProficiency.create!(monster: monster, proficiency: proficiency, value: proficiency_data['value'])
+    end
+  end
 
   def normalize_armor_class(armor_class_data)
     return [] unless armor_class_data.is_a?(Hash)

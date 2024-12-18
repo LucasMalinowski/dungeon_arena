@@ -11,22 +11,22 @@ class Trait < ApplicationRecord
   has_many :proficiencies, through: :trait_proficiencies
 
   has_many :trait_proficiency_choices, dependent: :destroy
-  has_many :trait_proficiency_choice_options, through: :trait_proficiency_choices
+  has_many :proficiency_options, through: :trait_proficiency_choices, source: :trait_proficiency_choice_options
 
   # Relationships with languages
   has_many :trait_languages_choices, dependent: :destroy
-  has_many :trait_languages_choice_options, through: :trait_languages_choices
-  has_many :languages, through: :trait_languages_choice_options
+  has_many :languages_options, through: :trait_languages_choices, source: :trait_languages_choice_options
+  has_many :languages, through: :languages_options
 
   # Relationships with spell options
   has_one :trait_specific_spell, dependent: :destroy
-  has_many :specific_spell_options, through: :trait_specific_spell
-  has_many :spells, through: :specific_spell_options
+  has_many :spell_options, through: :trait_specific_spell, source: :specific_spell_options
+  has_many :spells, through: :spell_options
 
   has_one :trait_specific_subtrait, dependent: :destroy
-  has_many :trait_specific_subtrait_options, through: :trait_specific_subtrait
+  has_many :subtrait_options, through: :trait_specific_subtrait, source: :trait_specific_subtrait_options
 
-  has_one :trait_specific_damage_breath, dependent: :destroy
+  has_one :damage_breath, dependent: :destroy, class_name: 'TraitSpecificDamageBreath'
 
   belongs_to :parent, class_name: 'Trait', optional: true
 
@@ -34,7 +34,7 @@ class Trait < ApplicationRecord
   def trait_specific_type
     return :spell_options if trait_specific_spell.present?
     return :subtrait_options if trait_specific_subtrait.present?
-    return :damage_and_breath if trait_specific_damage_breath.present?
+    return :damage_and_breath if damage_breath.present?
 
     nil
   end
@@ -44,33 +44,33 @@ class Trait < ApplicationRecord
     when :spell_options
       {
         choose: trait_specific_spell.choose,
-        options: specific_spell_options.map do |option|
+        options: spell_options.map do |option|
           { name: option.spell.name }
         end
       }
     when :subtrait_options
       {
         choose: trait_specific_subtrait.choose,
-        options: trait_specific_subtrait_options.map do |option|
+        options: subtrait_options.map do |option|
           { name: option.subtrait.name }
         end
       }
     when :damage_and_breath
       {
-        name: trait_specific_damage_breath.name,
-        description: trait_specific_damage_breath.description,
-        damage_type: trait_specific_damage_breath.damage_type.name,
+        name: damage_breath.name,
+        description: damage_breath.description,
+        damage_type: damage_breath.damage_type.name,
         area: {
-          size: trait_specific_damage_breath.area_size,
-          type: trait_specific_damage_breath.area_type
+          size: damage_breath.area_size,
+          type: damage_breath.area_type
         },
         usage: {
-          type: trait_specific_damage_breath.usage_type,
-          times: trait_specific_damage_breath.usage_times
+          type: damage_breath.usage_type,
+          times: damage_breath.usage_times
         },
-        saving_throw: trait_specific_damage_breath.saving_throw.name,
-        dc_success_type: trait_specific_damage_breath.dc_success_type,
-        damage_at_character_level: trait_specific_damage_breath.damage_at_character_level
+        saving_throw: damage_breath.saving_throw.name,
+        dc_success_type: damage_breath.dc_success_type,
+        damage_at_character_level: damage_breath.damage_at_character_level
       }
     else
       {}

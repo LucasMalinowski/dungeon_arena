@@ -11,5 +11,5 @@ class Subrace < ApplicationRecord
   has_many :ability_scores, through: :subrace_ability_bonus
 
   has_many :subrace_language_choices, dependent: :destroy, class_name: 'SubraceLanguageChoice'
-  has_many :subrace_language_choice_options, through: :subrace_language_choices
+  has_many :language_options, through: :subrace_language_choices, source: :subrace_language_choice_options
 end

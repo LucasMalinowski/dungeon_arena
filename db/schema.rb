@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_12_17_104110) do
+ActiveRecord::Schema[7.1].define(version: 2024_12_17_133602) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -219,14 +219,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_17_104110) do
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "damage_proficiencies", force: :cascade do |t|
-    t.integer "value"
-    t.bigint "monster_id"
-    t.bigint "proficiency_id"
-    t.index ["monster_id"], name: "index_damage_proficiencies_on_monster_id"
-    t.index ["proficiency_id"], name: "index_damage_proficiencies_on_proficiency_id"
   end
 
   create_table "damage_types", force: :cascade do |t|
@@ -448,6 +440,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_17_104110) do
     t.index ["monster_id"], name: "index_monster_legendary_actions_on_monster_id"
   end
 
+  create_table "monster_proficiencies", force: :cascade do |t|
+    t.integer "value"
+    t.bigint "monster_id"
+    t.bigint "proficiency_id"
+    t.index ["monster_id"], name: "index_monster_proficiencies_on_monster_id"
+    t.index ["proficiency_id"], name: "index_monster_proficiencies_on_proficiency_id"
+  end
+
   create_table "monster_reactions", force: :cascade do |t|
     t.bigint "monster_id", null: false
     t.string "name", null: false
@@ -545,6 +545,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_17_104110) do
     t.datetime "updated_at", null: false
   end
 
+  # AKA ClassProficiencyChoiceOptions
   create_table "proficiency_choice_options", force: :cascade do |t|
     t.bigint "proficiency_choice_id", null: false
     t.bigint "proficiency_id", null: false
@@ -552,6 +553,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_17_104110) do
     t.index ["proficiency_id"], name: "index_proficiency_choice_options_on_proficiency_id"
   end
 
+  # AKA ClassProficiencyChoices
   create_table "proficiency_choices", force: :cascade do |t|
     t.bigint "klass_id", null: false
     t.string "description"

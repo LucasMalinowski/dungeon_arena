@@ -1,8 +1,9 @@
 class Klass < ApplicationRecord
   has_many :class_proficiencies, dependent: :destroy
   has_many :proficiencies, through: :class_proficiencies
+
   has_many :proficiency_choices
-  has_many :proficiency_choice_options, through: :proficiency_choices
+  has_many :proficiency_options, through: :proficiency_choices, source: :proficiency_choice_options
 
   has_many :subclasses, dependent: :destroy
   has_many :features, dependent: :destroy
@@ -18,11 +19,13 @@ class Klass < ApplicationRecord
   has_many :class_saving_throws, dependent: :destroy
   has_many :saving_throws, through: :class_saving_throws
 
-  has_many :class_starting_equipment, dependent: :destroy
+  has_many :starting_equipment, dependent: :destroy, class_name: "ClassStartingEquipment"
+
   has_many :class_starting_equipment_choices, dependent: :destroy
-  has_many :class_starting_equipment_choice_options, through: :class_starting_equipment_choices
+  has_many :starting_equipment_options, through: :class_starting_equipment_choices, source: :class_starting_equipment_choice_options
 
   has_one :class_spellcasting, dependent: :destroy
+  has_one :spellcasting_ability, through: :class_spellcasting
   has_many :spellcasting_infos, through: :class_spellcasting
 
   has_many :levels, dependent: :destroy
