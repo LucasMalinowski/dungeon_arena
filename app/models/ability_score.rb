@@ -5,7 +5,6 @@ class AbilityScore < ApplicationRecord
   has_many :race_ability_bonus_choice_options, class_name: "RaceAbilityBonusChoiceOption", dependent: :destroy
 
   has_many :subrace_ability_bonuses, class_name: "SubraceAbilityBonus",dependent: :destroy
-  has_many :subrace_ability_bonus_choice_options, class_name: "SubraceAbilityBonusChoiceOption", dependent: :destroy
 
   validates :name, presence: true, uniqueness: true
   validates :description, presence: true

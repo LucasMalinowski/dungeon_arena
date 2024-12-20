@@ -51,7 +51,6 @@ class CreateBackgroundsService
         description: option_data['desc']
       )
       option_data['alignments'].each do |alignment|
-        p alignment
         BackgroundIdealOptionAlignment.create!(
           background_ideal_choice_option: option,
           alignment: Alignment.find_by(name: alignment['name'])

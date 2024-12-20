@@ -9,7 +9,7 @@ class CharactersController < ApplicationController
   end
 
   def create
-    character = Character.create
+    character = Character.create(user: current_user)
     redirect_to character_characters_step_path(character, :klass)
   end
 end

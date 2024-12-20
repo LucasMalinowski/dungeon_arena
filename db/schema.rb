@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_12_17_133602) do
+ActiveRecord::Schema[7.1].define(version: 2024_12_18_114753) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -162,6 +162,98 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_17_133602) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "character_ability_scores", force: :cascade do |t|
+    t.bigint "character_id", null: false
+    t.integer "strength"
+    t.integer "dexterity"
+    t.integer "constitution"
+    t.integer "intelligence"
+    t.integer "wisdom"
+    t.integer "charisma"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["character_id"], name: "index_character_ability_scores_on_character_id"
+  end
+
+  create_table "character_classes", force: :cascade do |t|
+    t.bigint "character_id", null: false
+    t.bigint "klass_id", null: false
+    t.integer "level", default: 1
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["character_id"], name: "index_character_classes_on_character_id"
+    t.index ["klass_id"], name: "index_character_classes_on_klass_id"
+  end
+
+  create_table "character_inventories", force: :cascade do |t|
+    t.bigint "character_id", null: false
+    t.integer "copper"
+    t.integer "silver"
+    t.integer "electrum"
+    t.integer "gold"
+    t.integer "platinum"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["character_id"], name: "index_character_inventories_on_character_id"
+  end
+
+  create_table "character_notes", force: :cascade do |t|
+    t.bigint "character_id", null: false
+    t.string "allies"
+    t.string "organizations"
+    t.string "enemies"
+    t.string "faith"
+    t.string "lifestyle"
+    t.text "notes"
+    t.text "backstory"
+    t.text "other"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["character_id"], name: "index_character_notes_on_character_id"
+  end
+
+  create_table "character_physical_characteristics", force: :cascade do |t|
+    t.bigint "character_id", null: false
+    t.string "gender"
+    t.integer "age"
+    t.string "height"
+    t.string "weight"
+    t.string "eye_color"
+    t.string "hair_color"
+    t.string "skin_color"
+    t.text "distinguishing_features"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["character_id"], name: "index_character_physical_characteristics_on_character_id"
+  end
+
+  create_table "character_skills", force: :cascade do |t|
+    t.bigint "character_id", null: false
+    t.bigint "skill_id", null: false
+    t.integer "proficiency"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["character_id"], name: "index_character_skills_on_character_id"
+    t.index ["skill_id"], name: "index_character_skills_on_skill_id"
+  end
+
+  create_table "characters", force: :cascade do |t|
+    t.string "name"
+    t.string "exp"
+    t.bigint "user_id", null: false
+    t.bigint "background_id"
+    t.bigint "alignment_id"
+    t.bigint "race_id"
+    t.bigint "subrace_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["alignment_id"], name: "index_characters_on_alignment_id"
+    t.index ["background_id"], name: "index_characters_on_background_id"
+    t.index ["race_id"], name: "index_characters_on_race_id"
+    t.index ["subrace_id"], name: "index_characters_on_subrace_id"
+    t.index ["user_id"], name: "index_characters_on_user_id"
+  end
+
   create_table "class_proficiencies", force: :cascade do |t|
     t.bigint "klass_id"
     t.bigint "proficiency_id"
@@ -284,6 +376,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_17_133602) do
     t.datetime "updated_at", null: false
     t.index ["klass_id"], name: "index_features_on_klass_id"
     t.index ["subclass_id"], name: "index_features_on_subclass_id"
+  end
+
+  create_table "inventory_items", force: :cascade do |t|
+    t.bigint "character_inventory_id", null: false
+    t.bigint "equipment_id", null: false
+    t.integer "quantity"
+    t.index ["character_inventory_id"], name: "index_inventory_items_on_character_inventory_id"
+    t.index ["equipment_id"], name: "index_inventory_items_on_equipment_id"
   end
 
   create_table "invocations", force: :cascade do |t|
@@ -1000,6 +1100,19 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_17_133602) do
   add_foreign_key "background_personality_trait_choices", "backgrounds"
   add_foreign_key "background_proficiencies", "backgrounds"
   add_foreign_key "background_proficiencies", "proficiencies"
+  add_foreign_key "character_ability_scores", "characters"
+  add_foreign_key "character_classes", "characters"
+  add_foreign_key "character_classes", "klasses"
+  add_foreign_key "character_inventories", "characters"
+  add_foreign_key "character_notes", "characters"
+  add_foreign_key "character_physical_characteristics", "characters"
+  add_foreign_key "character_skills", "characters"
+  add_foreign_key "character_skills", "skills"
+  add_foreign_key "characters", "alignments"
+  add_foreign_key "characters", "backgrounds"
+  add_foreign_key "characters", "races"
+  add_foreign_key "characters", "subraces"
+  add_foreign_key "characters", "users"
   add_foreign_key "class_proficiencies", "klasses"
   add_foreign_key "class_proficiencies", "proficiencies"
   add_foreign_key "class_saving_throws", "klasses"
@@ -1019,6 +1132,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_17_133602) do
   add_foreign_key "feature_prerequisites", "features"
   add_foreign_key "features", "klasses"
   add_foreign_key "features", "subclasses"
+  add_foreign_key "inventory_items", "character_inventories"
+  add_foreign_key "inventory_items", "equipment"
   add_foreign_key "invocations", "features"
   add_foreign_key "level_features", "features"
   add_foreign_key "level_features", "levels"

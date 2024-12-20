@@ -144,7 +144,7 @@ class CreateClassesService
 
     ability_score = AbilityScore.find_by(name: spellcasting_data['spellcasting_ability']['name'])
     class_spellcasting = ClassSpellcasting.create!(
-      ability_score: ability_score,
+      spellcasting_ability: ability_score,
       klass: klass,
       level: spellcasting_data['level']
     )

@@ -33,4 +33,7 @@ class Klass < ApplicationRecord
   has_many :level_specifics, through: :levels
   has_many :level_spellcasting, through: :levels
 
+  def available_features(level:)
+    levels.find_by(level: level).inherited_features
+  end
 end

@@ -11,7 +11,6 @@ class CreateFeatsService
       Feat.find_or_create_by!(name: feat_data['name']) do |feat|
         feat.description = feat_data['desc'].join("\n")
         if feat_data['prerequisites'].present?
-          p feat_data['prerequisites']
           feat.ability_score = AbilityScore.find_by(name: feat_data['prerequisites'].first['ability_score']['name'])
           feat.minimum_score = feat_data['prerequisites'].first['minimum_score']
         end
