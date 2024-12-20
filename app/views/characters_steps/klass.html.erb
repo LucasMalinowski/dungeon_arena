@@ -19,12 +19,15 @@
           >
           <label for="<%= klass.name %>" class="block p-4 cursor-pointer bg-neutral-700 hover:bg-neutral-600 peer-checked:bg-blue-500 peer-checked:text-white">
             <div class="flex items-center justify-between">
-              <span class="font-bold"><%= klass.name %></span>
+              <div class="flex items-center gap-3">
+                <%= image_tag "icons/#{klass.name.downcase}.png", class: "size-10" %>
+                <span class="font-bold"><%= klass.name %></span>
+              </div>
               <i class="fa fa-chevron-right peer-checked:rotate-90 transition-transform"></i>
             </div>
           </label>
           <div id="<%= klass.name %>_info" class="hidden bg-neutral-800 p-4">
-            <p><%= klass.url %></p>
+            <%= render "klass_information", klass: klass %>
           </div>
         </div>
       <% end %>
