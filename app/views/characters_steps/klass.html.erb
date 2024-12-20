@@ -1,44 +1,49 @@
-<%= form_for @character, url: wizard_path(@step, character_id: @character.id), method: :put, class: "space-y-4 text-white" do |f| %>
-  <%= f.label :name, "Character Name", class: "block font-semibold" %>
-  <%= f.text_field :name, class: "block w-full rounded bg-neutral-700 border border-gray-600 p-2" %>
-  <%= f.object.errors.full_messages_for(:name)&.first %>
+<div class="max-w-4xl mx-auto bg-neutral-900 text-white rounded-lg p-6 shadow-lg space-y-6">
+  <h1 class="text-2xl font-bold">Step 1: Choose Your Class</h1>
+  <p class="text-gray-400">
+    Select a class for your character. Each class offers unique abilities and traits.
+  </p>
 
-  <%= f.label :klass, "Class", class: "block font-semibold" %>
-  <div data-controller="collapse" class="mb-6">
-    <div class="space-y-2">
-      <% @klasses.each do |klass| %>
-        <div class="border border-gray-600 rounded-md">
-          <input
-            type="radio"
-            id="<%= klass.name %>"
-            name="character[klass]"
-            value="<%= klass.name %>"
-            class="hidden peer"
-            data-action="click->collapse#toggle"
-            data-collapse-target="<%= klass.name %>_info"
-          >
-          <label for="<%= klass.name %>" class="block p-4 cursor-pointer bg-neutral-700 hover:bg-neutral-600 peer-checked:bg-blue-500 peer-checked:text-white">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-3">
-                <%= image_tag "icons/#{klass.name.downcase}.png", class: "size-10" %>
-                <span class="font-bold"><%= klass.name %></span>
-              </div>
-              <i class="fa fa-chevron-right peer-checked:rotate-90 transition-transform"></i>
-            </div>
-          </label>
-          <div id="<%= klass.name %>_info" class="hidden bg-neutral-800 p-4">
-            <%= render "klass_information", klass: klass %>
-          </div>
-        </div>
-      <% end %>
+  <%= turbo_frame_tag "modal" %>
+
+  <!-- Form -->
+  <%= form_with(model: @character, url: wizard_path("update"), method: :patch, class: "space-y-6") do |f| %>
+    <!-- Character Name -->
+    <div>
+      <label for="name" class="block text-lg font-semibold">Character Name</label>
+      <%= f.text_field :name, class: "w-full mt-2 rounded-lg bg-neutral-800 border border-gray-700 p-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" %>
     </div>
-  </div>
 
-  <div class="flex justify-between items-center px-20">
-    <%= link_to wizard_path("previous", character_id: @character.id), class: "p-4 bg-neutral-700 hover:bg-neutral-600 text-white rounded-full shadow-md cursor-pointer" do %>
-      <i class="fa fa-arrow-left"></i>
-    <% end %>
+    <!-- Class Selection -->
+    <div>
+      <h2 class="text-lg font-semibold mb-4">Choose a Class</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+        <% @klasses.each do |klass| %>
+          <div>
+            <input id="<%= klass.name %>" type="radio" name="character[klass]" value="<%= klass.name %>" class="hidden peer">
+            <label for="<%= klass.name %>" class="block border border-gray-700 bg-neutral-800 rounded-lg p-4 hover:bg-neutral-700 peer-checked:border-amber-500 peer-checked:bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 transition">
+              <div class="flex items-center justify-between">
+                <div class="flex gap-4 items-center">
+                  <%= image_tag "icons/#{klass.name.downcase}.png", class: "w-8 h-8" %>
+                  <span class="text-sm font-medium"><%= klass.name %></span>
+                </div>
+                <%= link_to klass_modal_path(klass_id: klass.id), data: { turbo: true, turbo_frame: 'modal' } do %>
+                  <i class="fa-solid fa-circle-info fa-lg"></i>
+                <% end %>
+              </div>
+            </label>
+          </div>
+        <% end %>
+      </div>
+    </div>
 
-    <%= f.submit "Next", name: "next", class: "p-4 bg-blue-500 hover:bg-blue-600 text-white rounded-full shadow-md cursor-pointer" %>
-  </div>
-<% end %>
+    <!-- Navigation Buttons -->
+    <div class="flex justify-between">
+      <%= link_to wizard_path("previous", character_id: @character.id), class: "flex items-center gap-2 px-6 py-3 rounded-lg bg-gray-700 hover:bg-gray-600 text-white" do %>
+        <i class="fa fa-arrow-left"></i> Previous
+      <% end %>
+
+      <%= f.submit "Next", class: "flex items-center gap-2 px-6 py-3 rounded-lg bg-blue-500 hover:bg-blue-600 text-white" %>
+    </div>
+  <% end %>
+</div>

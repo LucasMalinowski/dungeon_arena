@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "public#index"
 
+  get "klass_modal" => "klass#klass_modal"
   resources :characters, only: [:index, :show, :create] do
     resources :characters_steps, only: [:show, :create, :update]
   end
