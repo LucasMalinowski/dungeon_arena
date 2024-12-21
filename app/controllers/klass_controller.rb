@@ -1,6 +1,6 @@
 class KlassController < ApplicationController
   def klass_modal
-    @klass = Klass.find(params[:klass_id])
+    @klass = Klass.includes(:proficiencies, :features, :starting_equipment, :spellcasting_infos).find(params[:klass_id])
 
     respond_to do |format|
       format.html do

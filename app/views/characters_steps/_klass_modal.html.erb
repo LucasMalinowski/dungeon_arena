@@ -1,22 +1,70 @@
 <%= turbo_frame_tag "modal" do %>
   <div id="class-info-modal"
-       class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+       class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50"
        data-controller="class-modal"
        data-class-modal-target="modal"
        data-action="click->class-modal#outsideClick">
-    <div class="bg-neutral-900 rounded-lg p-6 w-full max-w-xl shadow-lg text-white relative">
-      <button class="absolute top-3 right-3 text-gray-300 hover:text-white"
-              type="button"
-              data-action="click->class-modal#close">
-        <i class="fa fa-times"></i>
-      </button>
+    <div class="bg-neutral-900 rounded-lg p-6 w-full max-w-4xl shadow-lg relative">
+      <!-- Modal Header -->
+      <div class="flex justify-between items-center border-b pb-4 mb-4">
+        <div class="flex items-center gap-4">
+          <%= image_tag "icons/#{klass.name.downcase}.png", class: "w-12 h-12" %>
+          <h2 class="text-3xl font-bold text-white"><%= klass.name %></h2>
+        </div>
+        <button class="text-gray-500 hover:text-gray-200"
+                type="button"
+                data-action="click->class-modal#close">
+          <i class="fa fa-times text-xl"></i>
+        </button>
+      </div>
 
-      <div class="flex">
-        <div id="modal_header" class="flex items-center gap-4">
-          <%= image_tag "icons/#{klass.name.downcase}.png", class: "w-8 h-8" %>
-          <h2 class="text-xl font-bold"><%= klass.name %></h2>
+      <div class="mb-6 overflow-y-auto max-h-80">
+        <!-- Class Details -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <div class="">
+            <div>
+              <h3 class="text-md font-semibold text-gray-200 mb-1">Primary Ability</h3>
+              <p class="text-gray-300 text-sm"><%= klass.primary_ability %></p>
+            </div>
+            <div>
+              <h3 class="text-md font-semibold text-gray-200 mb-1 mt-4">Hit Die</h3>
+              <p class="text-gray-300 text-sm">D<%= klass.hit_die %></p>
+            </div>
+            <div>
+              <h3 class="text-md font-semibold text-gray-200 mb-1 mt-4">Saving Throws</h3>
+              <p class="text-gray-300 text-sm"><%= klass.saving_throws_names.join("<br>").html_safe %></p>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-md font-semibold text-gray-200 mb-1">Proficiencies</h3>
+            <p class="text-gray-300 text-sm"> &#x2022; <%= klass.proficiencies.pluck(:name).join("<br> \u2022 ").html_safe %></p>
+          </div>
+        </div>
+
+        <!-- Features Section -->
+        <div>
+          <h3 class="text-xl font-bold text-white mb-4">Features</h3>
+          <% klass.features.group_by(&:level).each do |level, features| %>
+            <div class="mb-6 mx-4">
+              <h4 class="text-lg font-semibold text-gray-200">Level <%= level %></h4>
+              <div class="mt-2 space-y-3">
+                <% features.each do |feature| %>
+                  <details class="group bg-neutral-800 rounded p-4">
+                    <summary class="text-white cursor-pointer group-hover:underline">
+                      <%= feature.name %>
+                    </summary>
+                    <p class="mt-2 text-gray-300 mx-4 text-justify"><%= feature.description %></p>
+                  </details>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>
   </div>
 <% end %>
+
+
+
+

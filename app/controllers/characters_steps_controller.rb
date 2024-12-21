@@ -9,6 +9,8 @@ class CharactersStepsController < ApplicationController
 
   def show
     @klasses = Klass.all
+    @steps = steps
+    @current_step = step
     render_wizard
   end
 

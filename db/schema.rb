@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_12_18_114753) do
+ActiveRecord::Schema[7.1].define(version: 2024_12_21_120220) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -397,6 +397,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_18_114753) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "hit_die"
+    t.string "primary_ability"
   end
 
   create_table "languages", force: :cascade do |t|
@@ -645,7 +646,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_18_114753) do
     t.datetime "updated_at", null: false
   end
 
-  # AKA ClassProficiencyChoiceOptions
   create_table "proficiency_choice_options", force: :cascade do |t|
     t.bigint "proficiency_choice_id", null: false
     t.bigint "proficiency_id", null: false
@@ -653,7 +653,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_18_114753) do
     t.index ["proficiency_id"], name: "index_proficiency_choice_options_on_proficiency_id"
   end
 
-  # AKA ClassProficiencyChoices
   create_table "proficiency_choices", force: :cascade do |t|
     t.bigint "klass_id", null: false
     t.string "description"

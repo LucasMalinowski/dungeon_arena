@@ -5,7 +5,8 @@ class CreateDndInformationsService
   def call
     p 'Creating D&D information...'
     ActiveRecord::Base.transaction do
-      create_basic_races_and_classes
+      create_basic_classes
+      create_basic_races
 
       CreateAbilityScoresService.new.call
       CreateAlignmentsService.new.call
@@ -38,7 +39,7 @@ class CreateDndInformationsService
 
   private
 
-  def create_basic_races_and_classes
+  def create_basic_classes
     p "Creating basic info"
     classes = %w[Barbarian Bard Cleric Druid Fighter Monk Paladin Ranger Rogue Sorcerer Warlock Wizard]
     sub_classes = {
@@ -55,16 +56,25 @@ class CreateDndInformationsService
       'Warlock' => "Fiend",
       'Wizard' => "Evocation"
     }
-    races = %w[Dwarf Elf Halfling Human Dragonborn Gnome Half-Elf Half-Orc Tiefling]
-    subraces = {
-      'Dwarf' => "Hill Dwarf",
-      'Elf' => "High Elf",
-      'Halfling' => "Lightfoot Halfling",
-      'Gnome' => "Rock Gnome",
+
+    classes_primary_abilities = {
+      'Barbarian' => %w[Strength],
+      'Bard' => %w[Charisma],
+      'Cleric' => %w[Wisdom],
+      'Druid' => %w[Wisdom],
+      'Fighter' => %w[Strength Dexterity],
+      'Monk' => %w[Dexterity Wisdom],
+      'Paladin' => %w[Strength Charisma],
+      'Ranger' => %w[Dexterity Wisdom],
+      'Rogue' => %w[Dexterity],
+      'Sorcerer' => %w[Charisma],
+      'Warlock' => %w[Charisma],
+      'Wizard' => %w[Intelligence]
     }
 
     classes.each do |klass|
-      Klass.find_or_create_by!(name: klass)
+      primary_abilities = classes_primary_abilities[klass]
+      Klass.find_or_create_by!(name: klass, primary_ability: primary_abilities.join(", "))
     end
 
     sub_classes.each do |klass, sub_class|
@@ -72,6 +82,16 @@ class CreateDndInformationsService
         sub_klass.klass = Klass.find_by(name: klass)
       end
     end
+  end
+
+  def create_basic_races
+    races = %w[Dwarf Elf Halfling Human Dragonborn Gnome Half-Elf Half-Orc Tiefling]
+    subraces = {
+      'Dwarf' => "Hill Dwarf",
+      'Elf' => "High Elf",
+      'Halfling' => "Lightfoot Halfling",
+      'Gnome' => "Rock Gnome",
+    }
 
     races.each do |race|
       Race.find_or_create_by!(name: race)

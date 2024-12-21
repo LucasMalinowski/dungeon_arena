@@ -36,4 +36,10 @@ class Klass < ApplicationRecord
   def available_features(level:)
     levels.find_by(level: level).inherited_features
   end
+
+  def saving_throws_names
+    saving_throws.map do |saving_throw|
+      "#{saving_throw.name}: #{saving_throw.ability_score.full_name}"
+    end
+  end
 end
