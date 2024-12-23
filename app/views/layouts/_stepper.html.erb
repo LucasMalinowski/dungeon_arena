@@ -1,0 +1,18 @@
+<div class="max-w-4xl mx-auto text-white rounded-lg px-6 mb-4">
+  <!-- Step Labels -->
+  <div class="flex justify-between text-xs font-medium text-gray-400">
+    <% @steps.each_with_index do |step, index| %>
+             <span class="<%= 'text-white' if step.to_s == @current_step.to_s %>">
+              <%= step.to_s.titleize %>
+             </span>
+    <% end %>
+  </div>
+
+  <!-- Progress Bar -->
+  <div class="w-full h-2 bg-gray-700 rounded-full mt-2">
+    <div
+      class="h-2 bg-blue-500 rounded-full"
+      style="width: <%= ((@steps.index(@current_step).to_f / (@steps.size - 0.5)) * 100).to_i + 0.5 %>%">
+    </div>
+  </div>
+</div>

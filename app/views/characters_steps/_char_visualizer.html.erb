@@ -1,0 +1,130 @@
+
+<div class="relative max-w-xl w-full h-auto mx-auto text-white mt-5"
+     style="background-color: #230e01;">
+  <!-- Main frame with wood texture -->
+  <div class="relative border-8 border-neutral-900 rounded-xl p-6 h-full"
+       style="
+       background-image:url('<%= asset_path("wood.png") %>');
+         background-size: cover;
+         background-repeat: no-repeat;
+         background-position: center;
+       ">
+
+    <!-- Scroll Banner -->
+    <div class="absolute -top-6 left-1/2 -translate-x-1/2">
+      <div class="relative w-64 h-16">
+        <!-- Scroll paper effect -->
+        <div class="absolute w-full h-12 top-1/2 -translate-y-1/2 bg-amber-50 rounded-lg transform rotate-1"></div>
+        <!-- Scroll left curl -->
+        <div class="absolute left-0 w-8 h-full bg-amber-50 rounded-l-lg transform -rotate-12"></div>
+        <!-- Scroll right curl -->
+        <div class="absolute right-0 w-8 h-full bg-amber-50 rounded-r-lg transform rotate-12"></div>
+        <!-- Title -->
+        <h2 class="absolute w-full text-center top-1/2 -translate-y-1/2 text-2xl font-bold text-neutral-900">
+          Character Preview
+        </h2>
+      </div>
+    </div>
+
+    <!-- Main content area -->
+    <div class="bg-amber-50/90 rounded-lg p-6 space-y-6" style="
+    background-image:url('<%= asset_path("wood.png") %>');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+    ">
+      <!-- Character Image -->
+      <div class="relative group w-full h-96 bg-amber-100/50 rounded-lg border-4 border-neutral-800 bg-contain bg-center bg-no-repeat
+            flex items-center justify-center text-neutral-800 text-xl font-semibold shadow-inner"
+           data-class-visualizer-target="imageDisplay" id="image-container">
+        <!-- Cloudy overlay -->
+        <div class="absolute inset-0 bg-neutral-900/50 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+
+        <!-- File Input -->
+        <%= form_with model: @character, url: character_path(@character), method: :patch, local: true do |f| %>
+          <%= f.file_field :token, class: "hidden", direct_upload: true %>
+          <label for="character_token" class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
+            <div class="flex items-center justify-center w-12 h-12 bg-amber-100 text-neutral-800 rounded-full shadow-md hover:bg-amber-200">
+              <label for="character_token" class="cursor-pointer">
+                <i class="fas fa-pen w-fit"></i>
+
+              </label>
+            </div>
+          </label>
+        <% end %>
+
+        <!-- Placeholder text (optional, shown when no image is present) -->
+        <% if @character.token.attached? %>
+          <%= image_tag @character.token, class: "absolute inset-0 w-full h-full object-cover rounded-lg" %>
+        <% end %>
+      </div>
+
+      <!-- Character Details -->
+      <div class="space-y-4 text-center">
+        <div>
+          <span class="block text-xl font-bold text-neutral-900">
+            <span data-class-visualizer-target="nameDisplay">
+              <%= @character.name.presence || "Unnamed Hero" %>
+            </span>
+            -
+            <span data-class-visualizer-target="classDisplay">
+              <%= @character.klass&.name.presence || "Unselected Class" %>
+            </span>
+            (<%= @character.level || 0 %>)
+          </span>
+        </div>
+      </div>
+
+      <div class="flex justify-between mt-6 ">
+        <!-- Attributes Box -->
+        <div class="flex-1 bg-neutral-800 rounded-lg p-4 shadow-md text-center border border-neutral-900">
+          <span class="block text-sm text-neutral-400">Attributes</span>
+          <span class="block text-xl font-bold text-amber-50">
+          <%= @character.alignment || 0 %>
+        </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Boxes -->
+
+
+    <!-- Corner Decorations -->
+    <div class="absolute -top-4 -left-4 w-8 h-8 bg-neutral-800 rounded-full border-4 border-neutral-900"></div>
+    <div class="absolute -top-4 -right-4 w-8 h-8 bg-neutral-800 rounded-full border-4 border-neutral-900"></div>
+    <div class="absolute -bottom-4 -left-4 w-8 h-8 bg-neutral-800 rounded-full border-4 border-neutral-900"></div>
+    <div class="absolute -bottom-4 -right-4 w-8 h-8 bg-neutral-800 rounded-full border-4 border-neutral-900"></div>
+  </div>
+</div>
+
+<script>
+  // JavaScript to update the background image of the div when a file is selected
+  const imageInput = document.getElementById('character_token');
+  const imageContainer = document.getElementById('image-container');
+
+  imageInput.addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        // Update the background image of the div
+        imageContainer.style.backgroundImage = `url(${e.target.result})`;
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+
+  // Retain original class-visualizer functionality
+  const imageDisplay = document.querySelector('[data-class-visualizer-target="imageDisplay"]');
+  if (imageDisplay) {
+    imageDisplay.addEventListener('mouseenter', function() {
+      // Original hover effect or other functionality for image display
+      imageDisplay.style.opacity = '0.8';  // Example of opacity change on hover
+    });
+
+    imageDisplay.addEventListener('mouseleave', function() {
+      // Reset any hover effect or other functionality
+      imageDisplay.style.opacity = '1';
+    });
+  }
+</script>

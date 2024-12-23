@@ -5,6 +5,9 @@ class Character < ApplicationRecord
   belongs_to :race, optional: true
   belongs_to :subrace, optional: true
 
+  has_one_attached :avatar
+  has_one_attached :token
+
   has_many :character_classes
   has_many :klasses, through: :character_classes
   has_many :character_skills, dependent: :destroy

@@ -1,27 +1,10 @@
-<div class="max-w-4xl mx-auto bg-neutral-900 text-white rounded-lg p-6 shadow-lg space-y-6">
-
-  <div class="relative mb-6">
-    <!-- Step Labels -->
-    <div class="flex justify-between text-xs font-medium text-gray-400">
-      <% @steps.each_with_index do |step, index| %>
-      <span class="<%= 'text-white' if step.to_s == @current_step.to_s %>">
-          <%= step.to_s.titleize %>
-        </span>
-      <% end %>
-    </div>
-
-    <!-- Progress Bar -->
-    <div class="w-full h-2 bg-gray-700 rounded-full mt-2">
-      <div
-        class="h-2 bg-blue-500 rounded-full"
-        style="width: <%= ((@steps.index(@current_step).to_f / (@steps.size - 0.5)) * 100).to_i + 0.5 %>%">
-      </div>
-    </div>
-  </div>
-
+<div class="max-w-2xl mx-auto bg-neutral-900 text-white rounded-lg p-5 shadow-lg space-y-6">
   <h1 class="text-2xl font-bold">Step 1: Choose Your Class</h1>
   <p class="text-gray-400">
-    Select a class for your character. Each class offers unique abilities and traits.
+    Select a class for your character. Each class offers unique abilities and traits. <br>
+    Click on the
+    <i class="fa-solid fa-circle-info fa-sm"></i>
+    icon to view more details about the class and its features.
   </p>
 
   <%= turbo_frame_tag "modal" %>
@@ -31,7 +14,7 @@
     <!-- Character Name -->
     <div>
       <label for="name" class="block text-lg font-semibold">Character Name</label>
-      <%= f.text_field :name, class: "w-full mt-2 rounded-lg bg-neutral-800 border border-gray-700 p-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500", required: true %>
+      <%= f.text_field :name, class: "w-full mt-2 rounded-lg bg-neutral-800 border border-gray-700 p-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500", required: true, data: {action: "change->class-visualizer#changeName"} %>
     </div>
 
     <!-- Class Selection -->
@@ -40,7 +23,7 @@
       <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
         <% @klasses.each do |klass| %>
           <div>
-            <input id="<%= klass.name %>" type="radio" name="character[klass_id]" value="<%= klass.name %>" class="hidden peer">
+            <input id="<%= klass.name %>" type="radio" name="character[klass_id]" value="<%= klass.name %>" class="hidden peer" data-action="click->class-visualizer#changeClass">
             <label for="<%= klass.name %>" class="block border border-gray-700 bg-neutral-800 rounded-lg p-4 hover:bg-neutral-700 peer-checked:border-amber-500 peer-checked:bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 transition">
               <div class="flex items-center justify-between">
                 <div class="flex gap-4 items-center">
@@ -59,7 +42,7 @@
 
     <!-- Navigation Buttons -->
     <div class="flex justify-between">
-      <%= link_to wizard_path("previous", character_id: @character.id), class: "flex items-center gap-2 px-6 py-3 rounded-lg bg-gray-700 hover:bg-gray-600 text-white" do %>
+      <%= link_to wizard_path("klass", character_id: @character.id), class: "flex items-center gap-2 px-6 py-3 rounded-lg bg-gray-700 hover:bg-gray-600 text-white" do %>
         <i class="fa fa-arrow-left"></i> Previous
       <% end %>
 

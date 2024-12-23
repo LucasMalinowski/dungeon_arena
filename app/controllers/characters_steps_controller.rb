@@ -1,7 +1,7 @@
 class CharactersStepsController < ApplicationController
   include Wicked::Wizard
 
-  layout "characters"
+  layout "characters_steps"
 
   before_action :set_character
 
@@ -36,5 +36,13 @@ class CharactersStepsController < ApplicationController
       :personality, :ideals, :bonds, :flaws, :species,
       :strength, :dexterity, :constitution, :intelligence, :wisdom, :charisma
     )
+  end
+
+  def main_steps
+    [:klass, :species, :abilities, :physical, :notes, :personality]
+  end
+
+  def sub_steps
+    [:appearance, :background]
   end
 end

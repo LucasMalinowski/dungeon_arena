@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -21,39 +22,33 @@
   </head>
 
   <body>
-    <div class="h-screen flex">
+    <div class="min-h-screen flex">
       <%= render "layouts/aside" %>
 
-      <main class="flex-1 bg-zinc-800 p-4 sm:ml-auto">
+      <main class="flex-1 bg-zinc-800 p-4 sm:ml-auto h-auto">
         <p class="notice"><%= notice %></p>
         <p class="alert"><%= alert %></p>
 
+        <%= render "layouts/stepper" %>
+
         <% if current_user %>
-          <%= yield %>
+          <div class="flex" data-controller="class-visualizer">
+            <%= yield %>
+
+            <%= render "characters_steps/char_visualizer" %>
+          </div>
         <% else %>
           <div class="container mx-auto mt-6">
             <p class="text-gray-300 text-center">Please, <%= link_to "Login", new_user_session_path, class: "text-blue-400 hover:text-blue-500" %> before continuing. </p>
           </div>
         <% end %>
-
-        <%# @traits.each do |trait| %>
-          <%# if trait.trait_specific_type.present? %>
-<!--            <div>-->
-<!--              <h3><%#= trait.trait_specific_type.to_s.humanize %></h3>-->
-              <%#= render partial: "shared/trait_specific_details", locals: { details: trait.trait_specific_details } %>
-<!--            </div>-->
-          <%# end %>
-
-        <%# end %>
-
-
-
-
       </main>
     </div>
   </body>
-
   <script>
-    document.cookie = `sidebar_expanded=true`;
+    document.cookie = `sidebar_expanded=false`;
   </script>
 </html>
+
+
+
