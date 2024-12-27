@@ -8,7 +8,7 @@ class CreateSubracesService
   def call
     p 'Creating Subrace...'
     @data.each do |subrace_data|
-      race = Race.find_or_create_by!(name:subrace_data['name'])
+      race = Race.find_or_create_by!(name:subrace_data['race']['name'])
       subrace = Subrace.find_or_create_by!(name: subrace_data['name'], race: race)
 
       subrace.update_columns(

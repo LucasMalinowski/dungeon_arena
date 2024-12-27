@@ -11,7 +11,11 @@ Rails.application.routes.draw do
   root "public#index"
 
   get "klass_modal" => "klass#klass_modal"
-  resources :characters, only: [:index, :show, :create] do
+  get "race_modal" => "race#race_modal"
+  resources :characters, only: [:index, :show, :create, :update] do
+    member do
+      delete :remove_token
+    end
     resources :characters_steps, only: [:show, :create, :update]
   end
 end

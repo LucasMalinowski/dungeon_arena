@@ -12,7 +12,7 @@
 
     <!-- Scroll Banner -->
     <div class="absolute -top-6 left-1/2 -translate-x-1/2">
-      <div class="relative w-64 h-16">
+      <div class="relative w-64 h-14">
         <!-- Scroll paper effect -->
         <div class="absolute w-full h-12 top-1/2 -translate-y-1/2 bg-amber-50 rounded-lg transform rotate-1"></div>
         <!-- Scroll left curl -->
@@ -27,61 +27,77 @@
     </div>
 
     <!-- Main content area -->
-    <div class="bg-amber-50/90 rounded-lg p-6 space-y-6" style="
+    <div class="bg-amber-50/90 rounded-lg p-6 space-y-3" style="
     background-image:url('<%= asset_path("wood.png") %>');
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center;
     ">
       <!-- Character Image -->
-      <div class="relative group w-full h-96 bg-amber-100/50 rounded-lg border-4 border-neutral-800 bg-contain bg-center bg-no-repeat
+      <div class="relative group w-full h-80 bg-amber-100/50 rounded-lg border-4 border-neutral-800
+            bg-contain bg-center bg-no-repeat
             flex items-center justify-center text-neutral-800 text-xl font-semibold shadow-inner"
-           data-class-visualizer-target="imageDisplay" id="image-container">
+           style="background-image: url('<%= @character.token.attached? ? url_for(@character.token) : asset_path(@character.token_thumbnail) %>')"
+           data-char-visualizer-target="imageDisplay" id="image-container">
         <!-- Cloudy overlay -->
         <div class="absolute inset-0 bg-neutral-900/50 opacity-0 group-hover:opacity-100 transition-opacity"></div>
 
-        <!-- File Input -->
-        <%= form_with model: @character, url: character_path(@character), method: :patch, local: true do |f| %>
-          <%= f.file_field :token, class: "hidden", direct_upload: true %>
-          <label for="character_token" class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
-            <div class="flex items-center justify-center w-12 h-12 bg-amber-100 text-neutral-800 rounded-full shadow-md hover:bg-amber-200">
-              <label for="character_token" class="cursor-pointer">
-                <i class="fas fa-pen w-fit"></i>
-
-              </label>
-            </div>
-          </label>
+        <!-- Trash Icon to remove the image, visible on hover -->
+        <%= form_with model: @character, url: remove_token_character_path(@character), method: :delete, data: { turbo: false }, html: { class: "absolute top-0 right-0 p-2 opacity-0 group-hover:opacity-100 transition-opacity" } do |f| %>
+          <%= f.text_field :step, class: "hidden", value: @current_step %>
+          <button type="submit" class="flex items-center justify-center w-10 h-10 bg-red-500 text-white rounded-full shadow-md hover:bg-red-600 z-50">
+            <i class="fas fa-trash-alt z-50"></i>
+          </button>
         <% end %>
 
-        <!-- Placeholder text (optional, shown when no image is present) -->
-        <% if @character.token.attached? %>
-          <%= image_tag @character.token, class: "absolute inset-0 w-full h-full object-cover rounded-lg" %>
+        <!-- File Input -->
+        <%= form_with model: @character, url: character_path(@character), method: :patch, id: "token_selector", data: { turbo: true, turbo_frame: "_top" } do |f| %>
+          <%= f.file_field :token, class: "hidden", direct_upload: true, id: "character_token" %>
+          <%= f.submit id: "token_submit", class: "hidden" %>
+          <label for="character_token" class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
+            <div class="flex items-center justify-center w-12 h-12 bg-amber-100 text-neutral-800 rounded-full shadow-md hover:bg-amber-200">
+              <i class="fas fa-pen w-fit"></i>
+            </div>
+          </label>
         <% end %>
       </div>
 
       <!-- Character Details -->
-      <div class="space-y-4 text-center">
+      <div class="space-2-4 text-center">
         <div>
-          <span class="block text-xl font-bold text-neutral-900">
-            <span data-class-visualizer-target="nameDisplay">
-              <%= @character.name.presence || "Unnamed Hero" %>
-            </span>
-            -
-            <span data-class-visualizer-target="classDisplay">
-              <%= @character.klass&.name.presence || "Unselected Class" %>
-            </span>
-            (<%= @character.level || 0 %>)
+          <span class="flex flex-col block text-xl font-bold text-neutral-900">
+            <div>
+              <span data-char-visualizer-target="nameDisplay">
+                <%= @character.name.presence || "Unnamed Hero" %>
+              </span>
+              <span data-char-visualizer-target="levelDisplay" class="text-sm">
+                (<%= @character.level || 0 %>)
+              </span>
+            </div>
+            <div>
+              <span data-char-visualizer-target="classDisplay" class="text-sm">
+                <%= @character.klass&.name.presence || "-------" %>
+              </span> /
+              <span data-char-visualizer-target="raceDisplay" class="text-sm">
+                <%= @character.race&.name.presence || "--------" %>
+              </span>
+            </div>
           </span>
         </div>
       </div>
 
-      <div class="flex justify-between mt-6 ">
+      <div class="flex justify-between mt-2 ">
         <!-- Attributes Box -->
-        <div class="flex-1 bg-neutral-800 rounded-lg p-4 shadow-md text-center border border-neutral-900">
-          <span class="block text-sm text-neutral-400">Attributes</span>
-          <span class="block text-xl font-bold text-amber-50">
-          <%= @character.alignment || 0 %>
-        </span>
+        <div class="flex-1 bg-neutral-800 rounded-lg p-2 shadow-md text-center border border-neutral-900">
+          <span class="block text-sm text-neutral-400 mb-2">Attributes</span>
+          <span class="flex block w-full text-xl font-bold text-amber-50 gap-2 justify-between">
+            <% @character.character_attribute_names.each do |attr| %>
+              <div class="flex flex-col bg-neutral-800 rounded-lg p-3 max-w-20 shadow-md text-center border border-neutral-900">
+                <%= attr[0].to_s %>
+                <%= @character.ability_scores&.send(":#{attr[1]}") || "--" %>
+              </div>
+            <% end %>
+          </span>
         </div>
       </div>
     </div>
@@ -101,6 +117,7 @@
   // JavaScript to update the background image of the div when a file is selected
   const imageInput = document.getElementById('character_token');
   const imageContainer = document.getElementById('image-container');
+  const tokenSelectorButton = document.getElementById('token_submit');
 
   imageInput.addEventListener('change', function(event) {
     const file = event.target.files[0];
@@ -109,13 +126,15 @@
       reader.onload = function(e) {
         // Update the background image of the div
         imageContainer.style.backgroundImage = `url(${e.target.result})`;
+        // Submit the form
+        tokenSelectorButton.click();
       };
       reader.readAsDataURL(file);
     }
   });
 
-  // Retain original class-visualizer functionality
-  const imageDisplay = document.querySelector('[data-class-visualizer-target="imageDisplay"]');
+  // Retain original char-visualizer functionality
+  const imageDisplay = document.querySelector('[data-char-visualizer-target="imageDisplay"]');
   if (imageDisplay) {
     imageDisplay.addEventListener('mouseenter', function() {
       // Original hover effect or other functionality for image display

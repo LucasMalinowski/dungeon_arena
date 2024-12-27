@@ -3,7 +3,7 @@
   <div class="flex justify-between text-xs font-medium text-gray-400">
     <% @steps.each_with_index do |step, index| %>
              <span class="<%= 'text-white' if step.to_s == @current_step.to_s %>">
-              <%= step.to_s.titleize %>
+               <%= index+1 %>  &#x2022;  <%= step.to_s.titleize %>
              </span>
     <% end %>
   </div>

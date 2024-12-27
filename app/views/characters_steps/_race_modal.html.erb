@@ -1,0 +1,60 @@
+<%= turbo_frame_tag "modal" do %>
+  <div id="race-info-modal"
+       class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50"
+       data-controller="modal"
+       data-modal-target="modal"
+       data-action="click->modal#outsideClick">
+    <div class="bg-neutral-900 rounded-lg p-6 !pt-2 max-h-96 h-full w-full max-w-3xl shadow-lg relative">
+      <div class="flex flex-row-reverse">
+        <button class="text-gray-500 hover:text-gray-200"
+                type="button"
+                data-action="click->modal#close">
+          <i class="fa fa-times text-xl"></i>
+        </button>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="sticky top-0 left-0 h-full">
+          <div class="flex flex-col items-center gap-4">
+          <h2 class="text-xl font-bold text-white"><%= race.name %></h2>
+          <%= image_tag "#{race.name}.png", class: "w-56 h-72" %>
+           </div>
+        </div>
+
+        <div class="pl-4 border-l-2 overflow-y-auto max-h-80 scrollbar-thin">
+          <div class="mb-6">
+            <h3 class="text-md font-semibold text-gray-200 mb-1">Racial Traits</h3>
+            <p class="text-gray-300 text-sm"><%= race.traits.pluck(:name).join("<br>").html_safe %></p>
+          </div>
+
+          <div>
+            <h3 class="text-md font-semibold text-gray-200 mb-1 mt-4">Language Proficiencies</h3>
+            <p class="text-gray-300 text-sm"><%= race.languages.pluck(:name).join("<br>").html_safe %></p>
+          </div>
+          <div>
+            <h3 class="text-md font-semibold text-gray-200 mb-1 mt-4">Saving Throws</h3>
+            <p class="text-gray-300 text-sm"><%= race.proficiencies.pluck(:name).join("<br>").html_safe %></p>
+          </div>
+          <div>
+            <h3 class="text-md font-semibold text-gray-200 mb-1 mt-4">Proficiencies</h3>
+            <p class="text-gray-300 text-sm"> &#x2022; <%= race.proficiencies.pluck(:name).join("<br> \u2022 ").html_safe %></p>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold text-white mb-4">Traits</h3>
+            <% race.traits.each do |trait| %>
+              <div class="mb-6 mx-4">
+                <div class="mt-2 space-y-3">
+                  <details class="group bg-neutral-800 rounded p-4">
+                    <summary class="text-white cursor-pointer group-hover:underline">
+                      <%= trait.name %>
+                    </summary>
+                    <p class="mt-2 text-gray-300 mx-4 text-justify"><%= trait.description %></p>
+                  </details>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

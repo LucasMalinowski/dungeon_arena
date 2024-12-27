@@ -1,29 +1,28 @@
-<div class="max-w-2xl mx-auto bg-neutral-900 text-white rounded-lg p-5 shadow-lg space-y-6">
-  <h1 class="text-2xl font-bold">Step 1: Choose Your Class</h1>
-  <p class="text-gray-400">
-    Select a class for your character. Each class offers unique abilities and traits. <br>
-    Click on the
-    <i class="fa-solid fa-circle-info fa-sm"></i>
-    icon to view more details about the class and its features.
-  </p>
-
+<div class="max-w-2xl mx-auto bg-neutral-900 text-white rounded-lg px-5 pb-5 shadow-lg">
   <%= turbo_frame_tag "modal" %>
 
   <!-- Form -->
-  <%= form_with(model: @character, url: wizard_path("klass"), method: :patch, class: "space-y-6") do |f| %>
+  <%= form_with(model: @character, url: wizard_path("klass"), method: :patch, class: "space-y-4", data: { turbo: false }) do |f| %>
     <!-- Character Name -->
     <div>
       <label for="name" class="block text-lg font-semibold">Character Name</label>
-      <%= f.text_field :name, class: "w-full mt-2 rounded-lg bg-neutral-800 border border-gray-700 p-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500", required: true, data: {action: "change->class-visualizer#changeName"} %>
+      <%= f.text_field :name, class: "w-full mt-2 rounded-lg bg-neutral-800 border border-gray-700 p-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500", required: true, data: {action: "change->char-visualizer#changeName"} %>
     </div>
+
+    <h1 class="text-2xl font-bold">Step 1: Choose Your Class</h1>
+    <p class="text-gray-400">
+      Select a class for your character. Each class offers unique abilities and traits. <br>
+      Click on the
+      <i class="fa-solid fa-circle-info fa-sm"></i>
+      icon to view more details about the class and its features.
+    </p>
 
     <!-- Class Selection -->
     <div>
-      <h2 class="text-lg font-semibold mb-4">Choose a Class</h2>
       <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
         <% @klasses.each do |klass| %>
           <div>
-            <input id="<%= klass.name %>" type="radio" name="character[klass_id]" value="<%= klass.name %>" class="hidden peer" data-action="click->class-visualizer#changeClass">
+            <input id="<%= klass.name %>" type="radio" name="character[klass_id]" value="<%= klass.name %>" class="hidden peer" data-action="click->char-visualizer#changeClass">
             <label for="<%= klass.name %>" class="block border border-gray-700 bg-neutral-800 rounded-lg p-4 hover:bg-neutral-700 peer-checked:border-amber-500 peer-checked:bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 transition">
               <div class="flex items-center justify-between">
                 <div class="flex gap-4 items-center">

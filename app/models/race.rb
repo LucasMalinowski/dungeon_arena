@@ -20,5 +20,5 @@ class Race < ApplicationRecord
   has_many :race_language_choices, dependent: :destroy
   has_many :language_options, through: :race_language_choices, source: :race_language_choice_options
 
-  has_many :subraces
+  has_many :subraces, dependent: :destroy
 end

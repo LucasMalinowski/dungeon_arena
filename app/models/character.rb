@@ -20,11 +20,11 @@ class Character < ApplicationRecord
   has_one :character_inventory, dependent: :destroy
   has_many :inventory_items, through: :character_inventory
 
-  has_one :character_ability_score, dependent: :destroy
+  has_one :ability_scores, dependent: :destroy, class_name: "CharacterAbilityScore"
   has_one :character_physical_characteristic, dependent: :destroy
   has_one :character_note, dependent: :destroy
 
-  delegate :strength, :dexterity, :constitution, :intelligence, :wisdom, :charisma, to: :character_ability_score
+  delegate :strength, :dexterity, :constitution, :intelligence, :wisdom, :charisma, to: :ability_scores
 
   def modifier(ability)
     (send(ability) - 10) / 2
@@ -57,6 +57,27 @@ class Character < ApplicationRecord
   end
 
   def klass
-    klasses.first if klasses.count == 1
+    klasses.first
+  end
+
+  def character_attribute_names
+    {
+      STR: "strength",
+      DEX: "dexterity",
+      CON: "constitution",
+      INT: "intelligence",
+      WIS: "wisdom",
+      CHA: "charisma"
+    }
+  end
+
+  def token_thumbnail
+    if klass
+      p "CCCCCC"
+      "#{klass&.name.downcase}.png"
+    else
+      p "DDDDDD"
+      "default_class.png"
+    end
   end
 end
