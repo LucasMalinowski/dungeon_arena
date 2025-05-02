@@ -17,13 +17,16 @@ module.exports = {
         'scrollbar-thumb': '#606060',
         'scrollbar-thumb-hover': '#6b7280',
       },
+      maxHeight: {
+        '640': '640px',
+      },
     },
   },
   plugins: [
     require('@tailwindcss/forms'),
     require('@tailwindcss/typography'),
     require('@tailwindcss/container-queries'),
-    function ({ addUtilities, theme }) { // <-- Get theme here
+    function ({ addUtilities, theme }) {
       addUtilities({
         '.scrollbar-thin': {
           '&::-webkit-scrollbar': {
@@ -39,8 +42,8 @@ module.exports = {
           '&::-webkit-scrollbar-thumb:hover': {
             backgroundColor: theme('colors.scrollbar-thumb-hover'),
           },
-          'scrollbar-width': 'thin', // For Firefox
-          'scrollbar-color': theme('colors.scrollbar-thumb') + ' ' + theme('colors.scrollbar-track'), // For Firefox
+          'scrollbar-width': 'thin',
+          'scrollbar-color': theme('colors.scrollbar-thumb') + ' ' + theme('colors.scrollbar-track'),
         },
         '.scrollbar-none': {
           '-ms-overflow-style': 'none',

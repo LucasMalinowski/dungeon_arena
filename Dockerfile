@@ -7,8 +7,7 @@ COPY Gemfile.lock /myapp/Gemfile.lock
 RUN bundle install
 RUN rails assets:precompile
 
-RUN sudo chmod -R 700 ./tmp/db
-RUN sudo chown -R $USER:$USER .
+RUN chown -R root:root .
 
 EXPOSE 3000
 

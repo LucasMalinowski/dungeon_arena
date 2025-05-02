@@ -16,6 +16,7 @@ class Character < ApplicationRecord
   has_many :background_proficiencies, through: :background
   has_many :race_proficiencies, through: :race
   has_many :class_proficiencies, through: :klasses
+  has_many :race_ability_bonus, through: :race
 
   has_one :character_inventory, dependent: :destroy
   has_many :inventory_items, through: :character_inventory
@@ -25,6 +26,8 @@ class Character < ApplicationRecord
   has_one :character_note, dependent: :destroy
 
   delegate :strength, :dexterity, :constitution, :intelligence, :wisdom, :charisma, to: :ability_scores
+
+  after_create :create_ability_scores
 
   def modifier(ability)
     (send(ability) - 10) / 2
@@ -71,12 +74,14 @@ class Character < ApplicationRecord
     }
   end
 
+  def create_ability_scores
+    CharacterAbilityScore.create(character: self)
+  end
+
   def token_thumbnail
     if klass
-      p "CCCCCC"
       "#{klass&.name.downcase}.png"
     else
-      p "DDDDDD"
       "default_class.png"
     end
   end

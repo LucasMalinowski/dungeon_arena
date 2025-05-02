@@ -13,15 +13,19 @@
     </p>
 
     <!-- Class Selection -->
-    <div>
+    <div data-controller="species">
       <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
         <% @races.each do |race| %>
-          <div>
-            <input id="<%= race.name %>" type="radio" name="character[race_id]" value="<%= race.name %>" class="hidden peer" data-action="click->char-visualizer#changeRace">
+          <div data-controller="collapse">
+            <input id="<%= race.name %>" type="radio" name="character[race_id]" value="<%= race.name %>" class="hidden peer" data-species-target="radio" data-action="click->species#toggleRadio click->char-visualizer#changeRace">
             <label for="<%= race.name %>" class="block border border-gray-700 bg-neutral-800 rounded-lg p-4 hover:bg-neutral-700 peer-checked:border-amber-500 peer-checked:bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 transition">
               <div class="flex items-center justify-between">
                 <div class="flex gap-4 items-center">
-                  <%#= image_tag "icons/#{race.name.downcase}.png", class: "w-8 h-8" %>
+                  <% if race.subraces.any? %>
+                    <span data-action="click->collapse#toggleTarget">
+                      <i class="fa-solid fa-chevron-down text-gray-400 transition-transform duration-200" data-collapse-target="target"></i>
+                    </span>
+                  <% end %>
                   <span class="text-sm font-medium"><%= race.name %></span>
                 </div>
                 <%= link_to race_modal_path(race_id: race.id), data: { turbo: true, turbo_frame: 'modal' } do %>
@@ -29,6 +33,25 @@
                 <% end %>
               </div>
             </label>
+
+            <% if race.subraces.any? %>
+              <div class="hidden mt-2 space-y-2" data-collapse-target="target">
+                <% race.subraces.each do |subrace| %>
+                  <div class="border border-gray-700 bg-neutral-800 rounded-lg p-2">
+                    <input id="<%= subrace.name %>" type="radio" name="character[subrace_id]" value="<%= subrace.name %>" class="hidden peer" data-species-target="radio" data-action="click->species#toggleRadio">
+                    <label for="<%= subrace.name %>" class="block border border-gray-700 bg-neutral-800 rounded-lg p-4 hover:bg-neutral-700 peer-checked:border-amber-500 peer-checked:bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 transition">
+                      <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-feather text-blue-400"></i>
+                        <span><%= subrace.name %></span>
+                        <%= link_to race_modal_path(subrace_id: subrace.id), data: { turbo: true, turbo_frame: 'modal' } do %>
+                          <i class="fa-solid fa-circle-info fa-lg"></i>
+                        <% end %>
+                      </div>
+                    </label>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
           </div>
         <% end %>
       </div>
@@ -44,4 +67,3 @@
     </div>
   <% end %>
 </div>
-

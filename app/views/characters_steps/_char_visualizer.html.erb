@@ -1,5 +1,5 @@
 
-<div class="relative max-w-xl w-full h-auto mx-auto text-white mt-5"
+<div class="relative max-w-xl w-full h-auto max-h-640 mx-auto text-white mt-5"
      style="background-color: #230e01;">
   <!-- Main frame with wood texture -->
   <div class="relative border-8 border-neutral-900 rounded-xl p-6 h-full"
@@ -94,7 +94,7 @@
             <% @character.character_attribute_names.each do |attr| %>
               <div class="flex flex-col bg-neutral-800 rounded-lg p-3 max-w-20 shadow-md text-center border border-neutral-900">
                 <%= attr[0].to_s %>
-                <%= @character.ability_scores&.send(":#{attr[1]}") || "--" %>
+                <%= @character.ability_scores&.send("#{attr[1]}") || "--" %>
               </div>
             <% end %>
           </span>

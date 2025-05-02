@@ -82,7 +82,8 @@ class CreateRacesService
 
       RaceAbilityBonus.create!(
         race: race,
-        ability_score: ability_score
+        ability_score: ability_score,
+        bonus: ability_bonus_data['bonus']
       )
     end
 

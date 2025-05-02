@@ -31,7 +31,7 @@ class CharactersStepsController < ApplicationController
       @character.update(name: character_params[:name])
       @character.klasses = [Klass.find_by(name: character_params[:klass_id])] if character_params[:klass_id]&.present?
     when :species
-      @character
+      @character.race = Race.find_by(name: character_params[:race_id])
     end
   end
 
@@ -41,6 +41,7 @@ class CharactersStepsController < ApplicationController
       @klasses = Klass.all
     when :species
       @races = Race.all
+      @subraces = Subrace.all
     when :abilities
       @ability_scores
     when :physical
@@ -60,18 +61,9 @@ class CharactersStepsController < ApplicationController
 
   def character_params
     params.require(:character).permit(
-      :name, :klass_id, :skin_color, :hair_color, :eye_color, :gender, :height, :weight, :age,
-      :notes, :backstory, :alignment, :allies, :enemies, :faith, :lifestyle,
-      :personality, :ideals, :bonds, :flaws, :species,
-      :strength, :dexterity, :constitution, :intelligence, :wisdom, :charisma
+      :name, :klass_id,
+      :race_id,
+
     )
-  end
-
-  def main_steps
-    [:klass, :species, :abilities, :physical, :notes, :personality]
-  end
-
-  def sub_steps
-    [:appearance, :background]
   end
 end
