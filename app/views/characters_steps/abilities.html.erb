@@ -1,51 +1,66 @@
-<div class="max-w-2xl mx-auto bg-neutral-900 text-white rounded-lg px-5 pb-5 shadow-lg" data-controller="abilities">
-  <%= turbo_frame_tag "modal" %>
-
-  <!-- Form -->
-  <%= form_with(model: @character, url: wizard_path("abilities"), method: :patch, class: "space-y-4") do |f| %>
-
-    <h1 class="text-2xl font-bold">Step 3: Assign Abilities</h1>
-    <p class="text-gray-400">
-      Assign the available ability scores to your character's abilities. Each score can only be used once. Choose wisely!
-      <%= @character.race_ability_bonus.inspect %>
-    </p>
-
-    <!-- Abilities Selection -->
-    <div class="grid grid-cols-2 gap-4 bg-neutral-800 rounded-lg p-4 shadow-md">
-      <% abilities = ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"] %>
-      <% scores = [15, 14, 13, 12, 10, 8] %>
-
-      <% abilities.each do |ability| %>
-        <div>
-          <label for="character_<%= ability.downcase %>" class="block text-sm font-medium mb-1"><%= ability %></label>
-          <%= select_tag "character[abilities][#{ability}]",
-                         options_for_select([["--", nil]] + scores.map { |score| [score, score] }, selected: nil),
-                         class: "w-full px-3 py-2 rounded-lg bg-neutral-800 border border-gray-700 text-white focus:outline-none focus:ring focus:ring-blue-500",
-                         data: { action: "change->abilities#updateOptions change->abilities#updateDisplayer", ability_name: ability.downcase } %>
-        </div>
-      <% end %>
-    </div>
-
-    <!-- Score Calculations -->
-    <div class="grid grid-cols-2 gap-4 mt-6 bg-neutral-800 rounded-lg p-4 shadow-md">
-      <% abilities.each do |ability| %>
-        <div class="p-3 bg-neutral-900 rounded-lg border border-gray-700" id="ability_display_<%= ability.downcase %>">
-          <h3 class="text-sm font-bold mb-1"><%= ability %></h3>
-          <p class="text-xs text-gray-400">Total Score: <span class="font-semibold">--</span></p>
-          <p class="text-xs text-gray-400">Modifier: <span class="font-semibold">--</span></p>
-          <p class="text-xs text-gray-400">Base Score: <span class="font-semibold">--</span></p>
-          <p class="text-xs text-gray-400">Bonus: <span class="font-semibold">+0</span></p>
-        </div>
-      <% end %>
-    </div>
-
-    <!-- Navigation Buttons -->
-    <div class="flex justify-between mt-6">
-      <%= link_to wizard_path("species", character_id: @character.id), class: "flex items-center gap-2 px-6 py-3 rounded-lg bg-gray-700 hover:bg-gray-600 text-white" do %>
-        <i class="fa fa-arrow-left"></i> Previous
-      <% end %>
-
-      <%= f.submit "Next", class: "flex items-center gap-2 px-6 py-3 rounded-lg bg-blue-500 hover:bg-blue-600 text-white" %>
-    </div>
+<% abilities = %w[Strength Dexterity Constitution Intelligence Wisdom Charisma] %>
+<% scores = [15, 14, 13, 12, 10, 8] %>
+<% racial_bonuses = Hash.new(0) %>
+<% if @character.race.present? %>
+  <% @character.race_ability_bonus.each do |bonus| %>
+    <% ability_key = bonus.ability_score.name.downcase %>
+    <% racial_bonuses[ability_key] += bonus.bonus.to_i %>
   <% end %>
-</div>
+<% end %>
+<% if @character.subrace.present? %>
+  <% @character.subrace.subrace_ability_bonus.each do |bonus| %>
+    <% ability_key = bonus.ability_score.name.downcase %>
+    <% racial_bonuses[ability_key] += bonus.bonus.to_i %>
+  <% end %>
+<% end %>
+
+<%= render "characters_steps/step_form",
+           character: @character,
+           url: wizard_path(:abilities, character_id: @character.id),
+           title: "Step 3: Assign Abilities",
+           description: "Distribute your ability scores. Each score can be used once, and racial bonuses are applied automatically.",
+           previous_path: wizard_path(:species, character_id: @character.id) do |f| %>
+  <div class="space-y-6" data-controller="abilities">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-neutral-800/80 rounded-xl p-4 shadow-inner">
+      <% abilities.each do |ability| %>
+        <% ability_key = ability.downcase %>
+        <div class="space-y-2">
+          <label for="character_abilities_<%= ability_key %>" class="block text-sm font-semibold text-gray-200"><%= ability %></label>
+          <%= select_tag "character[abilities][#{ability}]",
+                         options_for_select([["--", nil]] + scores.map { |score| [score, score] }),
+                         include_blank: false,
+                         id: "character_abilities_#{ability_key}",
+                         class: "w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white focus:border-amber-400 focus:ring focus:ring-amber-400/40",
+                         data: { action: "change->abilities#handleChange", ability_name: ability_key, abilities_target: "select" } %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <% abilities.each do |ability| %>
+        <% ability_key = ability.downcase %>
+        <% racial_bonus = racial_bonuses.fetch(ability_key, 0) %>
+        <div class="rounded-xl border border-white/10 bg-neutral-900/70 p-4 text-sm text-gray-200 shadow" data-abilities-target="display" data-ability="<%= ability_key %>" data-bonus="<%= racial_bonus %>">
+          <div class="flex items-center justify-between">
+            <h3 class="text-base font-semibold text-white"><%= ability %></h3>
+            <span class="text-xs text-amber-300">Racial Bonus: <span data-role="bonus"><%= racial_bonus.positive? ? "+#{racial_bonus}" : racial_bonus %></span></span>
+          </div>
+          <dl class="mt-3 space-y-1">
+            <div class="flex justify-between text-xs">
+              <dt class="text-gray-400">Base Score</dt>
+              <dd class="font-semibold text-white" data-role="base">--</dd>
+            </div>
+            <div class="flex justify-between text-xs">
+              <dt class="text-gray-400">Total Score</dt>
+              <dd class="font-semibold text-white" data-role="total">--</dd>
+            </div>
+            <div class="flex justify-between text-xs">
+              <dt class="text-gray-400">Modifier</dt>
+              <dd class="font-semibold text-white" data-role="modifier">--</dd>
+            </div>
+          </dl>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>

@@ -2,19 +2,37 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="char-visualizer"
 export default class extends Controller {
-  static targets = ["classDisplay", "nameDisplay", "imageDisplay", "raceDisplay"];
+  static targets = [
+    "classDisplay",
+    "nameDisplay",
+    "imageDisplay",
+    "raceDisplay",
+    "levelDisplay",
+    "tokenInput",
+    "tokenForm",
+    "strengthDisplay",
+    "dexterityDisplay",
+    "constitutionDisplay",
+    "intelligenceDisplay",
+    "wisdomDisplay",
+    "charismaDisplay",
+  ]
 
   connect() {
+    if (this.hasImageDisplayTarget) {
+      const currentImage = this.imageDisplayTarget.dataset.imageUrl
+      if (currentImage) this.updateImage(currentImage)
+    }
   }
 
   changeClass(event) {
-    this.classDisplayTarget.textContent = event.target.value
+    const klassName = event.target.value
+    this.classDisplayTarget.textContent = klassName
 
-    const imageName = event.target.value.toLowerCase(); // The value of the input (e.g., "image_name.jpg")
-    const assetPath = `/assets/${imageName}.png`; // Adjust this if your assets are in a specific subfolder
-
-    // Set the background image
-    this.imageDisplayTarget.style.backgroundImage = `url(${assetPath})`;
+    if (klassName) {
+      const imageName = klassName.toLowerCase()
+      this.updateImage(`/assets/${imageName}.png`)
+    }
   }
 
   changeName(event) {
@@ -25,23 +43,37 @@ export default class extends Controller {
     this.raceDisplayTarget.textContent = event.target.value
   }
 
-  submit(event) {
-    const input = event.target;
-    const form = input.closest("form");
+  submitToken(event) {
+    const input = event.target
+    const file = input.files[0]
 
-    if (input.files.length > 0) {
-      const file = input.files[0];
-      const reader = new FileReader();
+    if (!file) return
 
-      reader.onload = (e) => {
-        // Atualiza a imagem de fundo com a pré-visualização
-        this.imageDisplayTarget.style.backgroundImage = `url(${e.target.result})`;
-      };
-
-      reader.readAsDataURL(file);
-
-      // Envia o formulário automaticamente
-      form.requestSubmit();
+    const reader = new FileReader()
+    reader.onload = (e) => {
+      this.updateImage(e.target.result)
     }
+    reader.readAsDataURL(file)
+
+    if (this.hasTokenFormTarget) {
+      this.tokenFormTarget.requestSubmit()
+    }
+  }
+
+  updateAbility(event) {
+    const { ability, total } = event.detail
+    if (!ability) return
+
+    const display = this.targets.find(`${ability}Display`)
+    if (display) {
+      display.textContent = Number.isFinite(total) ? total : "--"
+    }
+  }
+
+  updateImage(url) {
+    if (!this.hasImageDisplayTarget || !url) return
+
+    this.imageDisplayTarget.style.backgroundImage = `url(${url})`
+    this.imageDisplayTarget.dataset.imageUrl = url
   }
 }
