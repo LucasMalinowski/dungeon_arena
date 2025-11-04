@@ -12,26 +12,28 @@
     </div>
 
     <div class="bg-amber-50/90 rounded-lg p-6 space-y-3" style="background-image:url('<%= asset_path("wood.png") %>'); background-size: cover; background-repeat: no-repeat; background-position: center;">
-      <div class="relative group w-full h-80 bg-amber-100/50 rounded-lg border-4 border-neutral-800 bg-contain bg-center bg-no-repeat flex items-center justify-center text-neutral-800 text-xl font-semibold shadow-inner"
-           style="background-image: url('<%= @character.token.attached? ? url_for(@character.token) : asset_path(@character.token_thumbnail) %>')"
+      <div class="relative group w-full h-80 rounded-xl border-4 border-neutral-800 overflow-hidden shadow-[0_0_40px_rgba(0,0,0,0.45)]"
+           style="background-image: linear-gradient(180deg, rgba(15,23,42,0.65) 0%, rgba(12,10,9,0.9) 100%), url('<%= @character.token.attached? ? url_for(@character.token) : asset_path(@character.token_thumbnail) %>')"
            data-char-visualizer-target="imageDisplay">
-        <div class="absolute inset-0 bg-neutral-900/50 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/60 pointer-events-none"></div>
 
-        <%= form_with model: @character, url: remove_token_character_path(@character), method: :delete, data: { turbo: false }, html: { class: "absolute top-0 right-0 p-2 opacity-0 group-hover:opacity-100 transition-opacity" } do |f| %>
-          <%= f.text_field :step, class: "hidden", value: @current_step %>
-          <button type="submit" class="flex items-center justify-center w-10 h-10 bg-red-500 text-white rounded-full shadow-md hover:bg-red-600 z-50">
-            <i class="fas fa-trash-alt z-50"></i>
-          </button>
-        <% end %>
+        <div class="relative w-full h-full" data-char-visualizer-target="viewport"></div>
 
-        <%= form_with model: @character, url: character_path(@character), method: :patch, html: { class: "absolute inset-0" } do |f| %>
-          <%= f.file_field :token, class: "hidden", direct_upload: true, id: "character_token", data: { action: "change->char-visualizer#uploadToken", char_visualizer_target: "tokenInput" } %>
-          <label for="character_token" class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
-            <div class="flex items-center justify-center w-12 h-12 bg-amber-100 text-neutral-800 rounded-full shadow-md hover:bg-amber-200">
-              <i class="fas fa-pen w-fit"></i>
-            </div>
-          </label>
-        <% end %>
+        <div class="absolute top-3 right-3 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+          <%= form_with model: @character, url: remove_token_character_path(@character), method: :delete, data: { turbo: false }, html: { class: "pointer-events-auto" } do |f| %>
+            <%= f.text_field :step, class: "hidden", value: @current_step %>
+            <button type="submit" class="flex items-center justify-center w-10 h-10 bg-red-600/90 text-white rounded-full shadow-lg hover:bg-red-500 transition">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          <% end %>
+
+          <%= form_with model: @character, url: character_path(@character), method: :patch, html: { class: "pointer-events-auto" } do |f| %>
+            <%= f.file_field :token, class: "hidden", direct_upload: true, id: "character_token", data: { action: "change->char-visualizer#uploadToken", char_visualizer_target: "tokenInput" } %>
+            <label for="character_token" class="flex items-center justify-center w-10 h-10 bg-amber-400/90 text-neutral-900 rounded-full shadow-lg hover:bg-amber-300 transition cursor-pointer">
+              <i class="fas fa-image"></i>
+            </label>
+          <% end %>
+        </div>
       </div>
 
       <div class="text-center space-y-2">
