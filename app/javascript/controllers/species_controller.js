@@ -11,16 +11,14 @@ export default class extends Controller {
     const clickedRadio = event.currentTarget;
 
     if (this.selectedRadio === clickedRadio) {
-      // Uncheck if the same radio is clicked again
       clickedRadio.checked = false;
       this.selectedRadio = null;
     } else {
-      // Uncheck all radios in the group
       this.radioTargets.forEach((radio) => (radio.checked = false));
-
-      // Select the clicked radio
       clickedRadio.checked = true;
       this.selectedRadio = clickedRadio;
     }
+
+    clickedRadio.dispatchEvent(new Event("change", { bubbles: true }));
   }
 }

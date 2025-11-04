@@ -1,47 +1,59 @@
-import { Controller } from "@hotwired/stimulus"
+import { Controller } from "@hotwired/stimulus";
 
-// Connects to data-controller="char-visualizer"
 export default class extends Controller {
-  static targets = ["classDisplay", "nameDisplay", "imageDisplay", "raceDisplay"];
+  static targets = ["classDisplay", "nameDisplay", "imageDisplay", "raceDisplay", "tokenInput"];
 
-  connect() {
+  updateClass(event) {
+    const value = event.target.value;
+    if (this.hasClassDisplayTarget) {
+      this.classDisplayTarget.textContent = value;
+    }
+
+    this.#updateBackgroundFrom(value);
   }
 
-  changeClass(event) {
-    this.classDisplayTarget.textContent = event.target.value
+  updateName(event) {
+    if (this.hasNameDisplayTarget) {
+      this.nameDisplayTarget.textContent = event.target.value || "Unnamed Hero";
+    }
+  }
 
-    const imageName = event.target.value.toLowerCase(); // The value of the input (e.g., "image_name.jpg")
-    const assetPath = `/assets/${imageName}.png`; // Adjust this if your assets are in a specific subfolder
+  updateRace(event) {
+    if (this.hasRaceDisplayTarget) {
+      this.raceDisplayTarget.textContent = event.target.value;
+    }
+  }
 
-    // Set the background image
+  uploadToken(event) {
+    const input = event.target;
+    if (!input.files || input.files.length === 0) return;
+
+    const [file] = input.files;
+    this.#previewFile(file);
+
+    const form = input.closest("form");
+    form?.requestSubmit();
+  }
+
+  #updateBackgroundFrom(value) {
+    if (!this.hasImageDisplayTarget || !value) return;
+
+    const fileName = value
+      .toString()
+      .trim()
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-");
+    const assetPath = `/assets/${fileName}.png`;
     this.imageDisplayTarget.style.backgroundImage = `url(${assetPath})`;
   }
 
-  changeName(event) {
-    this.nameDisplayTarget.textContent = event.target.value
-  }
+  #previewFile(file) {
+    if (!this.hasImageDisplayTarget || !file) return;
 
-  changeRace(event) {
-    this.raceDisplayTarget.textContent = event.target.value
-  }
-
-  submit(event) {
-    const input = event.target;
-    const form = input.closest("form");
-
-    if (input.files.length > 0) {
-      const file = input.files[0];
-      const reader = new FileReader();
-
-      reader.onload = (e) => {
-        // Atualiza a imagem de fundo com a pré-visualização
-        this.imageDisplayTarget.style.backgroundImage = `url(${e.target.result})`;
-      };
-
-      reader.readAsDataURL(file);
-
-      // Envia o formulário automaticamente
-      form.requestSubmit();
-    }
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      this.imageDisplayTarget.style.backgroundImage = `url(${event.target.result})`;
+    };
+    reader.readAsDataURL(file);
   }
 }

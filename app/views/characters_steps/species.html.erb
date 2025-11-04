@@ -1,49 +1,52 @@
-<div class="max-w-2xl mx-auto bg-neutral-900 text-white rounded-lg px-5 pb-5 shadow-lg">
-  <%= turbo_frame_tag "modal" %>
+<div class="bg-neutral-900 text-white rounded-lg px-5 pb-5 shadow-lg">
+  <%= turbo_frame_tag "modal", data: { controller: "frame-loader" } do %>
+    <div data-frame-loader-target="placeholder" class="hidden">
+      <%= render "shared/modal_skeleton" %>
+    </div>
+  <% end %>
 
-  <!-- Form -->
-  <%= form_with(model: @character, url: wizard_path("species"), method: :patch, class: "space-y-4") do |f| %>
+  <%= form_with(model: @character, url: wizard_path("species"), method: :patch, html: { class: "space-y-6", data: { controller: "auto-save" } }) do |f| %>
+    <div class="space-y-2">
+      <h1 class="text-2xl font-bold">Step 2: Choose Your Species</h1>
+      <p class="text-gray-400">
+        Select a species for your character. Each species offers unique abilities and traits.<br>
+        Click on the
+        <i class="fa-solid fa-circle-info fa-sm"></i>
+        icon to view more details about the species and its features.
+      </p>
+    </div>
 
-    <h1 class="text-2xl font-bold">Step 2: Choose Your Specie</h1>
-    <p class="text-gray-400">
-      Select a specie for your character. Each specie offers unique abilities and traits. <br>
-      Click on the
-      <i class="fa-solid fa-circle-info fa-sm"></i>
-      icon to view more details about the specie and its features.
-    </p>
-
-    <!-- Class Selection -->
-    <div data-controller="species">
+    <div data-controller="species" class="space-y-4">
       <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
         <% @races.each do |race| %>
-          <div data-controller="collapse">
-            <input id="<%= race.name %>" type="radio" name="character[race_id]" value="<%= race.name %>" class="hidden peer" data-species-target="radio" data-action="click->species#toggleRadio click->char-visualizer#changeRace">
+          <div data-controller="collapse" class="space-y-2">
+            <input id="<%= race.name %>" type="radio" name="character[race_id]" value="<%= race.name %>" class="hidden peer" data-species-target="radio" data-action="click->species#toggleRadio change->auto-save#save change->char-visualizer#updateRace">
             <label for="<%= race.name %>" class="block border border-gray-700 bg-neutral-800 rounded-lg p-4 hover:bg-neutral-700 peer-checked:border-amber-500 peer-checked:bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 transition">
               <div class="flex items-center justify-between">
                 <div class="flex gap-4 items-center">
                   <% if race.subraces.any? %>
-                    <span data-action="click->collapse#toggleTarget">
-                      <i class="fa-solid fa-chevron-down text-gray-400 transition-transform duration-200" data-collapse-target="target"></i>
-                    </span>
+                    <button type="button" class="text-gray-400 transition-transform duration-200" data-action="click->collapse#toggle">
+                      <i class="fa-solid fa-chevron-down" data-collapse-target="icon"></i>
+                    </button>
                   <% end %>
                   <span class="text-sm font-medium"><%= race.name %></span>
                 </div>
-                <%= link_to race_modal_path(race_id: race.id), data: { turbo: true, turbo_frame: 'modal' } do %>
+                <%= link_to race_modal_path(race_id: race.id), data: { turbo_frame: 'modal' } do %>
                   <i class="fa-solid fa-circle-info fa-lg"></i>
                 <% end %>
               </div>
             </label>
 
             <% if race.subraces.any? %>
-              <div class="hidden mt-2 space-y-2" data-collapse-target="target">
+              <div class="hidden mt-2 space-y-2" data-collapse-target="panel">
                 <% race.subraces.each do |subrace| %>
                   <div class="border border-gray-700 bg-neutral-800 rounded-lg p-2">
-                    <input id="<%= subrace.name %>" type="radio" name="character[subrace_id]" value="<%= subrace.name %>" class="hidden peer" data-species-target="radio" data-action="click->species#toggleRadio">
+                    <input id="<%= subrace.name %>" type="radio" name="character[subrace_id]" value="<%= subrace.name %>" class="hidden peer" data-species-target="radio" data-action="click->species#toggleRadio change->auto-save#save">
                     <label for="<%= subrace.name %>" class="block border border-gray-700 bg-neutral-800 rounded-lg p-4 hover:bg-neutral-700 peer-checked:border-amber-500 peer-checked:bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 transition">
                       <div class="flex items-center gap-2">
                         <i class="fa-solid fa-feather text-blue-400"></i>
                         <span><%= subrace.name %></span>
-                        <%= link_to race_modal_path(subrace_id: subrace.id), data: { turbo: true, turbo_frame: 'modal' } do %>
+                        <%= link_to race_modal_path(subrace_id: subrace.id), data: { turbo_frame: 'modal' } do %>
                           <i class="fa-solid fa-circle-info fa-lg"></i>
                         <% end %>
                       </div>
@@ -57,8 +60,7 @@
       </div>
     </div>
 
-    <!-- Navigation Buttons -->
-    <div class="flex justify-between">
+    <div class="flex flex-wrap gap-3 justify-between">
       <%= link_to wizard_path("klass", character_id: @character.id), class: "flex items-center gap-2 px-6 py-3 rounded-lg bg-gray-700 hover:bg-gray-600 text-white" do %>
         <i class="fa fa-arrow-left"></i> Previous
       <% end %>

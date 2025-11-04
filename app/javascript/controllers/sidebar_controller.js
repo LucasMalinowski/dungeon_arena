@@ -18,14 +18,14 @@ export default class extends Controller {
     // Attach open button functionality if the button exists
     this.openButton = document.querySelector("#open-sidebar-mobile");
     if (this.openButton) {
-      this.openButton.addEventListener("click", this.open.bind(this));
+      this.openHandler = this.open.bind(this);
+      this.openButton.addEventListener("click", this.openHandler);
     }
   }
 
   disconnect() {
-    // Remove event listener when the controller disconnects
-    if (this.openButton) {
-      this.openButton.removeEventListener("click", this.open.bind(this));
+    if (this.openButton && this.openHandler) {
+      this.openButton.removeEventListener("click", this.openHandler);
     }
   }
 

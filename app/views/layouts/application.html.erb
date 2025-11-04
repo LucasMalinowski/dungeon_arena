@@ -6,13 +6,11 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
-
     <%= favicon_link_tag 'dungeon_favicon' %>
 
-    <!--  Import Font Awesome icons  <-->
+    <!--  Import Font Awesome icons  -->
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.2/css/all.css">
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.2/css/sharp-thin.css">
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.2/css/sharp-solid.css">
@@ -20,35 +18,23 @@
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.2/css/sharp-light.css">
   </head>
 
-  <body>
-    <div class="h-screen flex">
+  <body class="bg-zinc-900 text-white">
+    <div class="min-h-screen flex flex-col lg:flex-row">
       <%= render "layouts/aside" %>
 
-      <main class="flex-1 bg-zinc-800 p-4 sm:ml-auto">
-        <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
+      <main class="flex-1 flex flex-col bg-zinc-800">
+        <div class="p-4 space-y-4 flex-1">
+          <p class="notice"><%= notice %></p>
+          <p class="alert"><%= alert %></p>
 
-        <% if current_user %>
-          <%= yield %>
-        <% else %>
-          <div class="container mx-auto mt-6">
-            <p class="text-gray-300 text-center">Please, <%= link_to "Login", new_user_session_path, class: "text-blue-400 hover:text-blue-500" %> before continuing. </p>
-          </div>
-        <% end %>
-
-        <%# @traits.each do |trait| %>
-          <%# if trait.trait_specific_type.present? %>
-<!--            <div>-->
-<!--              <h3><%#= trait.trait_specific_type.to_s.humanize %></h3>-->
-              <%#= render partial: "shared/trait_specific_details", locals: { details: trait.trait_specific_details } %>
-<!--            </div>-->
-          <%# end %>
-
-        <%# end %>
-
-
-
-
+          <% if current_user %>
+            <%= yield %>
+          <% else %>
+            <div class="container mx-auto mt-6">
+              <p class="text-gray-300 text-center">Please, <%= link_to "Login", new_user_session_path, class: "text-blue-400 hover:text-blue-500" %> before continuing. </p>
+            </div>
+          <% end %>
+        </div>
       </main>
     </div>
   </body>
