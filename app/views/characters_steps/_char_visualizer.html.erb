@@ -17,8 +17,6 @@
            data-char-visualizer-target="imageDisplay">
         <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/60 pointer-events-none"></div>
 
-        <div class="relative w-full h-full" data-char-visualizer-target="viewport"></div>
-
         <div class="absolute top-3 right-3 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
           <%= form_with model: @character, url: remove_token_character_path(@character), method: :delete, data: { turbo: false }, html: { class: "pointer-events-auto" } do |f| %>
             <%= f.text_field :step, class: "hidden", value: @current_step %>
