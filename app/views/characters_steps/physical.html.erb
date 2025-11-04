@@ -1,24 +1,26 @@
-<%= form_for @character, url: wizard_path(@step, character_id: @character.id), method: :put, class: "space-y-4 text-white" do |f| %>
-  <%= f.label :skin_color, "Skin Color", class: "block font-semibold" %>
-  <%= f.text_field :skin_color, class: "block w-full rounded bg-neutral-700 border border-gray-600 p-2" %>
+<%= render "characters_steps/step_form",
+           character: @character,
+           url: wizard_path(:physical, character_id: @character.id),
+           method: :put,
+           title: "Step 4: Physical Traits",
+           description: "Describe how your hero looks so other players can picture them during encounters.",
+           previous_path: wizard_path(:abilities, character_id: @character.id) do |f| %>
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <% { skin_color: "Skin Color", hair_color: "Hair Color", eye_color: "Eye Color", gender: "Gender" }.each do |attribute, label| %>
+      <div class="space-y-2">
+        <%= f.label attribute, label, class: "text-sm font-semibold text-gray-200" %>
+        <%= f.text_field attribute,
+                         class: "w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm text-white placeholder:text-gray-400 focus:border-amber-400 focus:ring focus:ring-amber-400/40" %>
+      </div>
+    <% end %>
 
-  <%= f.label :hair_color, "Hair Color", class: "block font-semibold" %>
-  <%= f.text_field :hair_color, class: "block w-full rounded bg-neutral-700 border border-gray-600 p-2" %>
-
-  <%= f.label :eye_color, "Eye Color", class: "block font-semibold" %>
-  <%= f.text_field :eye_color, class: "block w-full rounded bg-neutral-700 border border-gray-600 p-2" %>
-
-  <%= f.label :gender, "Gender", class: "block font-semibold" %>
-  <%= f.text_field :gender, class: "block w-full rounded bg-neutral-700 border border-gray-600 p-2" %>
-
-  <%= f.label :height, "Height (cm)", class: "block font-semibold" %>
-  <%= f.number_field :height, class: "block w-full rounded bg-neutral-700 border border-gray-600 p-2" %>
-
-  <%= f.label :weight, "Weight (kg)", class: "block font-semibold" %>
-  <%= f.number_field :weight, class: "block w-full rounded bg-neutral-700 border border-gray-600 p-2" %>
-
-  <%= f.label :age, "Age", class: "block font-semibold" %>
-  <%= f.number_field :age, class: "block w-full rounded bg-neutral-700 border border-gray-600 p-2", min: 0 %>
-
-  <%= f.submit "Next", name: "next", class: "bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded" %>
+    <% { height: "Height (cm)", weight: "Weight (kg)", age: "Age" }.each do |attribute, label| %>
+      <div class="space-y-2">
+        <%= f.label attribute, label, class: "text-sm font-semibold text-gray-200" %>
+        <%= f.number_field attribute,
+                           class: "w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm text-white placeholder:text-gray-400 focus:border-amber-400 focus:ring focus:ring-amber-400/40",
+                           min: 0 %>
+      </div>
+    <% end %>
+  </div>
 <% end %>

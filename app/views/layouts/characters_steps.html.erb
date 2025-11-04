@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -13,7 +12,7 @@
 
     <%= favicon_link_tag 'dungeon_favicon' %>
 
-    <!--  Import Font Awesome icons  <-->
+    <!--  Import Font Awesome icons  -->
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.2/css/all.css">
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.2/css/sharp-thin.css">
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.2/css/sharp-solid.css">
@@ -21,34 +20,33 @@
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.2/css/sharp-light.css">
   </head>
 
-  <body>
+  <body class="bg-zinc-900 text-white">
     <div class="min-h-screen flex">
       <%= render "layouts/aside" %>
 
-      <main class="flex-1 bg-zinc-800 p-4 sm:ml-auto h-auto">
-        <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
+      <main class="flex-1 min-h-screen">
+        <div class="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+          <p class="notice"><%= notice %></p>
+          <p class="alert"><%= alert %></p>
 
-        <%= render "layouts/stepper" %>
+          <%= render "layouts/stepper" %>
 
-        <% if current_user %>
-          <div class="flex" data-controller="char-visualizer">
-            <%= yield %>
-
-            <%= render "characters_steps/char_visualizer" %>
-          </div>
-        <% else %>
-          <div class="container mx-auto mt-6">
-            <p class="text-gray-300 text-center">Please, <%= link_to "Login", new_user_session_path, class: "text-blue-400 hover:text-blue-500" %> before continuing. </p>
-          </div>
-        <% end %>
+          <% if current_user %>
+            <div class="mt-6 flex flex-col gap-8 xl:grid xl:grid-cols-[minmax(0,1fr)_minmax(280px,380px)] xl:items-start" data-controller="char-visualizer" data-action="abilities:updated->char-visualizer#updateAbility">
+              <section class="order-2 xl:order-1 w-full">
+                <%= yield %>
+              </section>
+              <aside class="order-1 xl:order-2 w-full xl:sticky xl:top-6">
+                <%= render "characters_steps/char_visualizer" %>
+              </aside>
+            </div>
+          <% else %>
+            <div class="container mx-auto mt-6">
+              <p class="text-gray-300 text-center">Please, <%= link_to "Login", new_user_session_path, class: "text-blue-400 hover:text-blue-500" %> before continuing. </p>
+            </div>
+          <% end %>
+        </div>
       </main>
     </div>
   </body>
-  <script>
-    document.cookie = `sidebar_expanded=false`;
-  </script>
 </html>
-
-
-

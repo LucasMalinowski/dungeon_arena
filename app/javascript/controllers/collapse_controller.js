@@ -1,26 +1,17 @@
-import { Controller } from "@hotwired/stimulus";
+import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["target"];
+  static targets = ["panel", "icon"]
 
-  toggleTarget(event) {
-    console.log("AAAAAAAA")
-    console.log(event.currentTarget)
-    console.log(this.targetTargets)
-    const icon = event.currentTarget.querySelector(".fa-chevron-down");
-    if (icon) {
-      icon.classList.toggle("rotate-180");
-    }
-    this.targetTargets.forEach(target => {
-      target.classList.toggle("hidden");
-    });
-  }
   toggle(event) {
-    const targetId = event.target.dataset.collapseTarget;
-    const target = document.getElementById(targetId);
+    event.preventDefault()
 
-    if (target) {
-      target.classList.toggle("hidden");
-    }
+    this.panelTargets.forEach((panel) => {
+      panel.classList.toggle("hidden")
+    })
+
+    this.iconTargets.forEach((icon) => {
+      icon.classList.toggle("rotate-180")
+    })
   }
 }

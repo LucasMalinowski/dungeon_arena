@@ -1,0 +1,64 @@
+<% form_method = local_assigns.fetch(:method, :patch) %>
+<% previous_path = local_assigns[:previous_path] %>
+<% previous_label = local_assigns.fetch(:previous_label, "Previous") %>
+<% next_label = local_assigns.fetch(:next_label, "Next") %>
+<% description = local_assigns[:description] %>
+<% form_options = { class: "space-y-8" }.deep_merge(local_assigns.fetch(:form_options, {})) %>
+<% submit_options = local_assigns.fetch(:next_button_options, {}) %>
+<% submit_classes = [
+  "inline-flex w-full justify-center sm:w-auto items-center gap-2 px-6 py-3 rounded-lg bg-blue-500",
+  "hover:bg-blue-600 text-white font-semibold transition focus-visible:outline focus-visible:outline-2",
+  "focus-visible:outline-offset-2 focus-visible:outline-blue-400"
+]
+submit_classes << submit_options.delete(:class) if submit_options[:class]
+submit_classes = submit_classes.compact.join(" ")
+%>
+<% previous_button_options = local_assigns.fetch(:previous_button_options, {}) %>
+<% previous_classes = [
+  "inline-flex w-full justify-center sm:w-auto items-center gap-2 px-6 py-3 rounded-lg border border-white/20",
+  "bg-white/5 hover:bg-white/10 text-white transition focus-visible:outline focus-visible:outline-2",
+  "focus-visible:outline-offset-2 focus-visible:outline-white"
+]
+previous_classes << previous_button_options.delete(:class) if previous_button_options[:class]
+previous_classes = previous_classes.compact.join(" ")
+%>
+
+<div class="w-full max-w-3xl mx-auto">
+  <%= turbo_frame_tag "modal" %>
+
+  <div class="bg-neutral-900/90 text-white rounded-2xl shadow-2xl ring-1 ring-white/10 backdrop-blur">
+    <%= form_with(model: character,
+                  url: url,
+                  method: form_method,
+                  **form_options) do |form| %>
+      <div class="p-6 sm:p-8 space-y-6">
+        <div class="space-y-3">
+          <% if local_assigns[:eyebrow].present? %>
+            <p class="text-xs font-semibold uppercase tracking-wide text-amber-400"><%= local_assigns[:eyebrow] %></p>
+          <% end %>
+          <h1 class="text-2xl font-bold tracking-tight sm:text-3xl"><%= title %></h1>
+          <% if description.present? %>
+            <div class="text-sm leading-relaxed text-gray-300">
+              <%= description.respond_to?(:call) ? capture(&description) : simple_format(description) %>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="space-y-6">
+          <%= yield form %>
+        </div>
+
+        <div class="flex flex-col-reverse sm:flex-row sm:items-center sm:justify-between gap-3">
+          <% if previous_path.present? %>
+            <%= link_to previous_path, previous_button_options.merge(class: previous_classes) do %>
+              <i class="fa-solid fa-arrow-left"></i>
+              <span><%= previous_label %></span>
+            <% end %>
+          <% end %>
+
+          <%= form.submit next_label, submit_options.merge(class: submit_classes) %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

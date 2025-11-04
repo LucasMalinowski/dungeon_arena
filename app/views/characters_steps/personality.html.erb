@@ -1,8 +1,25 @@
-<%= form_for @character, url: wizard_path(@step, character_id: @character.id), method: :put, class: "space-y-4 text-white" do |f| %>
-  <% %w[personality ideals bonds flaws].each do |attr| %>
-    <%= f.label attr, attr.capitalize, class: "block font-semibold" %>
-    <%= f.text_field attr, class: "block w-full rounded bg-neutral-700 border border-gray-600 p-2" %>
-  <% end %>
-
-  <%= f.submit "Finish", name: "finish", class: "bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded" %>
+<%= render "characters_steps/step_form",
+           character: @character,
+           url: wizard_path(:personality, character_id: @character.id),
+           method: :put,
+           title: "Step 6: Personality",
+           description: "Round out your hero with defining quirks, values, and flaws to guide their decisions.",
+           previous_path: wizard_path(:notes, character_id: @character.id),
+           next_label: "Finish",
+           next_button_options: { class: "bg-amber-500 hover:bg-amber-600 focus-visible:outline-amber-300" } do |f| %>
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <% {
+         personality: "Personality Traits",
+         ideals: "Ideals",
+         bonds: "Bonds",
+         flaws: "Flaws"
+       }.each do |attribute, label| %>
+      <div class="space-y-2">
+        <%= f.label attribute, label, class: "text-sm font-semibold text-gray-200" %>
+        <%= f.text_area attribute,
+                        rows: 3,
+                        class: "w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm text-white placeholder:text-gray-400 focus:border-amber-400 focus:ring focus:ring-amber-400/40" %>
+      </div>
+    <% end %>
+  </div>
 <% end %>

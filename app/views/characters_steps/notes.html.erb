@@ -1,12 +1,31 @@
-<%= form_for @character, url: wizard_path(@step, character_id: @character.id), method: :put, class: "space-y-4 text-white" do |f| %>
-  <%= f.label :notes, "Notes", class: "block font-semibold" %>
-  <%= f.text_area :notes, class: "block w-full rounded bg-neutral-700 border border-gray-600 p-2" %>
+<%= render "characters_steps/step_form",
+           character: @character,
+           url: wizard_path(:notes, character_id: @character.id),
+           method: :put,
+           title: "Step 5: Notes & Backstory",
+           description: "Capture memorable lore, allies, and personal history to enrich roleplay moments.",
+           previous_path: wizard_path(:physical, character_id: @character.id) do |f| %>
+  <div class="space-y-5">
+    <div class="space-y-2">
+      <%= f.label :notes, "Adventure Notes", class: "text-sm font-semibold text-gray-200" %>
+      <%= f.text_area :notes,
+                      rows: 4,
+                      class: "w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-gray-400 focus:border-amber-400 focus:ring focus:ring-amber-400/40" %>
+    </div>
 
-  <%= f.label :backstory, "Backstory", class: "block font-semibold" %>
-  <%= f.text_area :backstory, class: "block w-full rounded bg-neutral-700 border border-gray-600 p-2" %>
+    <div class="space-y-2">
+      <%= f.label :backstory, "Backstory", class: "text-sm font-semibold text-gray-200" %>
+      <%= f.text_area :backstory,
+                      rows: 6,
+                      class: "w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-gray-400 focus:border-amber-400 focus:ring focus:ring-amber-400/40" %>
+    </div>
 
-  <%= f.label :alignment, "Alignment", class: "block font-semibold" %>
-  <%= f.select :alignment, %w[Lawful Neutral Chaotic Good Evil], prompt: "Select an Alignment", class: "block w-full rounded bg-neutral-700 border border-gray-600 p-2" %>
-
-  <%= f.submit "Next", name: "next", class: "bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded" %>
+    <div class="space-y-2">
+      <%= f.label :alignment, "Alignment", class: "text-sm font-semibold text-gray-200" %>
+      <%= f.select :alignment,
+                   %w[Lawful Neutral Chaotic Good Evil],
+                   { prompt: "Select an alignment" },
+                   class: "w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white focus:border-amber-400 focus:ring focus:ring-amber-400/40" %>
+    </div>
+  </div>
 <% end %>

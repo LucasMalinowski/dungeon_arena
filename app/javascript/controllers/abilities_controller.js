@@ -1,36 +1,65 @@
-import { Controller } from "@hotwired/stimulus";
+import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["select"];
+  static targets = ["select", "display"]
 
   connect() {
-    this.updateOptions();
+    this.updateOptions()
+    this.refreshDisplays()
+  }
+
+  handleChange(event) {
+    this.updateOptions()
+    this.updateDisplay(event.target)
   }
 
   updateOptions() {
-    const selectedValues = Array.from(this.element.querySelectorAll("select"))
-      .map(select => select.value)
-      .filter(value => value);
+    const selectedValues = this.selectTargets
+      .map((select) => select.value)
+      .filter((value) => value)
 
-    this.element.querySelectorAll("select").forEach(select => {
-      const currentValue = select.value;
-      const options = select.querySelectorAll("option");
+    this.selectTargets.forEach((select) => {
+      const currentValue = select.value
 
-      options.forEach(option => {
-        option.disabled = selectedValues.includes(option.value) && option.value !== currentValue;
-      });
-    });
+      Array.from(select.options).forEach((option) => {
+        if (!option.value) return
+        option.disabled = selectedValues.includes(option.value) && option.value !== currentValue
+      })
+    })
   }
 
-  updateDisplayer(event) {
-    /*const displayer = this.element.querySelector(".displayer");
-    const selectedValues = Array.from(this.element.querySelectorAll("select"))
-      .map(select => select.value)
-      .filter(value => value);
+  refreshDisplays() {
+    this.selectTargets.forEach((select) => this.updateDisplay(select))
+  }
 
-    displayer.innerHTML = selectedValues.join(", ");*/
+  updateDisplay(select) {
+    const ability = select.dataset.abilityName
+    if (!ability) return
 
-    console.log(event.target.dataset.abilityName)
-    console.log(event.target.value)
+    const display = this.displayTargets.find((element) => element.dataset.ability === ability)
+    if (!display) return
+
+    const base = parseInt(select.value, 10)
+    const bonus = parseInt(display.dataset.bonus || 0, 10)
+    const total = Number.isFinite(base) ? base + bonus : null
+    const modifier = Number.isFinite(total) ? Math.floor((total - 10) / 2) : null
+
+    this.updateMetric(display, "base", Number.isFinite(base) ? base : "--")
+    this.updateMetric(display, "total", Number.isFinite(total) ? total : "--")
+    this.updateMetric(display, "modifier", Number.isFinite(modifier) ? this.formatModifier(modifier) : "--")
+
+    this.dispatch("updated", { detail: { ability, total } })
+  }
+
+  updateMetric(container, role, value) {
+    const element = container.querySelector(`[data-role="${role}"]`)
+    if (element) {
+      element.textContent = value
+    }
+  }
+
+  formatModifier(value) {
+    if (!Number.isFinite(value)) return value
+    return value >= 0 ? `+${value}` : value
   }
 }
