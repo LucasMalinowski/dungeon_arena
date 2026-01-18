@@ -70,7 +70,8 @@ class Character < ApplicationRecord
   end
 
   def klasses_name
-    klasses.pluck(:name).join(', ')
+    # remove the default ORDER BY that references character_classes.level
+    klasses.reorder(nil).pluck(:name).uniq.join(', ')
   end
 
   def traits
@@ -78,7 +79,7 @@ class Character < ApplicationRecord
   end
 
   def klass
-    primary_class || klasses.first
+    primary_class || klasses.reorder(nil).first
   end
 
   def character_attribute_names
