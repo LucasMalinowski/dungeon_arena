@@ -1,47 +1,75 @@
-import { Controller } from "@hotwired/stimulus"
+import { Controller } from "@hotwired/stimulus";
 
-// Connects to data-controller="char-visualizer"
 export default class extends Controller {
-  static targets = ["classDisplay", "nameDisplay", "imageDisplay", "raceDisplay"];
+  static targets = ["classDisplay", "nameDisplay", "imageDisplay", "raceDisplay", "tokenInput"];
 
   connect() {
-  }
-
-  changeClass(event) {
-    this.classDisplayTarget.textContent = event.target.value
-
-    const imageName = event.target.value.toLowerCase(); // The value of the input (e.g., "image_name.jpg")
-    const assetPath = `/assets/${imageName}.png`; // Adjust this if your assets are in a specific subfolder
-
-    // Set the background image
-    this.imageDisplayTarget.style.backgroundImage = `url(${assetPath})`;
-  }
-
-  changeName(event) {
-    this.nameDisplayTarget.textContent = event.target.value
-  }
-
-  changeRace(event) {
-    this.raceDisplayTarget.textContent = event.target.value
-  }
-
-  submit(event) {
-    const input = event.target;
-    const form = input.closest("form");
-
-    if (input.files.length > 0) {
-      const file = input.files[0];
-      const reader = new FileReader();
-
-      reader.onload = (e) => {
-        // Atualiza a imagem de fundo com a pré-visualização
-        this.imageDisplayTarget.style.backgroundImage = `url(${e.target.result})`;
-      };
-
-      reader.readAsDataURL(file);
-
-      // Envia o formulário automaticamente
-      form.requestSubmit();
+    if (this.hasClassDisplayTarget) {
+      this.#updateBackgroundFrom(this.classDisplayTarget.textContent);
     }
+  }
+
+  updateClass(event) {
+    const value = event.target.value;
+
+    if (this.hasClassDisplayTarget) {
+      this.classDisplayTarget.textContent = value;
+    }
+
+    this.#updateBackgroundFrom(value);
+  }
+
+  updateName(event) {
+    if (this.hasNameDisplayTarget) {
+      const text = event.target.value?.trim();
+      this.nameDisplayTarget.textContent = text || "Unnamed Hero";
+    }
+  }
+
+  updateRace(event) {
+    if (this.hasRaceDisplayTarget) {
+      this.raceDisplayTarget.textContent = event.target.value;
+    }
+  }
+
+  uploadToken(event) {
+    const input = event.target;
+    if (!input.files || input.files.length === 0) return;
+
+    const [file] = input.files;
+    this.#previewFile(file);
+
+    const form = input.closest("form");
+    form?.requestSubmit();
+  }
+
+  #updateBackgroundFrom(value) {
+    if (!this.hasImageDisplayTarget || !value) return;
+
+    const sanitized = value.trim();
+    if (!sanitized || sanitized.startsWith("-")) return;
+
+    const assetName = sanitized
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "_");
+
+    const url = `/assets/${assetName}.png`;
+    this.imageDisplayTarget.style.backgroundImage = `linear-gradient(180deg, rgba(15,23,42,0.65) 0%, rgba(12,10,9,0.9) 100%), url('${url}')`;
+    this.imageDisplayTarget.classList.add("bg-cover", "bg-center", "bg-no-repeat");
+  }
+
+  #previewFile(file) {
+    if (!this.hasImageDisplayTarget) return;
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const result = event.target?.result;
+      if (!result) return;
+
+      this.imageDisplayTarget.style.backgroundImage = `linear-gradient(180deg, rgba(15,23,42,0.65) 0%, rgba(12,10,9,0.9) 100%), url('${result}')`;
+      this.imageDisplayTarget.classList.add("bg-cover", "bg-center", "bg-no-repeat");
+    };
+
+    reader.readAsDataURL(file);
   }
 }

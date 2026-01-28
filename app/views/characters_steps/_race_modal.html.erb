@@ -16,7 +16,7 @@
         <div class="sticky top-0 left-0 h-full">
           <div class="flex flex-col items-center gap-4">
           <h2 class="text-xl font-bold text-white"><%= race.name %></h2>
-          <%= image_tag "#{race.name}.png", class: "w-56 h-72" %>
+          <%= image_tag "#{race.is_a?(Subrace) ? race.race.name : race.name}.png", class: "w-56 h-72" %>
            </div>
         </div>
 
@@ -28,7 +28,8 @@
 
           <div>
             <h3 class="text-md font-semibold text-gray-200 mb-1 mt-4">Language Proficiencies</h3>
-            <p class="text-gray-300 text-sm"><%= race.languages.pluck(:name).join("<br>").html_safe %></p>
+            <% languages = race.is_a?(Subrace) ? race.race.languages : race.languages  %>
+            <p class="text-gray-300 text-sm"><%= languages.pluck(:name).join("<br>").html_safe %></p>
           </div>
           <div>
             <h3 class="text-md font-semibold text-gray-200 mb-1 mt-4">Saving Throws</h3>

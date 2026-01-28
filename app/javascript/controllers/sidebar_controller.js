@@ -1,68 +1,51 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Connects to data-controller="sidebar"
 export default class extends Controller {
-  static targets = [
-    "sidebarContainer",
-    "sidebarUl",
-    "sidebarUlHelp",
-  ];
+  static targets = ["sidebarUl", "sidebarUlHelp"]
 
   connect() {
     if (document.cookie.includes("sidebar_expanded=false")) {
-      this.sidebarUlTarget.classList.toggle("items-center");
-      this.sidebarUlHelpTarget.classList.toggle("flex-col");
-      this.sidebarUlHelpTarget.classList.toggle("items-center");
+      this.sidebarUlTarget.classList.toggle("items-center")
+      this.sidebarUlHelpTarget.classList.toggle("flex-col")
+      this.sidebarUlHelpTarget.classList.toggle("items-center")
     }
 
-    // Attach open button functionality if the button exists
-    this.openButton = document.querySelector("#open-sidebar-mobile");
+    this.openButton = document.querySelector("#open-sidebar-mobile")
     if (this.openButton) {
-      this.openButton.addEventListener("click", this.open.bind(this));
+      this.openHandler = this.open.bind(this)
+      this.openButton.addEventListener("click", this.openHandler)
     }
   }
 
   disconnect() {
-    // Remove event listener when the controller disconnects
-    if (this.openButton) {
-      this.openButton.removeEventListener("click", this.open.bind(this));
+    if (this.openButton && this.openHandler) {
+      this.openButton.removeEventListener("click", this.openHandler)
     }
   }
 
   toggle(e) {
-    e.preventDefault();
-    this.switchCurrentState();
+    e.preventDefault()
+    this.switchCurrentState()
   }
 
   close(e) {
-    e.preventDefault();
-    this.element.classList.add("-translate-x-full");
+    e.preventDefault()
+    this.element.classList.add("-translate-x-full")
   }
 
   open(e) {
-    e.preventDefault();
-    this.element.classList.remove("-translate-x-full");
+    e.preventDefault()
+    this.element.classList.remove("-translate-x-full")
   }
 
-  switchCurrentState(new_value) {
-    // if(new_value){
-    //   this.element.dataset.expanded = new_value;
-    //   document.cookie = `sidebar_expanded=${new_value}`;
-    //   const newState = new_value;
-    // } else {
-    // }
-    const newState = this.element.dataset.expanded === "true" ? "false" : "true";
-    this.element.dataset.expanded = newState;
+  switchCurrentState() {
+    const newState = this.element.dataset.expanded === "true" ? "false" : "true"
+    this.element.dataset.expanded = newState
 
-    if (newState === "true") {
-      this.sidebarUlTarget.classList.toggle("items-center");
-      this.sidebarUlHelpTarget.classList.toggle("flex-col");
-      this.sidebarUlHelpTarget.classList.toggle("items-center");
-    } else {
-      this.sidebarUlTarget.classList.toggle("items-center");
-      this.sidebarUlHelpTarget.classList.toggle("flex-col");
-      this.sidebarUlHelpTarget.classList.toggle("items-center");
-    }
-    document.cookie = `sidebar_expanded=${newState}`;
+    this.sidebarUlTarget.classList.toggle("items-center")
+    this.sidebarUlHelpTarget.classList.toggle("flex-col")
+    this.sidebarUlHelpTarget.classList.toggle("items-center")
+
+    document.cookie = `sidebar_expanded=${newState}`
   }
 }
